@@ -1,8 +1,8 @@
-.e_o {
+.e_o a {
     transition: 0.4s;
 }
 
-.e_o:hover {
+.e_o:hover a {
     font-size:17px;
 }
 
