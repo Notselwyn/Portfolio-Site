@@ -1,3 +1,11 @@
+.hover-shrink a {
+    transition: 0.4s;
+}
+
+.hover-shrink:hover a {
+    font-size:17px;
+}
+
 body {
     background-color: #1c1c1c;
     padding: 0;
