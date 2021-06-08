@@ -77,6 +77,8 @@ a.tab:hover {
     display: block;
     overflow: hidden;
     text-align: left;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .topic-title {
