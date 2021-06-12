@@ -7,6 +7,8 @@
     background-color: transparent;
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
+    border: 2px solid #ffffff;
+    color: #ffffff;
     width: 130px;
     height: 40px;
     border-radius: 50px;
@@ -21,19 +23,9 @@
     height: 35px;
 }
 
-#SOB {
-    border: 2px solid #ffffff;
-    color: #ffffff;
-}
-
 #SOB:hover {
     background-color: #f48024;
     border: 0px solid #f48024;
-}
-
-#GHB {
-    border: 2px solid #ffffff;
-    color: #ffffff;
 }
 
 #GHB:hover {
@@ -41,14 +33,14 @@
     border: 0px solid #999999;
 }
 
-#THMB {
-    border: 2px solid #ffffff;
-    color: #ffffff;
-}
-
 #THMB:hover {
     background-color: #1c2538;
     border: 0px solid #1c2538;
+}
+
+#CG:hover {
+    background-color: #f2bb13;
+    border: 0px solid #f2bb13;
 }
 
 #extend_div {
