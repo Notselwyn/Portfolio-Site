@@ -12,7 +12,7 @@
                 return vars;
             }
             let problem = getUrlVars()["problem"]
-            if (problem.match(/[a-zA-Z]/i)) {
+            if (problem.match(/[!\[\]{}a-zA-Z]/i)) {
                 document.getElementById("output").innerHTML = '{"output": "error"}'
             } else {
                 document.getElementById("output").innerHTML = `{"output": ${eval(problem)}}`
