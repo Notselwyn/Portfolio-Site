@@ -6,19 +6,22 @@ html
       include ../general/wrapper_head
    body
       include ../general/wrapper_body
-      each items, cat in projects
+      for items, cat in projects
          div.container-md(id=cat.toLowerCase().replace(" ", "_"))
             b
                p.category=cat
-            each project in items
+            for project in items
                div.project_container.row
                   b
                      p.project_topic=project["title"]
                   p.project_description.col-md-6=project["description"]
-                  img.project_banner.col-md-6(src=project["banner"])
-               for tag in project["tags"]
+                  img.img-fluid.project_banner.col-md-6(src=project["banner"])
+               div.project_meta(style="margin-top:15px;")
                   b
-                     a(href=`projects?lang=${tag}`).project_tag=tag
-               if "github" in project
-                  b
-                     a(href=project["github"]).project_tag.project_github="View on Github"
+                     for tag in project["tags"]
+                        a(href=`projects?lang=${tag}`).project_tag=tag
+                     if "github" in project
+                        a(href=project["github"]).project_github.project_tag="View on Github"
+            else
+               p.noprojects=`There are currently no projects ${cat.toLowerCase()}`
+      //a.footer
