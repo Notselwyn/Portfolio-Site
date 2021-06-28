@@ -1,0 +1,24 @@
+doctype html
+html
+   head
+      link(rel="stylesheet" href="static/css/bootstrap.min.css", type="text/css")
+      link(rel="stylesheet" href="static/css/projects.css", type="text/css")
+      include ../general/wrapper_head
+   body
+      include ../general/wrapper_body
+      each items, cat in projects
+         div.container-md(id=cat.toLowerCase().replace(" ", "_"))
+            b
+               p.category=cat
+            each project in items
+               div.project_container.row
+                  b
+                     p.project_topic=project["title"]
+                  p.project_description.col-md-6=project["description"]
+                  img.project_banner.col-md-6(src=project["banner"])
+               for tag in project["tags"]
+                  b
+                     a(href=`projects?lang=${tag}`).project_tag=tag
+               if "github" in project
+                  b
+                     a(href=project["github"]).project_tag.project_github="View on Github"
