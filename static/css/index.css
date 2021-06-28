@@ -9,11 +9,13 @@
     -webkit-border-radius: 50px;
     border: 2px solid #ffffff;
     color: #ffffff;
-    width: 130px;
+    width: 120px;
     height: 40px;
     border-radius: 50px;
     outline: none;
     cursor: pointer;
+    margin-left: 3px;
+    margin-right: 3px;
     transition: color 0.2s,width 0.4s,height 0.4s,border 0.4s,background-color 0.2s;
 }
 

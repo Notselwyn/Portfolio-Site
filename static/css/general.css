@@ -14,7 +14,6 @@ body {
 }
 
 .footer {
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -79,20 +78,25 @@ a.tab:hover {
     font-size: 20px;
 }
 
+/*
 .topic {
     padding-top: 30px;
     padding-left: 20%;
     padding-right: 15px;
 }
-
-@media only screen and (hover: none) and (pointer: coarse){
-    .topic {
-        padding-top: 30px;
-    }h
-}
+ */
 
 * {
     font-family: roboto,sans-serif;
     margin: 0;
     color: #ffffff;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+a:hover {
+    color: #ffffff;
+    text-decoration: none;
 }

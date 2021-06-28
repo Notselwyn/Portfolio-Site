@@ -12,7 +12,7 @@ function rainbow() {
 
 function rainbow_c() {
     r_c += 1;
-    if (r_c == 3) {
+    if (r_c == 2) {
         window.setInterval(rainbow, 10);
     }
 }

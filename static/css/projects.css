@@ -1,0 +1,36 @@
+.category {
+    font-size: 20px;
+    text-align: center;
+    margin: 30px auto 10px;
+}
+.project_topic {
+    font-size: 16px;
+    margin: 0 auto;
+}
+
+.project_description {
+    font-size: 13px;
+    margin: 0 auto;
+}
+
+.project_github {
+    float: right;
+}
+
+.project_tag {
+    font-size: 10px;
+    margin: 3px;
+    padding: 2px;
+    color: #000000;
+    border-radius: 3px;
+    border: 2px solid #ffffff;
+    background: #ffffff;
+    text-decoration: none;
+    transition: .5s;
+}
+
+.project_tag:hover {
+    font-size: 9px;
+    border-radius: 5px;
+    color: #000000;
+}
