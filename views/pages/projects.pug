@@ -10,18 +10,26 @@ html
          div.container-md(id=cat.toLowerCase().replace(" ", "_"))
             b
                p.category=cat
+            - let i = 0;
             for project in items
-               div.project_container.row
-                  b
-                     p.project_topic=project["title"]
-                  p.project_description.col-md-6=project["description"]
-                  img.img-fluid.project_banner.col-md-6(src=project["banner"])
-               div.project_meta(style="margin-top:15px;")
-                  b
-                     for tag in project["tags"]
-                        a(href=`projects?lang=${tag}`).project_tag=tag
-                     if "github" in project
-                        a(href=project["github"]).project_github.project_tag="View on Github"
+               div.project_container
+                  div.row
+                     b
+                        p.project_topic=project["title"]
+                     if i%2===0
+                        p.project_description.col-md-6=project["description"]
+                        img.img-fluid.col-md-6(src=project["banner"])
+                     else
+                        img.img-fluid.col-md-6(src=project["banner"])
+                        p.project_description.col-md-6=project["description"]
+
+                  div.project_meta(style="margin-top:15px;")
+                     b
+                        for tag in project["tags"]
+                           a(href=`projects?lang=${tag}`).project_tag=tag
+                        if "github" in project
+                           a(href=project["github"]).project_github.project_tag="View on Github"
+               - i +=1;
             else
                p.noprojects=`There are currently no projects ${cat.toLowerCase()}`
       //a.footer
