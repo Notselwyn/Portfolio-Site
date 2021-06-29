@@ -12,16 +12,22 @@
     margin-top: 10px;
 }
 
-.project_banner {
-}
-
 .project_description {
     font-size: 150%;
     margin: 0 auto;
 }
 
+.project_container {
+    margin-top: 40px;
+}
+
 .project_github {
     float: right;
+}
+
+.project_banner {
+    border-radius: 20px;
+    border: 10px solid #ff3333;
 }
 
 .project_tag {
