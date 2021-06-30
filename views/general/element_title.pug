@@ -7,7 +7,7 @@ div.title
                 a=elem
 div.subtitle
     - let i=0;
-    if browser_title == "Home"
+    if browser_title === "Home"
         each topic in subtitles
             b.hover-shrink
                 a(onclick=`extend("${topic}")` style="cursor: pointer;")=topic
@@ -16,7 +16,7 @@ div.subtitle
             - i+=1;
 
         div#extend_div
-            a#extend_text(type="none")
+            a#extend_text
     else
         each topic in subtitles
             b.hover-shrink

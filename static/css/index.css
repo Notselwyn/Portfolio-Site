@@ -1,6 +1,6 @@
 .socials {
     text-align: center;
-    font-size: 15px;
+    font-size: 45px;
     user-select: none;
 }
 .socials button {
@@ -9,20 +9,21 @@
     -webkit-border-radius: 50px;
     border: 2px solid #ffffff;
     color: #ffffff;
-    width: 120px;
-    height: 40px;
+    width: 200px;
+    height: 70px;
     border-radius: 50px;
     outline: none;
     cursor: pointer;
     margin-left: 3px;
     margin-right: 3px;
+    font-size: 30px;
     transition: color 0.2s,width 0.4s,height 0.4s,border 0.4s,background-color 0.2s;
 }
 
 .socials button:hover {
     color: #ffffff;
-    width: 110px;
-    height: 35px;
+    width: 170px;
+    height: 60px;
 }
 
 #SOB:hover {
@@ -46,10 +47,10 @@
 }
 
 #extend_div {
-    padding-top: 10px;
-    margin: 0 auto;
     word-wrap: break-word;
     width: 54ch;
     text-align: left;
     height:225px;
+    font-size: 35px;
+    margin: 10px auto 200px;
 }

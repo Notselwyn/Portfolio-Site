@@ -6,30 +6,51 @@ html
       include ../general/wrapper_head
    body
       include ../general/wrapper_body
+      if tags != null
+         div(style="text-align: center;")
+            a="Selected tags: "
+            b
+               for tag in tags
+                  - let l=""
+                  for t in tags
+                     if t !== tag
+                        - l+= "+" + t
+                  a.project_tag(href=`projects${l !== "" ? `?filter=${l.slice(1)}` : ''}`)=tag.replace("CPP", "C++") + " ✖"
       for items, cat in projects
          div.container-md(id=cat.toLowerCase().replace(" ", "_"))
             b
                p.category=cat
             - let i = 0;
             for project in items
-               div.project_container
-                  div.row
-                     b
-                        p.project_topic=project["title"]
-                     if i%2===0
-                        p.project_description.col-md-6=project["description"]
-                        img.img-fluid.col-md-6(src=project["banner"])
-                     else
-                        img.img-fluid.col-md-6(src=project["banner"])
-                        p.project_description.col-md-6=project["description"]
+               if tags == null || tags.every((val) => project["tags"].includes(val))
+                  div.project_container
+                     div.row
+                        b
+                           p.project_topic=project["title"]
+                        if i%2===0
+                           p.project_description.col-md-6=project["description"]
+                           img.img-fluid.col-md-6(src=project["banner"])
+                        else
+                           img.img-fluid.col-md-6(src=project["banner"])
+                           p.project_description.col-md-6=project["description"]
 
-                  div.project_meta(style="margin-top:15px;")
-                     b
-                        for tag in project["tags"]
-                           a(href=`projects?lang=${tag}`).project_tag=tag
-                        if "github" in project
-                           a(href=project["github"]).project_github.project_tag="View on Github"
-               - i +=1;
+                     div.project_meta(style="margin-top:15px;")
+                        b
+                           for tag in project["tags"]
+                              - let l = tag
+                              if tags != null
+                                 for t in tags
+                                    - l += "+" + t
+                              a(href=`projects?filter=${l}`).project_tag=tag.replace("CPP", "C++")
+                           if "github" in project
+                              a(href=project["github"]).project_github.project_tag="View on Github"
+                           if "demo" in project
+                              a(href=project["demo"]).project_github.project_tag="Online Demo"
+                  - i += 1;
             else
+               - i += 1;
                p.noprojects=`There are currently no projects ${cat.toLowerCase()}`
+            if i === 0
+               p.noprojects=`All projects have been filtered out`
+
       //a.footer
