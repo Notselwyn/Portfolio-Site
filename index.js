@@ -1,7 +1,7 @@
 // EXPRESS SETTINGS
 let express = require('express');
 let app = express();
-const ip = "192.168.178.41"
+const ip = "192.168.178.42"
 const port = 959
 
 app.use("/static/css", express.static('static/css'));
