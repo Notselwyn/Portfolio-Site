@@ -2,7 +2,7 @@
 let express = require('express');
 let app = express();
 const ip = "192.168.178.42"
-const port = 959
+const port = 80
 
 app.use("/static/css", express.static('static/css'));
 app.use("/static/img", express.static('static/img'));
