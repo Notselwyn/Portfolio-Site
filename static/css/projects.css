@@ -52,3 +52,11 @@
     margin: 0 auto;
     text-align: center;
 }
+
+#selected_tags {
+    margin-top: 50px;
+}
+
+#selected_tags a {
+    font-size: 200%;
+}

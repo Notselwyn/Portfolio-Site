@@ -1,0 +1,30 @@
+doctype html
+html
+   head
+      link(rel="stylesheet" href="static/css/bootstrap.min.css", type="text/css")
+      link(rel="stylesheet" href="static/css/sudoku.css", type="text/css")
+      script(src="static/js/sudoku.js")
+      include ../general/wrapper_head
+   body
+      include ../general/element_header
+      div.sudoku-container
+         - let j = 2;
+         a.sudoku-item.selected-num(onclick=`updateActive(1);active_num=1;`, id=`num-1`)=1
+         while j<10
+            a.sudoku-item(onclick=`updateActive(${j});active_num=${j};`, id=`num-${j}`)=j
+            - j+=1;
+      div.sudoku-container
+         - let i = 0;
+         - let tls = "6px solid #cccccc"
+         while i<81
+            if i%27>18 && (i+1)%3===0 && !((i + 1) % 9 === 0) && i < 72
+               a.sudoku-item(onclick=`updateItem(${i})`, id=`grid-${i}`, style=`border-right: ${tls};border-bottom: ${tls};`)=" "
+            else if (i+1)%3===0 && !((i + 1)%9 === 0)
+               a.sudoku-item(onclick=`updateItem(${i})`, id=`grid-${i}`, style=`border-right: ${tls};`)=" "
+            else if i%27>17 && i<72
+               a.sudoku-item(onclick=`updateItem(${i})`, id=`grid-${i}`, style=`border-bottom: ${tls};`)=" "
+            else
+               a.sudoku-item(onclick=`updateItem(${i})`, id=`grid-${i}`)=" "
+            - i+=1;
+      div#submit-wrapper
+         a(onclick="fire()")#submit="SOLVE IT"

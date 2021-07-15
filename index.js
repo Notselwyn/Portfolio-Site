@@ -1,6 +1,8 @@
 // EXPRESS SETTINGS
 let express = require('express');
 let app = express();
+const ip = "192.168.178.41"
+const port = 959
 
 app.use("/static/css", express.static('static/css'));
 app.use("/static/img", express.static('static/img'));
@@ -15,7 +17,7 @@ const projects = {
          "title": "Sudoku Solver",
          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus quam id leo in vitae turpis massa sed elementum. Tincidunt augue interdum velit euismod in. Pulvinar sapien et ligula ullamcorper. In iaculis nunc sed augue lacus viverra vitae congue eu. Ipsum suspendisse ultrices gravida dictum fusce ut. Vel pharetra vel turpis nunc eget lorem dolor sed viverra. Venenatis urna cursus eget nunc. Velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla.",
          "github": "https://github.com/Notselwyn/SudokuSolver",
-         "demo": "sudoku",
+         "demo": "overlay-sudoku",
          "banner": "/static/img/sudoku_solver.gif",
          "tags": ["CPP", "Go", "JavaScript", "Python", "Ruby", "Algorithm"]},
       "asciify": {
@@ -61,6 +63,11 @@ app.use(function(req, res, next) {
 app.get(['/', '/index'], function(req, res){
    let args = {"url": req.url, "browser_title": "Home", "title": titles["index"], "subtitles": subtitles["index"]};
    res.render('index', args);
+});
+
+app.get(['/', '/sudoku'], function(req, res){
+   let args = {"url": req.url, "browser_title": "Sudoku Solver"};
+   res.render('sudoku', args);
 });
 
 app.get('/projects', function(req, res){
@@ -115,4 +122,5 @@ app.get("/api/calc", function(req, res) {
 });
 
 // START WEBSERVER
-app.listen(979, "urmom");
+app.listen(port, ip);
+console.log(`Started webserver on http://${ip}:${port}`);
