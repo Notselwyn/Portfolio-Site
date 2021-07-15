@@ -3,11 +3,39 @@ html
    head
       link(rel="stylesheet" href="static/css/bootstrap.min.css", type="text/css")
       link(rel="stylesheet" href="static/css/projects.css", type="text/css")
+      link(rel="stylesheet" href="static/css/sudoku.css", type="text/css")
+      script(src="static/js/sudoku.js")
       include ../general/wrapper_head
    body
       include ../general/wrapper_body
+
+      div.sudoku-wrapper#sudoku-wrapper
+         div#sudoku-master-container
+            div.sudoku-container
+               - let k = 2;
+               a.sudoku-item.selected-num(onclick=`updateActive(1);active_num=1;`, id=`num-1`)=1
+               while k<10
+                  a.sudoku-item(onclick=`updateActive(${k});active_num=${k};`, id=`num-${k}`)=k
+                  - k+=1;
+               a#sudoku-overlay-close(onclick="kill_all_workers();reset();disable_sudoku_overlay()")="✖"
+            div.sudoku-container
+               - let j = 0;
+               - let tls = "6px solid #cccccc"
+               while j<81
+                  if j%27>18 && (j+1)%3===0 && !((j + 1) % 9 === 0) && j < 72
+                     a.sudoku-item(onclick=`updateItem(${j})`, id=`grid-${j}`, style=`border-right: ${tls};border-bottom: ${tls};`)=" "
+                  else if (j+1)%3===0 && !((j + 1)%9 === 0)
+                     a.sudoku-item(onclick=`updateItem(${j})`, id=`grid-${j}`, style=`border-right: ${tls};`)=" "
+                  else if j%27>17 && j<72
+                     a.sudoku-item(onclick=`updateItem(${j})`, id=`grid-${j}`, style=`border-bottom: ${tls};`)=" "
+                  else
+                     a.sudoku-item(onclick=`updateItem(${j})`, id=`grid-${j}`)=" "
+                  - j+=1;
+            div#submit-wrapper
+               a(onclick="fire()")#submit="SOLVE IT"
+
       if tags != null
-         div(style="text-align: center;")
+         div(style="text-align: center;")#selected_tags
             a="Selected tags: "
             b
                for tag in tags
@@ -43,9 +71,12 @@ html
                                     - l += "+" + t
                               a(href=`projects?filter=${l}`).project_tag=tag.replace("CPP", "C++")
                            if "github" in project
-                              a(href=project["github"]).project_github.project_tag="View on Github"
+                              a(href=project["github"], style="float: right;").project_tag="View on Github"
                            if "demo" in project
-                              a(href=project["demo"]).project_github.project_tag="Online Demo"
+                              if project["demo"].startsWith("overlay-")
+                                 a(onclick=`enable_${project["demo"].slice(8)}_overlay()`, style="float: right;cursor: pointer;").project_tag="Online Demo"
+                              else if project["demo"].startsWith("url-")
+                                 a(href=project["demo"].slice(4), style="float: right;").project_tag="Online Demo"
                   - i += 1;
             else
                - i += 1;

@@ -1,0 +1,2 @@
+-> Turn AI tag into Machine Learning
+-> Fix root class not reset in sudoku solver demo
