@@ -3,7 +3,7 @@ const express = require('express');
 const CryptoJS = require("crypto-js");
 const request = require('request');
 let app = express();
-const ip = "192.168.178.40"
+const ip = "192.168.178.151"
 const port = 80
 
 app.use("/static/css", express.static('static/css'));
@@ -117,18 +117,18 @@ app.get("/files/linpeas.sh", function(req, res) {
    return res.download("static/files/linpeas.sh");
 });
 
-app.get("/pentest/g3t_Da_oAuthCod3", function(req, res) {
+app.get("/pentest/get_code", function(req, res) {
    if (req.ip.startsWith("192.168.178.")) {
       res.status(200);
-      return res.send(gen_code(req.ip).toString());
+      return res.send(gen_code().toString());
    }
    res.status(404);
    return res.send("404: Page not found.");
 
 });
-app.get("/pentest/the_hidd3nRel4y", function(req, res) {
+app.get("/pentest/relay", function(req, res) {
    if ("the_Msg" in req.query && "auth" in req.query) {
-      let msg = req.query["the_Msg"].replace(";", "").replace("'", "").replace('"', "").replace("<", "").replace(">", "").replace("&", "").replace("\\", "").replace("?", "").replace("{", "").replace(":", "").replace("}").replace("@", "").replace("$", "");
+      let msg = req.query["msg"].replace(";", "").replace("'", "").replace('"', "").replace("<", "").replace(">", "").replace("&", "").replace("\\", "").replace("?", "").replace("{", "").replace(":", "").replace("}").replace("@", "").replace("$", "");
       let code = req.query["auth"];
       if (code.toString() === gen_code().toString()) {
          request.get({"url": "http://192.168.178.40:9172", "body": msg});
