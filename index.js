@@ -6,13 +6,11 @@ let app = express();
 const ip = "0.0.0.0"
 const port = 80
 
-app.use("/static/css", express.static('static/css'));
-app.use("/static/img", express.static('static/img'));
-app.use("/static/js", express.static('static/js'));
-express.static.mime.define({'text/plain': ['files', 'static/files']});
-app.use('/files', express.static('static/files'));
+console.log(__dirname);
+app.use("/static", express.static(__dirname + '/static'));
+app.use('/files', express.static(__dirname + '/static/files'));
 app.set('view engine', 'pug');
-app.set('views','./views/pages');
+app.set('views',  __dirname + '/views/pages');
 
 // CONSTANTS
 const projects = {
