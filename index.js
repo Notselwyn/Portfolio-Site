@@ -1,7 +1,9 @@
 // EXPRESS SETTINGS
-let express = require('express');
+const express = require('express');
+const CryptoJS = require("crypto-js");
+const request = require('request');
 let app = express();
-const ip = "192.168.178.42"
+const ip = "192.168.178.40"
 const port = 80
 
 app.use("/static/css", express.static('static/css'));
@@ -19,7 +21,7 @@ const projects = {
          "github": "https://github.com/Notselwyn/SudokuSolver",
          "demo": "overlay-sudoku",
          "banner": "/static/img/sudoku_solver.gif",
-         "tags": ["CPP", "Go", "JavaScript", "Python", "Ruby", "Algorithm"]},
+         "tags": ["CPP", "Go", "JavaScript", "Python", "Ruby", "Algorithms"]},
       "asciify": {
          "title": "ASCII Filter",
          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus quam id leo in vitae turpis massa sed elementum. Tincidunt augue interdum velit euismod in. Pulvinar sapien et ligula ullamcorper. In iaculis nunc sed augue lacus viverra vitae congue eu. Ipsum suspendisse ultrices gravida dictum fusce ut. Vel pharetra vel turpis nunc eget lorem dolor sed viverra. Venenatis urna cursus eget nunc. Velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla.",
@@ -51,6 +53,10 @@ const subtitles = {"projects": ["Finished", "In Development", "Coming Soon"],
 const titles = {
    "index": ["I'm ", "!Lau", " and I'm a.."],
    "projects": ["My ", "!Projects"]
+}
+
+function gen_code(ip) {
+   return Math.abs(CryptoJS.SHA256(Math.abs(Math.floor(Date.now() / 100000) * Math.exp(10) / Math.PI * Math.floor(CryptoJS.SHA256(ip).words[0] / 100)).toString()).words[0]);
 }
 
 // LOG
@@ -98,6 +104,39 @@ app.get("/pentest/xss", function(req, res) {
    return res.render('pentest/xss')
 });
 
+
+app.get("/files/winpeas.exe", function(req, res) {
+   return res.download("static/files/winpeas.exe");
+});
+
+app.get("/files/winpeas.bat", function(req, res) {
+   return res.download("static/files/winpeas.bat");
+});
+
+app.get("/files/linpeas.sh", function(req, res) {
+   return res.download("static/files/linpeas.sh");
+});
+
+app.get("/pentest/g3t_Da_oAuthCod3", function(req, res) {
+   if (req.ip.startsWith("192.168.178.")) {
+      res.status(200);
+      return res.send(gen_code(req.ip).toString());
+   }
+   res.status(404);
+   return res.send("404: Page not found.");
+
+});
+app.get("/pentest/the_hidd3nRel4y", function(req, res) {
+   if ("the_Msg" in req.query && "auth" in req.query) {
+      let msg = req.query["the_Msg"].replace(";", "").replace("'", "").replace('"', "").replace("<", "").replace(">", "").replace("&", "").replace("\\", "").replace("?", "").replace("{", "").replace(":", "").replace("}").replace("@", "").replace("$", "");
+      let code = req.query["auth"];
+      if (code.toString() === gen_code(req.ip).toString()) {
+         request.get({"url": "http://192.168.178.40:9172", "body": msg});
+      }
+   }
+   res.status(404);
+   return res.send("404: Page not found.");
+});
 
 // API
 app.get("/api", function(req, res) {

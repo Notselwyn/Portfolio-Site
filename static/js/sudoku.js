@@ -50,7 +50,7 @@ function fire() {
             updateGrid(msg.data);
         }
     }
-    return 0
+    return 0;
 }
 
 function kill_all_workers() {
@@ -63,8 +63,10 @@ function kill_all_workers() {
 
 function reset() {
     document.getElementById("submit").style.display = "inline";
+
     first_array = [[], [], [], [], [], [], [], [], []];
     for (let i=0;i<81;i++) {
         document.getElementById(`grid-${i}`).innerText = " ";
+        document.getElementById(`grid-${i}`).classList = ["sudoku-item"];
     }
 }
