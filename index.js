@@ -3,7 +3,7 @@ const express = require('express');
 const CryptoJS = require("crypto-js");
 const request = require('request');
 let app = express();
-const ip = "192.168.178.40"
+const ip = "0.0.0.0"
 const port = 80
 
 app.use("/static/css", express.static('static/css'));
