@@ -2,6 +2,7 @@
 const express = require('express');
 const CryptoJS = require("crypto-js");
 const request = require('request');
+const directory = require('serve-index');
 let app = express();
 const ip = "0.0.0.0"
 const port = 80
@@ -9,6 +10,7 @@ const port = 80
 console.log(__dirname);
 app.use("/static", express.static(__dirname + '/static'));
 app.use('/files', express.static(__dirname + '/static/files'));
+app.use('/files', directory(__dirname + '/static/files'));
 app.set('view engine', 'pug');
 app.set('views',  __dirname + '/views/pages');
 
