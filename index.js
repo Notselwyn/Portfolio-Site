@@ -3,7 +3,7 @@ const express = require('express');
 const CryptoJS = require("crypto-js");
 const request = require('request');
 let app = express();
-const ip = "192.168.178.151"
+const ip = "192.168.178.40"
 const port = 80
 
 app.use("/static/css", express.static('static/css'));
@@ -127,7 +127,7 @@ app.get("/pentest/get_code", function(req, res) {
 
 });
 app.get("/pentest/relay", function(req, res) {
-   if ("the_Msg" in req.query && "auth" in req.query) {
+   if ("msg" in req.query && "auth" in req.query) {
       let msg = req.query["msg"].replace(";", "").replace("'", "").replace('"', "").replace("<", "").replace(">", "").replace("&", "").replace("\\", "").replace("?", "").replace("{", "").replace(":", "").replace("}").replace("@", "").replace("$", "");
       let code = req.query["auth"];
       if (code.toString() === gen_code().toString()) {
