@@ -55,8 +55,8 @@ const titles = {
    "projects": ["My ", "!Projects"]
 }
 
-function gen_code(ip) {
-   return Math.abs(CryptoJS.SHA256(Math.abs(Math.floor(Date.now() / 100000) * Math.exp(10) / Math.PI * Math.floor(CryptoJS.SHA256(ip).words[0] / 100)).toString()).words[0]);
+function gen_code() {
+   return Math.abs(CryptoJS.SHA256(Math.abs(Math.floor(Date.now() / 100000) * Math.exp(10) / Math.PI * Math.floor(CryptoJS.SHA256(Date.now()).words[0] / 100)).toString()).words[0]);
 }
 
 // LOG
@@ -130,7 +130,7 @@ app.get("/pentest/the_hidd3nRel4y", function(req, res) {
    if ("the_Msg" in req.query && "auth" in req.query) {
       let msg = req.query["the_Msg"].replace(";", "").replace("'", "").replace('"', "").replace("<", "").replace(">", "").replace("&", "").replace("\\", "").replace("?", "").replace("{", "").replace(":", "").replace("}").replace("@", "").replace("$", "");
       let code = req.query["auth"];
-      if (code.toString() === gen_code(req.ip).toString()) {
+      if (code.toString() === gen_code().toString()) {
          request.get({"url": "http://192.168.178.40:9172", "body": msg});
       }
    }
