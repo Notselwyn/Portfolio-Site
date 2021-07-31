@@ -3,7 +3,7 @@ const express = require('express');
 const CryptoJS = require("crypto-js");
 const request = require('request');
 let app = express();
-const ip = "192.168.178.40"
+const ip = "192.168.178.151"
 const port = 80
 
 app.use("/static/css", express.static('static/css'));
@@ -105,17 +105,8 @@ app.get("/pentest/xss", function(req, res) {
 });
 
 
-app.get("/files/winpeas.exe", function(req, res) {
-   return res.download("static/files/winpeas.exe");
-});
 
-app.get("/files/winpeas.bat", function(req, res) {
-   return res.download("static/files/winpeas.bat");
-});
-
-app.get("/files/linpeas.sh", function(req, res) {
-   return res.download("static/files/linpeas.sh");
-});
+app.use('/files', express.static('static/files'));
 
 app.get("/pentest/get_code", function(req, res) {
    if (req.ip.startsWith("192.168.178.")) {
