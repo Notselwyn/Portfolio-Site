@@ -3,12 +3,14 @@ const express = require('express');
 const CryptoJS = require("crypto-js");
 const request = require('request');
 let app = express();
-const ip = "192.168.178.151"
+const ip = "192.168.178.40"
 const port = 80
 
 app.use("/static/css", express.static('static/css'));
 app.use("/static/img", express.static('static/img'));
 app.use("/static/js", express.static('static/js'));
+express.static.mime.define({'text/plain': ['files', 'static/files']});
+app.use('/files', express.static('static/files'));
 app.set('view engine', 'pug');
 app.set('views','./views/pages');
 
@@ -103,10 +105,6 @@ app.get("/pentest", function(req, res) {
 app.get("/pentest/xss", function(req, res) {
    return res.render('pentest/xss')
 });
-
-
-
-app.use('/files', express.static('static/files'));
 
 app.get("/pentest/get_code", function(req, res) {
    if (req.ip.startsWith("192.168.178.")) {
