@@ -1,16 +1,18 @@
 .sudoku-container {
     margin-top: 50px;
     justify-content: center;
-    grid-template-columns: 3% 3% 3% 3% 3% 3% 3% 3% 3%;
+    grid-template-columns: 5vh 5vh 5vh 5vh 5vh 5vh 5vh 5vh 5vh;
     display: grid;
+    text-align: center;
+
 }
 
 .selected-num  {
-     border: 4px solid #cccccc !important;
+     border: 0.4vh solid #cccccc !important;
 }
 
 .sudoku-item {
-    font-size: 30px;
+    font-size: 3vh;
     text-align: center;
     aspect-ratio: 1/1;
     cursor: pointer;

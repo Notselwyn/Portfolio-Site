@@ -1,0 +1,28 @@
+.info_topic {
+    font-size: 250%;
+    margin: 0 auto;
+}
+
+.info_meta {
+    margin-top: 10px;
+}
+
+.info_description {
+    font-size: 150%;
+    margin: 0 auto;
+}
+
+.info_container {
+    margin-top: 40px;
+}
+
+.info_banner {
+    border-radius: 20px;
+    border: 10px solid #ff3333;
+}
+
+.noaboutme {
+    font-size: 200%;
+    margin: 0 auto;
+    text-align: center;
+}

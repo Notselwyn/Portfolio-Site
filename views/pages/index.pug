@@ -6,10 +6,12 @@ html
       script(src="static/js/index.js")
       include ../general/wrapper_head
    body
-      include ../general/wrapper_body
-      div.socials
-         p Where you can find me
-         button#GHB(onclick="window.location.href='https://github.com/Notselwyn'") GitHub
-         button#CG(onclick="window.location.href='https://www.codingame.com/profile/295bd8e2b5e1c553cc4cbbacc9bde1f50218214'") CodinGame
-         button#THMB(onclick="window.location.href='https://tryhackme.com/p/notselwyn'") TryHackMe
-      a.footer
+      div.page_content
+         include ../general/wrapper_body
+         div.socials
+            p Where you can find me
+            button#GHB(onclick="window.location.href='https://github.com/Notselwyn'") GitHub
+            button#CG(onclick="window.location.href='https://www.codingame.com/profile/295bd8e2b5e1c553cc4cbbacc9bde1f50218214'") CodinGame
+            button#THMB(onclick="window.location.href='https://tryhackme.com/p/notselwyn'") TryHackMe
+      include ../general/wrapper_footer
+      
