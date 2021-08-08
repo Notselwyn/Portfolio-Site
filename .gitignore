@@ -1,6 +1,6 @@
 shelf/*
 workspace.xml/*
 httpRequests/*
-.vscode/*
-.idea/*
-.node_modules/*
+/.vscode/*
+/.idea/*
+/node_modules/*
