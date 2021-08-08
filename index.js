@@ -68,7 +68,7 @@ const aboutmes = {
       },
       "stats": {
          "title": "Some Statistics",
-         "banner": ["https://github-readme-stats.vercel.app/api/wakatime?username=notselwyn&theme=dark", "https://github-readme-stats.vercel.app/api?username=notselwyn&show_icons=true&theme=dark"]
+         "banner": ["https://github-readme-stats.vercel.app/api/wakatime?username=notselwyn&theme=dark&langs_count=5", "https://github-readme-stats.vercel.app/api?username=notselwyn&show_icons=true&theme=dark"]
       }
    },
    "My Skills": {
@@ -96,12 +96,14 @@ const aboutmes = {
       }, 
       "linux": {
          "title": "Linux Operating System",
-         "description": "In the beginnings of 2019 I wanted to try a new OS, so I picked Linux and started using the infamous Kali Linux distribution. I sticked with this for a very long time until I switched to Arch Linux and got used to CLIs which really helped me with my journey on development. After a while I discovered how all files in Linux are just text files and are easy to modify. This discovery led to me experimenting with a bunch of settings and interesting configurations. As of 2021 I'm still using Linux as my main OS and it really satisfies me with it's characteristic ways of customizability and accessibility.",
+         // A 500 character text of why I like the Linux OS
+         "description": "I've always been a big fan of the Linux OS, especially on servers. I've always liked the concept and I've always wanted to learn more about how it works and how to build my own distrubition of Linux. The reason why I love the OS is because the same technology that I use in my daily life is the same that makes up the Linux OS. I really enjoy programming and configuring Linux as it's way more fun because most of the files are plain text. Another reason I like Linux is that it has a giant community made of developers who always like to chat about the Linux OS.",
+         //"description": "In the beginnings of 2019 I wanted to try a new OS, so I picked Linux and started using the infamous Kali Linux distribution. The fact that Linux is incredibly open-source and that most files are plain text files, led me to experimenting with a bunch of settings and interesting configurations. As of 2021 I'm still using the Linux kernel for my main operating systems and it really satisfies me with it's characteristic ways of customizability and accessibility. ",
          "banner": "/static/img/linux.png"
       },
       "cryptography": {
          "title": "Cryptography",
-         "description": "When I was young I was absolutely in love with high-difficulty puzzle books and I kept puzzling in those books every week until I quit elementary school. This has left me with a lifelong joy for puzzling and trying to find answers in all sorts of questions. My lust for puzzles has resulted into me being a very enthusiastic cryptography nerd who wants to find the answers. I absolutely love spending half a day trying to figure out what a piece of encoded text means and decoding images based on algorithms. There are endless ways to encode and encrypt things and I'm always looking for new ways to explore them. ",
+         "description": "Cryptography is a very important skill to have in my opinion. It's a subject that I've always had much fun with before, but I was completed unknown with its exact details when I started. I started learning it after a friend recommended a cryptography book to me. For the past year I've been very interested in it and I've been practising it ever since. The book was very informative and I feel like I now have a great understanding of some of the specifics now. It's been quite a challenge for me as such and I'm really wanting to continue to get better at it. I've been talking a lot to people who know a lot about cryptography so I can learn from them. I like being the dumbest person in the room.",
          "banner": "/static/img/crypto.jpg"
       },
       "stocks": {
