@@ -1,5 +1,4 @@
 // EXPRESS SETTINGS
-<<<<<<< HEAD
 const express = require('express');
 const CryptoJS = require("crypto-js");
 const request = require('request');
@@ -19,18 +18,6 @@ app.set('views',  __dirname + '/views/pages');
 function readFile(path) {
    return fs.readFileSync(__dirname + path, {encoding:'utf8'});
 }
-=======
-let express = require('express');
-let app = express();
-const ip = "192.168.178.42"
-const port = 80
-
-app.use("/static/css", express.static('static/css'));
-app.use("/static/img", express.static('static/img'));
-app.use("/static/js", express.static('static/js'));
-app.set('view engine', 'pug');
-app.set('views','./views/pages');
->>>>>>> main
 
 // CONSTANTS
 const projects = {
@@ -41,11 +28,7 @@ const projects = {
          "github": "https://github.com/Notselwyn/SudokuSolver",
          "demo": "overlay-sudoku",
          "banner": "/static/img/sudoku_solver.gif",
-<<<<<<< HEAD
          "tags": ["CPP", "Go", "JavaScript", "Python", "Ruby", "Algorithms"]},
-=======
-         "tags": ["CPP", "Go", "JavaScript", "Python", "Ruby", "Algorithm"]},
->>>>>>> main
       "asciify": {
          "title": "ASCII Filter",
          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus quam id leo in vitae turpis massa sed elementum. Tincidunt augue interdum velit euismod in. Pulvinar sapien et ligula ullamcorper. In iaculis nunc sed augue lacus viverra vitae congue eu. Ipsum suspendisse ultrices gravida dictum fusce ut. Vel pharetra vel turpis nunc eget lorem dolor sed viverra. Venenatis urna cursus eget nunc. Velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla.",
@@ -71,7 +54,6 @@ const projects = {
    },
    "Coming Soon": {},
 };
-<<<<<<< HEAD
 const aboutmes = {
    "About Me": {
       "story": {
@@ -143,15 +125,6 @@ const titles = {"index": ["I'm ", "!Lau", " and I'm a.."],
 function gen_code() {
    return Math.abs(CryptoJS.SHA256(Math.abs(Math.floor(Date.now() / 100000) * Math.exp(10) / Math.PI * Math.floor(CryptoJS.SHA256(Date.now()).words[0] / 100)).toString()).words[0]);
 };
-=======
-const subtitles = {"projects": ["Finished", "In Development", "Coming Soon"],
-                   "index": ["Software Developer", "Pentester", "OSINT Enthusiast"]};
-
-const titles = {
-   "index": ["I'm ", "!Lau", " and I'm a.."],
-   "projects": ["My ", "!Projects"]
-}
->>>>>>> main
 
 // LOG
 app.use(function(req, res, next) {
@@ -165,11 +138,7 @@ app.get(['/', '/index'], function(req, res){
    res.render('index', args);
 });
 
-<<<<<<< HEAD
 app.get('/sudoku', function(req, res){
-=======
-app.get(['/', '/sudoku'], function(req, res){
->>>>>>> main
    let args = {"url": req.url, "browser_title": "Sudoku Solver"};
    res.render('sudoku', args);
 });
@@ -188,15 +157,12 @@ app.get('/projects', function(req, res){
    res.render('projects', args);
 });
 
-<<<<<<< HEAD
 app.get('/about', function(req, res){
    let args = {"url": req.url, "browser_title": "About Me", "title": titles["about"], "subtitles": subtitles["about"], "aboutmes": aboutmes};
    res.render('about', args)
 });
 
 
-=======
->>>>>>> main
 app.get(['/admin', '/dashboard', '/secret', '/config', '/hidden', '/code_exec'], function(req, res) {
    res.render('rickroll')
 });
@@ -211,7 +177,6 @@ app.get("/pentest/xss", function(req, res) {
    return res.render('pentest/xss')
 });
 
-<<<<<<< HEAD
 app.get("/pentest/get_code", function(req, res) {
    if (req.ip.startsWith("192.168.178.")) {
       res.status(200);
@@ -232,8 +197,6 @@ app.get("/pentest/relay", function(req, res) {
    res.status(404);
    return res.send("404: Page not found.");
 });
-=======
->>>>>>> main
 
 // API
 app.get("/api", function(req, res) {
