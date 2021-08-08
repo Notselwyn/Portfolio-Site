@@ -18,12 +18,12 @@ html
                         p.info_topic=info["title"]
                      if i%2===0
                         p.info_description.col-md-6=info["description"]
-                        if !info["banner"].startsWith("/")
+                        if !info["banner"].startsWith("/") && !info["banner"].startsWith("http")
                            #{info["banner"]}
                         else
                            img.img-fluid.col-md-6(src=info["banner"])
                      else
-                        if !info["banner"].startsWith("/")
+                        if !info["banner"].startsWith("/") && !info["banner"].startsWith("http")
                            #{info["banner"]}
                         else
                            img.img-fluid.col-md-6(src=info["banner"])

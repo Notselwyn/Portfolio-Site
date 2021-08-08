@@ -64,7 +64,13 @@ const aboutmes = {
       "summary": {
          "title": "A Short Summary",
          "description": "cool tech bro",
-         "banner": readFile("/views/general/element_summary.pug")
+         //"banner": readFile("/views/general/element_summary.pug")
+         "banner": "https://github-readme-stats.vercel.app/api/top-langs/?username=Notselwyn&theme=dark&langs_count=3"
+      },
+      "stats": {
+         "title": "Some Statistics",
+         "description": "*clicks tongue* nice",
+         "banner": "https://github-readme-stats.vercel.app/api/wakatime?username=notselwyn&theme=dark&langs_count=3"
       }
    },
    "My Skills": {
