@@ -1,6 +1,7 @@
 .sudoku-container {
     margin-top: 50px;
     justify-content: center;
+<<<<<<< HEAD
     grid-template-columns: 5vh 5vh 5vh 5vh 5vh 5vh 5vh 5vh 5vh;
     display: grid;
     text-align: center;
@@ -13,6 +14,18 @@
 
 .sudoku-item {
     font-size: 3vh;
+=======
+    grid-template-columns: 3% 3% 3% 3% 3% 3% 3% 3% 3%;
+    display: grid;
+}
+
+.selected-num  {
+     border: 4px solid #cccccc !important;
+}
+
+.sudoku-item {
+    font-size: 30px;
+>>>>>>> main
     text-align: center;
     aspect-ratio: 1/1;
     cursor: pointer;
