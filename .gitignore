@@ -3,3 +3,4 @@ workspace.xml/*
 httpRequests/*
 .vscode/*
 .idea/*
+.node_modules/*
