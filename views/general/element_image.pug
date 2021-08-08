@@ -1,0 +1,4 @@
+if !imagepath.startsWith("/") && !imagepath.startsWith("http")
+   #{imagepath}
+else
+   img.img-fluid.col-md-6(src=imagepath)

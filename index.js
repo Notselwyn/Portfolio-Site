@@ -63,14 +63,12 @@ const aboutmes = {
       },
       "summary": {
          "title": "A Short Summary",
-         "description": "cool tech bro",
-         //"banner": readFile("/views/general/element_summary.pug")
+         "description": "I'm primarily a backend developer who enjoys to code and learn about computer science. I code in plenty of interesting programming languages although most of my published projects are made using only a few. One of these coding languages is Python of which I would say I master it for 90% as I spent 2 years dedicated to learning it and I'm currently learning the language C++. I have many other skills and hobbies such as reverse engineering, ethical hacking and gambling using the stock market. I'm not creative as you can see based on the design of this website, but I am skilled in the backend / programming side of things. Below this text are some of my statistics regarding programming.",
          "banner": "https://github-readme-stats.vercel.app/api/top-langs/?username=Notselwyn&theme=dark&langs_count=3"
       },
       "stats": {
          "title": "Some Statistics",
-         "description": "*clicks tongue* nice",
-         "banner": "https://github-readme-stats.vercel.app/api/wakatime?username=notselwyn&theme=dark&langs_count=3"
+         "banner": ["https://github-readme-stats.vercel.app/api/wakatime?username=notselwyn&theme=dark", "https://github-readme-stats.vercel.app/api?username=notselwyn&show_icons=true&theme=dark"]
       }
    },
    "My Skills": {
