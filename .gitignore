@@ -1,6 +1,6 @@
-/shelf/
-/workspace.xml
-/httpRequests/
-/.vscode/*
-/.idea/*
-/node_modules/* linguist-vendored
+shelf/*
+workspace.xml/*
+httpRequests/*
+.vscode/*
+.idea/*
+node_modules/* linguist-vendored
