@@ -3,7 +3,6 @@ const express = require('express');
 const CryptoJS = require("crypto-js");
 const request = require('request');
 const directory = require('serve-index');
-const fs = require('fs');
 const app = express();
 const ip = "0.0.0.0";
 const port = 80;
@@ -15,16 +14,19 @@ app.use('/files', directory(__dirname + '/static/files'));
 app.set('view engine', 'pug');
 app.set('views',  __dirname + '/views/pages');
 
-function readFile(path) {
-   return fs.readFileSync(__dirname + path, {encoding:'utf8'});
-}
+//function readFile(path) {
+//   return fs.readFileSync(__dirname + path, {encoding:'utf8'});
+//}
 
 // CONSTANTS
 const projects = {
    "Finished": {
       "sudoku_solver": {
          "title": "Sudoku Solver",
-         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus quam id leo in vitae turpis massa sed elementum. Tincidunt augue interdum velit euismod in. Pulvinar sapien et ligula ullamcorper. In iaculis nunc sed augue lacus viverra vitae congue eu. Ipsum suspendisse ultrices gravida dictum fusce ut. Vel pharetra vel turpis nunc eget lorem dolor sed viverra. Venenatis urna cursus eget nunc. Velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla.",
+         // An 800 character description of the sudoku solver project
+         // The source for this project is over at https://github.com/Notselwyn/SudokuSolver
+         // The source is written in multiple languages
+         "description": "I made this sudoku solver project in the spring of 2021 to practise my skills in other languages than Python. It uses a backtracking algorithm to solve a sudoku puzzle. It solves the puzzle by checking if the value is valid. If there is a value in the same 3x3 grid or in any of the straight lines it is not valid. If it is valid it will go to the next value, if it it is not valid it will go back to the previous value and increment it. By continueing this process until the puzzle is solved you can solve any valid sudoku puzzle. I find this an incredibly good example of what simple algorithms can accomplish in the real world. The exact reason that I decided to code this in multiple languages is that I wanted to test speeds and coding difficulty across languages. This concluded that JavaScript (Node.js) is indeed faster than Python and that Go is faster than C++. The knowledge I acquired from this project will definitly have an impact on my future projects as I know what language is most likely better for which tasks.",
          "github": "https://github.com/Notselwyn/SudokuSolver",
          "demo": "overlay-sudoku",
          "banner": "/static/img/sudoku_solver.gif",
@@ -33,7 +35,7 @@ const projects = {
          "title": "ASCII Filter",
          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus quam id leo in vitae turpis massa sed elementum. Tincidunt augue interdum velit euismod in. Pulvinar sapien et ligula ullamcorper. In iaculis nunc sed augue lacus viverra vitae congue eu. Ipsum suspendisse ultrices gravida dictum fusce ut. Vel pharetra vel turpis nunc eget lorem dolor sed viverra. Venenatis urna cursus eget nunc. Velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla.",
          "github": "https://github.com/Notselwyn/ASCII-Footage/blob/main/ascii.cpp",
-         "banner": "",
+         "banner": "/static/img/badapple.gif",
          "tags": ["CPP", "Python"]
       }
    },
@@ -54,6 +56,7 @@ const projects = {
    },
    "Coming Soon": {},
 };
+
 const aboutmes = {
    "About Me": {
       //"story": {
@@ -91,7 +94,7 @@ const aboutmes = {
    "My Interests": {
       "development": {
          "title": "Software Development",
-         "description": "Ever since my childhood I've been truly inspired by development. Wether it was building something small like a sand castle on a long beach or experimenting with electric circuits, I was absolutely in love with it. When I started learning to code in elementary school with Scratch I could feel the possibilities flowing through my blood and spent day and night programming in Scratch. Ever since then I've been truly in love with the concept of development and I keep getting more excited to learn because of the endless possibilities that can be archieved with the art of software developing.",
+         "description": "Ever since my childhood I've been truly inspired by development and I was absolutely in love with it. When I started learning to code in elementary school with Scratch I could feel the possibilities flowing through my blood and spent day and night programming in Scratch. Ever since then I've been truly in love with the concept of development and I keep getting more excited to learn because of the endless possibilities that can be archieved with the art of software developing. I'm currently developing several small-scaled projects to practise my skills.",
          "banner": "/static/img/swengineering.jpg"
       }, 
       "linux": {
