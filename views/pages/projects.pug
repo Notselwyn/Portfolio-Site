@@ -71,7 +71,7 @@ html
                                     - l += "+" + t
                               a(href=`projects?filter=${l}`).project_tag=tag.replace("CPP", "C++")
                            if "github" in project
-                              a(href=project["github"], style="float: right;").project_tag="View on Github"
+                              a(href=project["github"], style="float: right;").project_tag="Github"
                            if "demo" in project
                               if project["demo"].startsWith("overlay-")
                                  a(onclick=`enable_${project["demo"].slice(8)}_overlay()`, style="float: right;cursor: pointer;").project_tag="Demo"
