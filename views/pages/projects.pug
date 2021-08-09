@@ -74,9 +74,9 @@ html
                               a(href=project["github"], style="float: right;").project_tag="View on Github"
                            if "demo" in project
                               if project["demo"].startsWith("overlay-")
-                                 a(onclick=`enable_${project["demo"].slice(8)}_overlay()`, style="float: right;cursor: pointer;").project_tag="Online Demo"
+                                 a(onclick=`enable_${project["demo"].slice(8)}_overlay()`, style="float: right;cursor: pointer;").project_tag="Demo"
                               else if project["demo"].startsWith("url-")
-                                 a(href=project["demo"].slice(4), style="float: right;").project_tag="Online Demo"
+                                 a(href=project["demo"].slice(4), style="float: right;").project_tag="Demo"
                   - i += 1;
             else
                - i += 1;

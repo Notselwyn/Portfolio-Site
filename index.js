@@ -49,7 +49,9 @@ const projects = {
          "github": "https://github.com/Notselwyn/Portfolio-Site",
          "banner": "",
          "tags": ["CSS", "HTML", "JavaScript"]
-      }, 
+      }
+   },
+   "Coming Soon": {
       "assaultcube": {
          "title": "AssaultCube Trainer",
          "description": "coolio",
@@ -58,7 +60,6 @@ const projects = {
          "tags": ["CPP", "RE", "Trainer"]
       }
    },
-   "Coming Soon": {},
 };
 
 const aboutmes = {
