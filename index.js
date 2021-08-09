@@ -23,9 +23,6 @@ const projects = {
    "Finished": {
       "sudoku_solver": {
          "title": "Sudoku Solver",
-         // An 800 character description of the sudoku solver project
-         // The source for this project is over at https://github.com/Notselwyn/SudokuSolver
-         // The source is written in multiple languages
          "description": "I made this sudoku solver project in the spring of 2021 to practise my skills in other languages than Python. It uses a backtracking algorithm to solve a sudoku puzzle. It solves the puzzle by checking if the value is valid. If there is a value in the same 3x3 grid or in any of the straight lines it is not valid. If it is valid it will go to the next value, if it it is not valid it will go back to the previous value and increment it. By continueing this process until the puzzle is solved you can solve any valid sudoku puzzle. I find this an incredibly good example of what simple algorithms can accomplish in the real world. The exact reason that I decided to code this in multiple languages is that I wanted to test speeds and coding difficulty across languages. This concluded that JavaScript (Node.js) is indeed faster than Python and that Go is faster than C++. The knowledge I acquired from this project will definitly have an impact on my future projects as I know what language is most likely better for which tasks.",
          "github": "https://github.com/Notselwyn/SudokuSolver",
          "demo": "overlay-sudoku",
