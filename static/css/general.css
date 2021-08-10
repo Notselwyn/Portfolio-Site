@@ -24,7 +24,7 @@ body {
 .page_content:after {
   content: "";
   display: block;
-  height: 10vh; /* the footer's total height */
+  height: vh; /* the footer's total height */
 }
 
 .category {
@@ -48,20 +48,17 @@ body {
 }*/
 
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
     width: 100%;
-    height: 7%;
+    height: 1vh;
     background-color: #0f0f0f;
     color: white;
     text-align: center;
     font-size: 18px;
-    align-self: flex-end;
+    z-index: 1;
 }
 
 .footer_wrapper {
-    margin-top: 7%;
+    margin-top: 1vh;
 }
 
 .topnav {
@@ -77,9 +74,9 @@ body {
     float: left;
     color: #f2f2f2;
     text-align: center;
-    padding: 1.2% 16px;
+    padding: 1vh calc(10px + 1vw);
     text-decoration: none;
-    font-size: 250%;
+    font-size: calc(10px + 1.2vw);
     margin: 0;
     border: 0;
     outline: 0;
@@ -106,16 +103,22 @@ a.tab:hover {
 }
 
 .title {
-    font-size: 600%;
+    font-size: calc(10px + 4.5vw);
     text-align: center;
-    padding-top: 80px;
+    padding-top: 6vh;
     user-select: none;
+}
+
+@media (max-width: 960px) {
+    .title {
+        font-size: calc(10px + 8vw);
+    }
 }
 
 .subtitle {
     user-select: none;
     text-align: center;
-    font-size: 300%;
+    font-size: calc(5px + 2vw);
 }
 
 /*
@@ -139,4 +142,42 @@ a {
 a:hover {
     color: #ffffff;
     text-decoration: none;
+}
+
+.scrollarrow {
+    margin-left: 66vw;
+    transform: translate(-50%,-50%);
+}
+.scrollarrow span {
+    display: block;
+    width: calc(15px + 2.3vh);
+    height: calc(15px + 2.3vh);
+    border-bottom: calc(3px + 0.3vh) solid #fff;
+    border-right: calc(3px + 0.3vh) solid #fff;
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: animate-scrollarrow 2s infinite;
+}
+.scrollarrow span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+.scrollarrow span:nth-child(3) {
+    animation-delay: -0.4s;
+}
+.scrollarrow span:nth-child(4) {
+    animation-delay: -0.5s;
+  
+}
+@keyframes animate-scrollarrow {
+    0%{
+        opacity: 0;
+        transform: rotate(45deg) translate(-20px,-20px);
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: rotate(45deg) translate(20px,20px);
+    }
 }

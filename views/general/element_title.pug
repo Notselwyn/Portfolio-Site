@@ -10,13 +10,14 @@ div.subtitle
     if browser_title === "Home"
         each topic in subtitles
             b.hover-shrink
-                a(onclick=`extend("${topic}")` style="cursor: pointer;")=topic
+                //a(onclick=`extend("${topic}")` style="cursor: pointer;")=topic
+                a=topic
             if i < subtitles.length-1
                 a=" | "
             - i+=1;
 
-        div#extend_div
-            a#extend_text
+        //div#extend_div
+        //    a#extend_text
     else
         each topic in subtitles
             b.hover-shrink

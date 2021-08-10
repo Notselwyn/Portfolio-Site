@@ -6,8 +6,10 @@ function extend(type) {
     if (document.getElementById("extend_text").type == type) {
         document.getElementById("extend_text").text = "";
         document.getElementById("extend_text").type = "none";
+        document.getElementById("extend_text").style.height = "0";
     } else {
         document.getElementById("extend_text").text = extend_text[type];
         document.getElementById("extend_text").type = type;
+        document.getElementById("extend_text").style.height = "4vh";
     }
 }
