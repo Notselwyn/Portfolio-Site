@@ -27,7 +27,15 @@ const projects = {
          "github": "https://github.com/Notselwyn/SudokuSolver",
          "demo": "overlay-sudoku",
          "banner": "/static/img/sudoku_solver.gif",
-         "tags": ["CPP", "Go", "JavaScript", "Python", "Ruby"]},
+         "tags": ["CPP", "Go", "JavaScript", "Python", "Ruby"]
+      },
+      "car_racing": {
+         "title": "N.E.A.T. Car Racing",
+         "description": "This is not some regular car racing game, it's.. well not a game. This is an simulation of reinforced neural networks driving on tracks based on several sensors. This project is definitly one of the more complex ones I've made, primarily because it involves machine learning and a whole bunch of PyGame and configuration. For the machine learning part I used the famous NEAT framework which is basically a wrapper for reinforced machine learning. I've learned quite a lot from this project, which is why I like it so much (aside from the fact that it's cool to watch). One of the things I have learned is how to set up a local listener for statistics and how to display those statistics with a live updating graph. Another thing I have learned is more complex concepts with general machine learning",
+         "github": "https://github.com/Notselwyn/NEAT-Car-Racing",
+         "banner": "/static/img/carracing.gif",
+         "tags": ["AI", "Graphics", "Python"]
+      },
       "asciify": {
          "title": "ASCII Filter",
          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus quam id leo in vitae turpis massa sed elementum. Tincidunt augue interdum velit euismod in. Pulvinar sapien et ligula ullamcorper. In iaculis nunc sed augue lacus viverra vitae congue eu. Ipsum suspendisse ultrices gravida dictum fusce ut. Vel pharetra vel turpis nunc eget lorem dolor sed viverra. Venenatis urna cursus eget nunc. Velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla.",
@@ -37,12 +45,6 @@ const projects = {
       }
    },
    "In Development": {
-      "car_racing": {
-         "title": "N.E.A.T. Car Racing",
-         "description": "This is not some regular car racing game, it's.. well not a game. This is an simulation of reinforced neural networks driving on tracks based on several sensors. This project is definitly one of the more complex ones I've made, primarily because it involves machine learning and a whole bunch of PyGame and configuration. For the machine learning part I used the famous NEAT framework which is basically a wrapper for reinforced machine learning. I've learned quite a lot from this project, which is why I like it so much (aside from the fact that it's cool to watch). One of the things I have learned is how to set up a local listener for statistics and how to display those statistics with a live updating graph. Another thing I have learned is more complex concepts with general machine learning",
-         "github": "https://github.com/Notselwyn/NEAT-Car-Racing",
-         "banner": "/static/img/carracing.gif",
-         "tags": ["AI", "Graphics", "Python"]},
       "portfolio_website": {
          "title": "Portfolio Website",
          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus quam id leo in vitae turpis massa sed elementum. Tincidunt augue interdum velit euismod in. Pulvinar sapien et ligula ullamcorper. In iaculis nunc sed augue lacus viverra vitae congue eu. Ipsum suspendisse ultrices gravida dictum fusce ut. Vel pharetra vel turpis nunc eget lorem dolor sed viverra. Venenatis urna cursus eget nunc. Velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla.",
