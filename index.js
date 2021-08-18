@@ -2,6 +2,7 @@
 const express = require('express');
 const CryptoJS = require("crypto-js");
 const request = require('request');
+const fetch = require('node-fetch');
 const directory = require('serve-index');
 const app = express();
 const ip = "0.0.0.0";
@@ -138,6 +139,11 @@ function gen_code() {
    return Math.abs(CryptoJS.SHA256(Math.abs(Math.floor(Date.now() / 100000) * Math.exp(10) / Math.PI * Math.floor(CryptoJS.SHA256(Date.now()).words[0] / 100)).toString()).words[0]);
 };
 
+function wakatime_to_text(property, bar_length, bool_time) {
+   let activity_ratio = Math.round(property["percent"] / 100 * bar_length);
+   return property["name"] + " ".repeat(13 - property["name"].length) + "[" + "#".repeat(activity_ratio) + "-".repeat(bar_length - activity_ratio) + "]" + " (" + property["percent"] + "%) " + " ".repeat(5 - property["percent"].toString().length) + (bool_time ? property["text"] : "");
+}
+
 // LOG
 app.use(function(req, res, next) {
    console.log(`${req.method} ${req.url} from ${req.ip}`);
@@ -213,7 +219,7 @@ app.get("/pentest/relay", function(req, res) {
 // API
 app.get("/api", function(req, res) {
    res.status(200);
-   return res.send({"/api/calc": "solve a math problem (Parameter p)"})
+   return res.send({"/api/calc": {"description": "solve a math problem", "parameters": {"p": "The math problem"}}, "/api/wakatime_text": {"description": "CLI look for wakatime API", "parameters": {"username": "The username to be used"}}})
 });
 
 app.get("/api/calc", function(req, res) {
@@ -229,6 +235,81 @@ app.get("/api/calc", function(req, res) {
    } else {
       res.status(500);
       return res.send({"solution": "Parameter (p) not included."});
+   }
+});
+
+app.get("/api/wakatime_text", function(req, res) {
+   if ("username" in req.query) {
+      let count_editors = 4;
+      let count_languages = 6;
+      let bar_length = 10;
+      let bool_time = true;
+      
+      if ("editors" in req.query && /^[0-9]+$/.test(req.query["editors"])) {
+         count_editors = parseInt(req.query["editors"]);
+      }
+
+      if ("languages" in req.query && /^[0-9]+$/.test(req.query["languages"])) {
+         count_languages = parseInt(req.query["languages"]);
+      }
+
+      if ("bar_length" in req.query && /^[0-9]+$/.test(req.query["bar_length"])) {
+         bar_length = parseInt(req.query["bar_length"]);
+      }
+
+      if ("time" in req.query && req.query["time"] == "false") {	
+         bool_time = false;
+      }
+      
+      let username = req.query["username"];
+      if (/^[a-zA-Z0-9_-]+$/.test(username)) {
+         fetch(`https://wakatime.com/api/v1/users/${username}/stats?is_including_today=true`).then(wakatime_res => wakatime_res.text()).then(wakatime_body => {
+            if (wakatime_body === "") {
+               res.status(500);
+               return res.send("Internal Error.");
+            }
+            let data = JSON.parse(wakatime_body);
+            let coding_info;
+            data = data["data"];
+            for (let i=0; i<data["categories"].length; i++) {
+               if (data["categories"][i]["name"] === "Coding") {
+                  coding_info = data["categories"][i];
+                  break;
+               }
+            }
+            if (coding_info === undefined) {
+               res.status(500);
+               return res.send("Internal Error.");
+            }
+
+            let total_seconds = coding_info["total_seconds"];
+            let editors = [];
+            let languages = [];
+            
+            for (let i=0; i < data["editors"].length && i < count_editors; i++) {
+               editors.push(wakatime_to_text(data["editors"][i], bar_length, bool_time));
+            }
+            for (let i=0; i < data["languages"].length && i < count_languages; i++) {
+               languages.push(wakatime_to_text(data["languages"][i], bar_length, bool_time));
+            }
+            
+            let response_string = "";
+            if (count_languages > 0) {
+               response_string += "\nlanguages\n---------\n" + languages.join("\n") + "\n";
+            } 
+            if (count_editors > 0) {
+               response_string += "\neditors\n-------\n" + editors.join("\n") + "\n";
+            } 
+            res.status(200);
+            return res.send(response_string);
+         });
+      } else {
+         res.status(200);
+         return res.send("Internal error.");
+      }
+   } else {
+      res.status(200);
+      return res.send("Internal error.");
    }
 });
 
