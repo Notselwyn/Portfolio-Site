@@ -18,20 +18,20 @@ html
                         p.info_topic=info["title"]
                      if info["banner"].length > 4
                         if i%2===0
-                           p.info_description.col-md-6=info["description"]
+                           p.info_description.col-lg-6=info["description"]
                            if !info["banner"].startsWith("/") && !info["banner"].startsWith("http")
                               #{info["banner"]}
                            else
-                              img.img-fluid.col-md-6(src=info["banner"])
+                              img.img-fluid.col-lg-6(src=info["banner"])
                         else
                            if !info["banner"].startsWith("/") && !info["banner"].startsWith("http")
                               #{info["banner"]}
                            else
-                              img.img-fluid.col-md-6(src=info["banner"])
-                           p.info_description.col-md-6=info["description"]
+                              img.img-fluid.col-lg-6(src=info["banner"])
+                           p.info_description.col-lg-6=info["description"]
                      else 
                         for path in info["banner"]
-                           img.img-fluid.col-md-6(src=path)
+                           img.img-fluid.col-lg-6(src=path)
                - i += 1;
             else
                p.noaboutme=`There are currently no about-me's about ${cat.toLowerCase()}`
