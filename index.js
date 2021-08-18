@@ -135,10 +135,6 @@ const titles = {"index": ["I'm ", "!Lau", " and I'm a.."],
                 "about": ["About ", "!Me"]
                };
 
-function gen_code() {
-   return Math.abs(CryptoJS.SHA256(Math.abs(Math.floor(Date.now() / 100000) * Math.exp(10) / Math.PI * Math.floor(CryptoJS.SHA256(Date.now()).words[0] / 100)).toString()).words[0]);
-};
-
 function wakatime_to_text(property, bar_length, bool_time) {
    let activity_ratio = Math.round(property["percent"] / 100 * bar_length);
    return property["name"] + " ".repeat(13 - property["name"].length) + "[" + "#".repeat(activity_ratio) + "-".repeat(bar_length - activity_ratio) + "]" + " (" + property["percent"] + "%) " + " ".repeat(5 - property["percent"].toString().length) + (bool_time ? property["text"] : "");
@@ -183,37 +179,6 @@ app.get('/about', function(req, res){
 
 app.get(['/admin', '/dashboard', '/secret', '/config', '/hidden', '/code_exec'], function(req, res) {
    res.render('rickroll')
-});
-
-
-// PENTESTING
-app.get("/pentest", function(req, res) {
-   return res.send({"/pentest/xss": "perform xss"})
-});
-
-app.get("/pentest/xss", function(req, res) {
-   return res.render('pentest/xss')
-});
-
-app.get("/pentest/get_code", function(req, res) {
-   if (req.ip.startsWith("192.168.178.")) {
-      res.status(200);
-      return res.send(gen_code().toString());
-   }
-   res.status(404);
-   return res.send("404: Page not found.");
-
-});
-app.get("/pentest/relay", function(req, res) {
-   if ("msg" in req.query && "auth" in req.query) {
-      let msg = req.query["msg"].replace(";", "").replace("'", "").replace('"', "").replace("<", "").replace(">", "").replace("&", "").replace("\\", "").replace("?", "").replace("{", "").replace(":", "").replace("}").replace("@", "").replace("$", "");
-      let code = req.query["auth"];
-      if (code.toString() === gen_code().toString()) {
-         request.get({"url": "http://192.168.178.40:9172", "body": msg});
-      }
-   }
-   res.status(404);
-   return res.send("404: Page not found.");
 });
 
 // API
@@ -339,6 +304,12 @@ app.get("/api/wakatime_text", function(req, res) {
       res.status(200);
       return res.send("Internal error.");
    }
+});
+
+
+app.get("*", function(req, res) {
+   let args = {"url": "/404", "browser_title": "404", "title": ["!Page", " not found"]};
+   return res.render('errors/404', args)
 });
 
 // START WEBSERVER
