@@ -316,7 +316,13 @@ app.get("/api/wakatime_text", function(req, res) {
                } else {
                   response_string += "\n---------\n";
                }
-               for (let i=0; i < count_languages || i < count_editors; i++) {
+               for (let i=0; (i < count_languages || i < count_editors) && (i < languages.length || i < editors.length) ; i++) {
+                  if (i >= languages.length) {
+                     languages[i] = "";
+                  }
+                  if (i >= editors.length) {
+                     editors[i] = "";
+                  }
                   if (i < count_languages) {
                      response_string += languages[i];
                      if (i < count_editors) {
