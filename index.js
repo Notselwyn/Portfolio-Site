@@ -219,7 +219,20 @@ app.get("/pentest/relay", function(req, res) {
 // API
 app.get("/api", function(req, res) {
    res.status(200);
-   return res.send({"/api/calc": {"description": "solve a math problem", "parameters": {"p": "The math problem"}}, "/api/wakatime_text": {"description": "CLI look for wakatime API", "parameters": {"username": "The username to be used"}}})
+   return res.send({"/api/calc": {
+                        "description": "solve a math problem", 
+                        "parameters": 
+                           {"p": "The math problem"}
+                     }, "/api/wakatime_text": {
+                        "description": "CLI look for wakatime API", 
+                        "parameters": {
+                           "username": "the username to be used",
+                           "editors": "the amount of editors to be used",
+                           "languages": "the amount of languages to be used",
+                           "bar_length": "the length of the progress bar"
+                        }
+                     }
+                  })
 });
 
 app.get("/api/calc", function(req, res) {
