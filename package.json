@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Notselwyn/Shitdev.nl#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
     "pug": "^3.0.2",
     "serve-index": "^1.9.1"
   },
