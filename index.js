@@ -238,6 +238,8 @@ app.get("/api/calc", function(req, res) {
    }
 });
 
+
+
 app.get("/api/wakatime_text", function(req, res) {
    if ("username" in req.query) {
       let count_editors = 4;
@@ -263,14 +265,14 @@ app.get("/api/wakatime_text", function(req, res) {
       
       let username = req.query["username"];
       if (/^[a-zA-Z0-9_-]+$/.test(username)) {
-         fetch(`https://wakatime.com/api/v1/users/${username}/stats?is_including_today=true`).then(wakatime_res => wakatime_res.text()).then(wakatime_body => {
-            if (wakatime_body === "") {
+         fetch(`https://wakatime.com/api/v1/users/${username}/stats?is_including_today=true`).then(wakatime_res => wakatime_res.text()).then(wakatime_body => {   
+            if ("error" in JSON.parse(wakatime_body)) {
                res.status(500);
                return res.send("Internal Error.");
             }
-            let data = JSON.parse(wakatime_body);
+            let data = JSON.parse(wakatime_body)["data"];
             let coding_info;
-            data = data["data"];
+            data = data;
             for (let i=0; i<data["categories"].length; i++) {
                if (data["categories"][i]["name"] === "Coding") {
                   coding_info = data["categories"][i];
@@ -295,11 +297,31 @@ app.get("/api/wakatime_text", function(req, res) {
             
             let response_string = "";
             if (count_languages > 0) {
-               response_string += "\nlanguages\n---------\n" + languages.join("\n") + "\n";
-            } 
-            if (count_editors > 0) {
-               response_string += "\neditors\n-------\n" + editors.join("\n") + "\n";
-            } 
+               response_string += "\nlanguages";
+               if (count_editors > 0) {
+                  response_string += " ".repeat(45) + "editors\n---------" + " ".repeat(45) + "-------\n";
+               } else {
+                  response_string += "\n---------\n";
+               }
+               for (let i=0; i < count_languages || i < count_editors; i++) {
+                  if (i < count_languages) {
+                     response_string += languages[i];
+                     if (i < count_editors) {
+                        response_string += " ".repeat(54-languages[i].length) + editors[i];
+                     }
+                     response_string += "\n";
+                  } else {
+                     response_string += " ".repeat(54) + editors[i] + "\n";
+                  }
+               }
+            } else {
+               if (count_editors > 0) {
+                  response_string += "\neditors\n-------\n";
+                  for (let i=0; i < count_editors; i++) {  
+                     response_string += editors[i] + "\n";
+                  }
+               }
+            }
             res.status(200);
             return res.send(response_string);
          });
