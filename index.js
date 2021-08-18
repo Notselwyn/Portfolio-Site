@@ -144,6 +144,7 @@ function wakatime_to_text(property, bar_length, bool_time) {
    return property["name"] + " ".repeat(13 - property["name"].length) + "[" + "#".repeat(activity_ratio) + "-".repeat(bar_length - activity_ratio) + "]" + " (" + property["percent"] + "%) " + " ".repeat(5 - property["percent"].toString().length) + (bool_time ? property["text"] : "");
 }
 
+
 // LOG
 app.use(function(req, res, next) {
    console.log(`${req.method} ${req.url} from ${req.ip}`);
