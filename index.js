@@ -235,7 +235,7 @@ app.get("/api/wakatime_text", function(req, res) {
                res.status(500);
                return res.send("Internal Error.");
             }
-            wakatime_body = wakatime_body.replace("VisualStudio", "VS 2019");
+            wakatime_body = wakatime_body.replace("Visual Studio", "VS 2019");
             let data = JSON.parse(wakatime_body)["data"];
             let coding_info;
             data = data;
