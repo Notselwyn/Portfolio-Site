@@ -235,6 +235,7 @@ app.get("/api/wakatime_text", function(req, res) {
                res.status(500);
                return res.send("Internal Error.");
             }
+            wakatime_body = wakatime_body.replace("VisualStudio", "VS 2019");
             let data = JSON.parse(wakatime_body)["data"];
             let coding_info;
             data = data;
@@ -309,6 +310,7 @@ app.get("/api/wakatime_text", function(req, res) {
 
 app.get("*", function(req, res) {
    let args = {"url": "/404", "browser_title": "404", "title": ["!Page", " not found"]};
+   res.status(404);
    return res.render('errors/404', args)
 });
 
