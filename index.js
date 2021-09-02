@@ -308,6 +308,10 @@ app.get("/api/wakatime_text", function(req, res) {
 });
 
 
+app.get("/robots.txt", function(req, res) {
+   return res.sendFile(__dirname + "/static/misc/robots.txt");
+});
+
 app.get("*", function(req, res) {
    let args = {"url": "/404", "browser_title": "404", "title": ["!Page", " not found"]};
    res.status(404);
