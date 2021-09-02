@@ -12,6 +12,7 @@ console.log(__dirname);
 app.use("/static", express.static(__dirname + '/static'));
 app.use('/files', express.static(__dirname + '/static/files'));
 app.use('/files', directory(__dirname + '/static/files'));
+app.use('/', express.static(__dirname + '/static/public'));
 app.set('view engine', 'pug');
 app.set('views',  __dirname + '/views/pages');
 
@@ -319,11 +320,6 @@ app.get("/api/wakatime_text", function(req, res) {
       res.status(200);
       return res.send("Internal error.");
    }
-});
-
-
-app.get("/robots.txt", function(req, res) {
-   return res.sendFile(__dirname + "/static/misc/robots.txt");
 });
 
 app.get("*", function(req, res) {

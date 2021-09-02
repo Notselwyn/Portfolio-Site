@@ -2,14 +2,17 @@
     text-align: center;
     font-size: calc(1.7vw + 8px);
     user-select: none;
-    margin-top: calc(5px + 18vh);;
+    /* Use this with scroll arrow
+    margin-top: calc(5px + 18vh);*/
+    margin-top: calc(30vh - 20px);
 }
+
 .socials button {
     background-color: transparent;
     border: 2px solid #ffffff;
     color: #ffffff;
     width: calc(60px + 5.8vw);
-    height: 150%;
+    height: calc(30px + 2vw);
     border-radius: 1337px;
     outline: none;
     cursor: pointer;
@@ -25,8 +28,8 @@
 
 .socials button:hover {
     color: #ffffff;
-    width: calc(45px + 5.8vw);
-    height: 30%;
+    width: calc(50px + 5.8vw);
+    height: calc(15px + 3vw);
 }
 
 #SOB:hover {

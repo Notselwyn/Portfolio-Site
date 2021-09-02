@@ -105,14 +105,8 @@ a.tab:hover {
 .title {
     font-size: calc(10px + 4.5vw);
     text-align: center;
-    padding-top: 6vh;
+    margin-top: calc(20px + 8vh);
     user-select: none;
-}
-
-@media (max-width: 960px) {
-    .title {
-        font-size: calc(10px + 8vw);
-    }
 }
 
 .subtitle {
@@ -130,7 +124,7 @@ a.tab:hover {
  */
 
 * {
-    font-family: roboto,sans-serif;
+    font-family: "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap",sans-serif;
     margin: 0;
     color: #ffffff;
 }
@@ -179,5 +173,23 @@ a:hover {
     100%{
         opacity: 0;
         transform: rotate(45deg) translate(20px,20px);
+    }
+}
+
+
+
+@media only screen and (max-width: 560px) {
+    .title {
+        font-size: calc(10px + 8vw);
+        margin-top: 10vh;
+    }
+
+    .socials {
+        font-size: calc(6vw + 2px);
+        margin-top: calc(25vh + 5px);
+    }
+
+    .subtitle {
+        font-size: calc(2px + 3.3vw);
     }
 }
