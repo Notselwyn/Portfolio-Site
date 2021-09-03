@@ -154,6 +154,7 @@ app.get(['/', '/index'], function(req, res){
 
 app.get('/sudoku', function(req, res){
    let args = {"url": req.url, "browser_title": "Sudoku Solver"};
+   console.log(req.url);
    res.render('sudoku', args);
 });
 

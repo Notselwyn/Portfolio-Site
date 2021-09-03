@@ -29,6 +29,12 @@ function disable_sudoku_overlay() {
   document.getElementById("sudoku-wrapper").style.display = "none";
 }
 
+function killSudoku() {
+    kill_all_workers();
+    reset();
+    disable_sudoku_overlay()
+}
+
 
 function fire() {
     document.getElementById("submit").style.display = "none";
