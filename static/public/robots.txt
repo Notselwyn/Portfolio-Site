@@ -6,3 +6,4 @@ Allow: /about
 
 Disallow: /api
 Disallow: /api/*
+Disallow: /projects?*
