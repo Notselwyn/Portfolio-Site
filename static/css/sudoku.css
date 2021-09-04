@@ -25,10 +25,11 @@
 
 #sudoku-overlay-close {
     position: fixed;
-    font-size: 65px;
+    font-size: 6vh;
     color: #cccccc;
     cursor: pointer;
-    margin-right: 50px;
+    z-index: 2;
+    margin-left: 20px;
 }
 
 .sudoku-wrapper {
