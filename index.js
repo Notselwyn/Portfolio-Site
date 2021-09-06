@@ -247,14 +247,14 @@ app.get("/api/wakatime_text", function(req, res) {
       let username = req.query["username"];
       if (/^[a-zA-Z0-9_-]+$/.test(username)) {
          fetch(`https://wakatime.com/api/v1/users/${username}/stats?is_including_today=true`).then(wakatime_res => wakatime_res.text()).then(wakatime_body => {   
-            if ("!DOCTYPE" in wakatime_body.toString() || "error" in wakatime_body.toString()) {
+            if (JSON.stringify(wakatime_body).indexOf("!DOCTYPE") >= 0 || JSON.stringify(wakatime_body).indexOf("error") >= 0) {
                res.status(500);
                return res.send("Internal Error.");
             }
             wakatime_body = wakatime_body.replace("Visual Studio", "VS 2019");
             let data = JSON.parse(wakatime_body)["data"];
-            
-            if (data["categories"] == undefined) {
+
+            if (data["categories"] === undefined) {
                res.status(500);
                return res.send("Internal Error.");
             }
