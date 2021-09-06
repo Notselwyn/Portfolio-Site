@@ -253,6 +253,12 @@ app.get("/api/wakatime_text", function(req, res) {
             }
             wakatime_body = wakatime_body.replace("Visual Studio", "VS 2019");
             let data = JSON.parse(wakatime_body)["data"];
+
+            if (data["categories"] === undefined) {
+               res.status(500);
+               return res.send("Internal Error.");
+            }
+
             let coding_info;
             data = data;
             for (let i=0; i<data["categories"].length; i++) {
@@ -260,10 +266,6 @@ app.get("/api/wakatime_text", function(req, res) {
                   coding_info = data["categories"][i];
                   break;
                }
-            }
-            if (coding_info === undefined) {
-               res.status(500);
-               return res.send("Internal Error.");
             }
 
             let total_seconds = coding_info["total_seconds"];
