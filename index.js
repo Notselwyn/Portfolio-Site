@@ -247,7 +247,7 @@ app.get("/api/wakatime_text", function(req, res) {
       let username = req.query["username"];
       if (/^[a-zA-Z0-9_-]+$/.test(username)) {
          fetch(`https://wakatime.com/api/v1/users/${username}/stats?is_including_today=true`).then(wakatime_res => wakatime_res.text()).then(wakatime_body => {   
-            if (JSON.stringify(wakatime_body).includes("!DOCTYPE") || !!wakatime_body["error"] || !(JSON.stringify(wakatime_body).includes('\\"categories\\"') && JSON.stringify(wakatime_body).includes('\\"total_seconds\\"') && JSON.stringify(wakatime_body).includes('\\"Coding\\"'))) {
+            if (JSON.stringify(wakatime_body).includes("!DOCTYPE") || !!wakatime_body["error"] || !(JSON.stringify(wakatime_body).includes('\\"categories\\"') && JSON.stringify(wakatime_body).includes('\\"Coding\\"'))) {
                res.status(500);
                return res.send("WakaTime API Error.");
             }
@@ -271,7 +271,6 @@ app.get("/api/wakatime_text", function(req, res) {
                return res.send("Internal Error.");
             }
 
-            let total_seconds = coding_info["total_seconds"];
             let editors = [];
             let languages = [];
             
