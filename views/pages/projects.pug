@@ -1,66 +1,62 @@
 doctype html
 html
-   head
-      link(rel="stylesheet" href="static/css/bootstrap.min.css", type="text/css")
-      link(rel="stylesheet" href="static/css/projects.css", type="text/css")
-      link(rel="stylesheet" href="static/css/sudoku.css", type="text/css")
-      script(src="static/js/sudoku.js")
-      include ../general/wrapper_head
-   body
-      include ../general/wrapper_body
-
-      div.sudoku-wrapper#sudoku-wrapper(onclick="kill_all_workers();reset();disable_sudoku_overlay()")
-         div#sudoku-master-container
-            include ../general/element_sudoku
-
-      if tags != null
-         div(style="text-align: center;")#selected_tags
-            a="Selected tags: "
-            b
-               for tag in tags
-                  - let l=""
-                  for t in tags
-                     if t !== tag
-                        - l+= "+" + t
-                  a.project_tag(href=`projects${l !== "" ? `?filter=${l.slice(1)}` : ''}`)=tag.replace("CPP", "C++") + " ✖"
-      for items, cat in projects
-         div.container-md(id=cat.toLowerCase().replace(" ", "_"))
-            b
-               p.category=cat
-            - let i = 0;
-            for project in items
-               if tags == null || tags.every((val) => project["tags"].includes(val))
-                  div.project_container
-                     div.row
-                        b
-                           p.project_topic=project["title"]
-                        if i%2===0
-                           p.project_description.col-lg-6=project["description"]
-                           img.img-fluid.col-lg-6(src=project["banner"])
-                        else
-                           img.img-fluid.col-lg-6(src=project["banner"])
-                           p.project_description.col-lg-6=project["description"]
-
-                     div.project_meta(style="margin-top:15px;")
-                        b
-                           for tag in project["tags"]
-                              - let l = tag
-                              if tags != null
-                                 for t in tags
-                                    - l += "+" + t
-                              a(href=`projects?filter=${l}`).project_tag=tag.replace("CPP", "C++")
-                           if "github" in project
-                              a(href=project["github"], style="float: right;").project_tag="Github"
-                           if "demo" in project
-                              if project["demo"].startsWith("overlay-")
-                                 a(onclick=`enable_${project["demo"].slice(8)}_overlay()`, style="float: right;cursor: pointer;").project_tag="Demo"
-                              else if project["demo"].startsWith("url-")
-                                 a(href=project["demo"].slice(4), style="float: right;").project_tag="Demo"
-                  - i += 1;
-            else
-               - i += 1;
-               p.noprojects=`There are currently no projects ${cat.toLowerCase()}`
-            if i === 0
-               p.noprojects="All projects have been filtered out"
-
-      include ../general/wrapper_footer
+    head
+        link(rel="stylesheet" href="static/css/bootstrap.min.css", type="text/css")
+        link(rel="stylesheet" href="static/css/projects.css", type="text/css")
+        link(rel="stylesheet" href="static/css/sudoku.css", type="text/css")
+        script(src="static/js/sudoku.js")
+        include ../general/wrapper_head
+    body
+        include ../general/wrapper_body
+        div.sudoku-wrapper#sudoku-wrapper(onclick="kill_all_workers();reset();disable_sudoku_overlay()")
+            div#sudoku-master-container
+                include ../general/element_sudoku
+        if tags != null
+            div(style="text-align: center;")#selected_tags
+                a="Selected tags: "
+                b
+                    for tag in tags
+                        - let l=""
+                        for t in tags
+                            if t !== tag
+                                - l+= "+" + t
+                        a.project_tag(href=`projects${l !== "" ? `?filter=${l.slice(1)}` : ''}`)=tag.replace("CPP", "C++") + " ✖"
+        for items, cat in projects
+            div.container-md(id=cat.toLowerCase().replace(" ", "_"))
+                b
+                    p.category=cat
+                - let i = 0;
+                for project in items
+                    if tags == null || tags.every((val) => project["tags"].includes(val))
+                        div.project_container
+                            div.row
+                                b
+                                    p.project_topic=project["title"]
+                                if i%2===0
+                                    p.project_description.col-lg-6=project["description"]
+                                    img.img-fluid.col-lg-6(src=project["banner"])
+                                else
+                                    img.img-fluid.col-lg-6(src=project["banner"])
+                                    p.project_description.col-lg-6=project["description"]
+                            div.project_meta(style="margin-top:15px;")
+                                b
+                                    for tag in project["tags"]
+                                        - let l = tag
+                                        if tags != null
+                                            for t in tags
+                                                - l += "+" + t
+                                        a(href=`projects?filter=${l}`).project_tag=tag.replace("CPP", "C++")
+                                    if "github" in project
+                                        a(href=project["github"], style="float: right;").project_tag="Github"
+                                    if "demo" in project
+                                        if project["demo"].startsWith("overlay-")
+                                            a(onclick=`enable_${project["demo"].slice(8)}_overlay()`, style="float: right;cursor: pointer;").project_tag="Demo"
+                                        else if project["demo"].startsWith("url-")
+                                            a(href=project["demo"].slice(4), style="float: right;").project_tag="Demo"
+                        - i += 1;   
+                else
+                    - i += 1;
+                    p.noprojects=`There are currently no projects ${cat.toLowerCase()}`
+                if i === 0
+                    p.noprojects="All projects have been filtered out"
+        include ../general/wrapper_footer

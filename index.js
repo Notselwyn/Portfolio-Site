@@ -68,11 +68,6 @@ const projects = {
 
 const aboutmes = {
    "About Me": {
-      //"story": {
-      //   "title": "My Story",
-      //   "description": "I'm a ",
-      //   "banner": "/static/img/doggo.jfif"
-      //},
       "summary": {
          "title": "A Short Summary",
          "description": "I'm primarily a backend developer who enjoys to code and learn about computer-science. I code in plenty of interesting programming languages although most of my published projects are made using only a few. One of these coding languages is Python of which I would say I master it for 90% as I spent 2 years dedicated to learning it and I'm currently learning the language C++. I have many other skills and hobbies such as reverse engineering, ethical hacking and gambling using the stock market. I'm not creative as you can see based on the design of this website, but I am skilled in the backend / programming side of things. Below this text are some of my statistics regarding programming.",
@@ -108,9 +103,7 @@ const aboutmes = {
       }, 
       "linux": {
          "title": "Linux Operating System",
-         // A 500 character text of why I like the Linux OS
          "description": "I've always been a big fan of the Linux OS, especially on servers. I've always liked the concept and I've always wanted to learn more about how it works and how to build my own distrubition of Linux. The reason why I love the OS is because the same technology that I use in my daily life is the same that makes up the Linux OS. I really enjoy programming and configuring Linux as it's way more fun because most of the files are plain text. Another reason I like Linux is that it has a giant community made of developers who always like to chat about the Linux OS.",
-         //"description": "In the beginnings of 2019 I wanted to try a new OS, so I picked Linux and started using the infamous Kali Linux distribution. The fact that Linux is incredibly open-source and that most files are plain text files, led me to experimenting with a bunch of settings and interesting configurations. As of 2021 I'm still using the Linux kernel for my main operating systems and it really satisfies me with it's characteristic ways of customizability and accessibility. ",
          "banner": "/static/img/linux.png"
       },
       "cryptography": {
@@ -126,14 +119,33 @@ const aboutmes = {
    }
 };
 
+const posts = {
+    "Writeups": {
+        "picklerick": {
+            "title": "[THM] Pickle Rick",
+            "description": "A Rick and Morty CTF. Help turn Rick back into a human!",
+            "banner": "https://tryhackme-images.s3.amazonaws.com/room-icons/47d2d3ade1795f81a155d0aca6e4da96.jpeg",
+            "posturl": "/blogs/picklerick"
+        }
+    },
+    "Experiences": {
+
+    },
+    "Stories": {
+
+    }
+}
+
 const subtitles = {"projects": ["Finished", "In Development", "Coming Soon"],
-                   "index": ["Software Developer", "Pentester", "OSINT Enthusiast"],
-                   "about": ["About Me", "My Skills", "My Interests"]
+                   "index": ["Software Developer", "CTF Player", "OSINT Enthusiast"],
+                   "about": ["About Me", "My Skills", "My Interests"],
+                   "blogs": ["Writeups", "Experiences", "Stories"]
                   };
 
 const titles = {"index": ["I'm ", "!Lau", " and I'm a.."],
                 "projects": ["My ", "!Projects"],
-                "about": ["About ", "!Me"]
+                "about": ["About ", "!Me"],
+                "blogs": ["My ", "!Blogs"]
                };
 
 function wakatime_to_text(property, bar_length, bool_time) {
@@ -177,6 +189,12 @@ app.get('/projects', function(req, res){
 app.get('/about', function(req, res){
    let args = {"url": req.url, "browser_title": "About Me", "title": titles["about"], "subtitles": subtitles["about"], "aboutmes": aboutmes};
    res.render('about', args)
+});
+
+
+app.get('/blogs', function(req, res){
+   let args = {"url": req.url, "browser_title": "Blogs", "title": titles["blogs"], "subtitles": subtitles["blogs"], "posts": posts};
+   res.render('blogs', args);
 });
 
 
@@ -227,6 +245,7 @@ app.get("/api/wakatime_text", function(req, res) {
       let count_languages = 6;
       let bar_length = 10;
       let bool_time = true;
+      let total_time = false;
       
       if ("editors" in req.query && /^[0-9]+$/.test(req.query["editors"])) {
          count_editors = parseInt(req.query["editors"]);
@@ -243,13 +262,17 @@ app.get("/api/wakatime_text", function(req, res) {
       if ("time" in req.query && req.query["time"] == "false") {	
          bool_time = false;
       }
+
+      if ("total_time" in req.query && req.query["total_time"] == "true") {	
+         total_time = true;
+      }
       
       let username = req.query["username"];
       if (/^[a-zA-Z0-9_-]+$/.test(username)) {
          fetch(`https://wakatime.com/api/v1/users/${username}/stats?is_including_today=true`).then(wakatime_res => wakatime_res.text()).then(wakatime_body => {   
             if (JSON.stringify(wakatime_body).includes("!DOCTYPE") || !!wakatime_body["error"] || !(JSON.stringify(wakatime_body).includes('\\"categories\\"') && JSON.stringify(wakatime_body).includes('\\"Coding\\"'))) {
                res.status(500);
-               return res.send("WakaTime API Error.");
+               return res.send("WakaTime API Error. Username most likely not recognised.");
             }
             wakatime_body = wakatime_body.replace("Visual Studio", "VS 2019");
             let data = JSON.parse(wakatime_body)["data"];
@@ -306,11 +329,17 @@ app.get("/api/wakatime_text", function(req, res) {
                      response_string += " ".repeat(54) + editors[i] + "\n";
                   }
                }
+               if (total_time) {
+                  response_string += "---------\n" + wakatime_to_text(coding_info, bar_length, bool_time).replace("Coding", "total ") + "\n";
+               }
             } else {
                if (count_editors > 0) {
                   response_string += "\neditors\n-------\n";
                   for (let i=0; i < count_editors; i++) {  
                      response_string += editors[i] + "\n";
+                  }
+                  if (total_time) {
+                     response_string += "-------\n" + wakatime_to_text(coding_info, bar_length, bool_time).replace("Coding", "total ") + "\n";
                   }
                }
             }
