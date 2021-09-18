@@ -66,6 +66,18 @@ const projects = {
    },
 };
 
+
+const pagenames = {
+   "/": "Home",
+   "/index": "Home",
+   "/about": "About Me",
+   "/projects": "Projects",
+   "/blogs": "Blogs",
+   "/404": "404 (not found)",
+   "/sudoku": "Sudoku Solver"
+}
+
+
 const aboutmes = {
    "About Me": {
       "summary": {
@@ -162,12 +174,12 @@ app.use(function(req, res, next) {
 
 // PAGE REGISTRATION
 app.get(['/', '/index'], function(req, res){
-   let args = {"url": req.url, "browser_title": "Home", "title": titles["index"], "subtitles": subtitles["index"]};
+   let args = {"url": req.url, "browser_title": "Home", "title": titles["index"], "subtitles": subtitles["index"], "pagename": pagenames["/"]};
    res.render('index', args);
 });
 
 app.get('/sudoku', function(req, res){
-   let args = {"url": req.url, "browser_title": "Sudoku Solver"};
+   let args = {"url": req.url, "browser_title": "Sudoku Solver", "pagename": pagenames["/sudoku"]};
    console.log(req.url);
    res.render('sudoku', args);
 });
@@ -182,18 +194,18 @@ app.get('/projects', function(req, res){
          tags = tags.filter((e, i) => tags.indexOf(e) === i).sort();
       }
    }
-   let args = {"url": req.url, "browser_title": "Projects", "title": titles["projects"], "subtitles": subtitles["projects"], "projects": projects, "tags": tags};
+   let args = {"url": req.url, "browser_title": "Projects", "title": titles["projects"], "subtitles": subtitles["projects"], "projects": projects, "tags": tags, "pagename": pagenames["/projects"]};
    res.render('projects', args);
 });
 
 app.get('/about', function(req, res){
-   let args = {"url": req.url, "browser_title": "About Me", "title": titles["about"], "subtitles": subtitles["about"], "aboutmes": aboutmes};
+   let args = {"url": req.url, "browser_title": "About Me", "title": titles["about"], "subtitles": subtitles["about"], "aboutmes": aboutmes, "pagename": pagenames["/about"]};
    res.render('about', args)
 });
 
 
 app.get('/blogs', function(req, res){
-   let args = {"url": req.url, "browser_title": "Blogs", "title": titles["blogs"], "subtitles": subtitles["blogs"], "posts": posts};
+   let args = {"url": req.url, "browser_title": "Blogs", "title": titles["blogs"], "subtitles": subtitles["blogs"], "posts": posts, "pagename": pagenames["/blogs"]};
    res.render('blogs', args);
 });
 
