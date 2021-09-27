@@ -343,7 +343,6 @@ app.get(["/api/wakatime/circle"], function(req, res) {
         if ("double_backslashes" in req.query && req.query["double_backslashes"] === "true") {
             label_line[0] = "\\\\"
         }
-        console.log(label_line)
 
         fetch(`https://wakatime.com/api/v1/users/${username}/stats`).then(wakatime_res => wakatime_res.text()).then(wakatime_body => {   
             if (JSON.stringify(wakatime_body).includes("!DOCTYPE") || !!wakatime_body["error"] || !(JSON.stringify(wakatime_body).includes('\\"languages\\"') && JSON.stringify(wakatime_body).includes('\\"Coding\\"'))) {
