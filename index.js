@@ -277,7 +277,7 @@ app.get(["/api/wakatime/circle"], function(req, res) {
         let min_labels_y = 2;
         let label_marker = "#";
         let label_seperator = "-";
-        let label_line = "\\/";
+        let label_line = ["\\", "/"];
         let label_lines = true;
 
         if ("edge_width" in req.query && /^[0-9]{1}$/.test(req.query["edge_width"])) {
@@ -328,9 +328,9 @@ app.get(["/api/wakatime/circle"], function(req, res) {
             label_seperator = req.query["label_seperator"];
         }
 
-        if ("label_line" in req.query && req.query["label_line"].length == 2) {
-            label_line = req.query["label_line"];
-        }
+        //if ("label_line" in req.query && req.query["label_line"].length == 2) {
+        //    label_line = req.query["label_line"];
+        //}
 
         if ("labels" in req.query && req.query["labels"] === "false") {
             labels = false;
@@ -339,6 +339,11 @@ app.get(["/api/wakatime/circle"], function(req, res) {
         if ("label_lines" in req.query && req.query["label_lines"] === "false") {
             label_lines = false;
         }
+
+        if ("double_backslashes" in req.query && req.query["double_backslashes"] === "true") {
+            label_line[0] = "\\\\"
+        }
+        console.log(label_line)
 
         fetch(`https://wakatime.com/api/v1/users/${username}/stats`).then(wakatime_res => wakatime_res.text()).then(wakatime_body => {   
             if (JSON.stringify(wakatime_body).includes("!DOCTYPE") || !!wakatime_body["error"] || !(JSON.stringify(wakatime_body).includes('\\"languages\\"') && JSON.stringify(wakatime_body).includes('\\"Coding\\"'))) {
