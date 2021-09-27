@@ -200,7 +200,7 @@ function circleGraph(language_info, edge_width, diameter, x_stretch, min_percent
                             c = [Math.cos(nangle) * i, Math.sin(nangle) * i];
                             nc = [Math.floor(c[0] + origin[0] + (coords[0]-origin[0])), Math.floor(c[1] + origin[1] + (coords[1]-origin[1]))];
                             if (nc != [Math.floor(coords[0]), Math.floor(coords[1])]) {
-                                circle_array[nc[1]][nc[0]] = label_line[1];
+                                circle_array[nc[1]][nc[0]] = label_line[0];
                             };
                         };
                     };
@@ -262,7 +262,7 @@ function circleGraph(language_info, edge_width, diameter, x_stretch, min_percent
                             c = [Math.cos(nangle) * i, Math.sin(nangle) * i];
                             nc = [Math.floor(c[0] + origin[0] - (origin[0]-coords[0])), Math.floor(c[1] + origin[1] + (coords[1]-origin[1]))];
                             if (nc != [Math.floor(coords[0]), Math.floor(coords[1])]) {
-                                circle_array[nc[1]][nc[0]] = label_line[1];
+                                circle_array[nc[1]][nc[0]] = label_line[0];
                             };
                         };
                     };
