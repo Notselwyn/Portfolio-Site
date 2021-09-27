@@ -304,6 +304,10 @@ app.get(["/api/wakatime/circle"], function(req, res) {
             label_width = parseInt(req.query["label_width"]);
         }
 
+        if ("min_labels_y" in req.query && /^[0-9]{2}$/.test(req.query["min_labels_y"])) {
+            min_labels_y = parseInt(req.query["min_labels_y"]);
+        }
+
         if ("start_angle" in req.query && /^[0-9]{3}$/.test(req.query["start_angle"])) {
             start_angle = parseInt(req.query["start_angle"]) % 360 ;
         }
