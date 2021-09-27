@@ -4,6 +4,7 @@ const CryptoJS = require("crypto-js");
 const request = require('request');
 const fetch = require('node-fetch');
 const directory = require('serve-index');
+const circleGraph = require('./node_utilities/circlegraph');
 const app = express();
 const ip = "0.0.0.0";
 const port = 80;
@@ -250,8 +251,123 @@ app.get("/api/calc", function(req, res) {
 });
 
 
+app.get(["/api/wakatime/circle"], function(req, res) {
+    try {
+        if (!("username" in req.query) || !(/^[a-zA-Z0-9_-]+$/.test(req.query["username"]))) {
+            res.status(500);
+            return res.send("Internal error.");
+        };
 
-app.get("/api/wakatime_text", function(req, res) {
+        let username = req.query["username"];
+        let edge_width = 1;
+        let diameter = 18;
+        let x_stretch = 2.4;
+        let min_percent = 0.10;
+        let edge = "#";
+        let border = "~";
+        let bg = " ";
+        let graph_chars = " .'`,!+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
+        let labels = true;
+        let label_offset = 4;
+        let label_width = 5;
+        let start_angle = 47;
+        let min_labels_x_dist = 20;
+        let min_labels_y_dist = 4;
+        let min_labels_x = 2;
+        let min_labels_y = 2;
+        let label_marker = "#";
+        let label_seperator = "-";
+        let label_line = "\\/";
+        let label_lines = true;
+
+        if ("edge_width" in req.query && /^[0-9]{1}$/.test(req.query["edge_width"])) {
+            edge_width = parseInt(req.query["edge_width"]);
+        }
+
+        if ("diameter" in req.query && /^[0-9]{2}$/.test(req.query["diameter"])) {
+            if (5 < parseInt(req.query["diameter"]) && parseInt(req.query["diameter"]) < 35) {
+                diameter = parseInt(req.query["diameter"]);
+            }
+        }
+
+        if ("min_share" in req.query && /^[0-9]{2}$/.test(req.query["min_share"])) {
+            if (4 < parseInt(req.query["min_share"]) && parseInt(req.query["min_share"]) < 100) {
+                min_percent = parseInt(req.query["min_share"]) / 100;
+            }
+        }
+
+        if ("label_offset" in req.query && /^[0-9]{2}$/.test(req.query["label_offset"])) {
+            label_offset = parseInt(req.query["label_offset"]) / 100;
+        }
+
+        if ("label_width" in req.query && /^[0-9]{2}$/.test(req.query["label_width"])) {
+            label_width = parseInt(req.query["label_width"]) / 100;
+        }
+
+        if ("start_angle" in req.query && /^[0-9]{3}$/.test(req.query["start_angle"])) {
+            start_angle = parseInt(req.query["start_angle"]) % 360 ;
+        }
+
+        if ("edge" in req.query && req.query["edge"].length == 1) {
+            edge = req.query["edge"];
+        }
+
+        if ("border" in req.query && req.query["border"].length == 1) {
+            border = req.query["border"];
+        }
+
+        if ("bg" in req.query && req.query["bg"].length == 1) {
+            bg = req.query["bg"];
+        }
+
+        if ("label_marker" in req.query && req.query["label_marker"].length == 1) {
+            label_marker = req.query["label_marker"];
+        }
+
+        if ("label_seperator" in req.query && req.query["label_seperator"].length == 1) {
+            label_seperator = req.query["label_seperator"];
+        }
+
+        if ("label_line" in req.query && req.query["label_line"].length == 2) {
+            label_line = req.query["label_line"];
+        }
+
+        if ("labels" in req.query && req.query["labels"] === "false") {
+            labels = false;
+        }
+
+        if ("label_lines" in req.query && req.query["label_lines"] === "false") {
+            label_lines = false;
+        }
+
+        fetch(`https://wakatime.com/api/v1/users/${username}/stats`).then(wakatime_res => wakatime_res.text()).then(wakatime_body => {   
+            if (JSON.stringify(wakatime_body).includes("!DOCTYPE") || !!wakatime_body["error"] || !(JSON.stringify(wakatime_body).includes('\\"languages\\"') && JSON.stringify(wakatime_body).includes('\\"Coding\\"'))) {
+               res.status(500);
+               return res.send("WakaTime API Error. Username most likely not recognised.");
+            }
+            wakatime_body = wakatime_body.replace("Visual Studio", "VS 2019");
+            let data = JSON.parse(wakatime_body)["data"];
+
+            if (!data["languages"]) {
+               res.status(500);
+               return res.send("Internal Error.");
+            }
+
+            if (!data["languages"]) {
+               res.status(500);
+               return res.send("Internal Error.");
+            }
+
+            res.status(200);
+            return res.send(circleGraph.circleGraph(data["languages"], edge_width, diameter, x_stretch, min_percent, edge, border, bg, graph_chars, labels, label_offset, label_width, start_angle, min_labels_x_dist, min_labels_y_dist, min_labels_x, min_labels_y, label_marker, label_seperator, label_line, label_lines));
+        });
+    } catch (e) {
+        res.status(500);
+        return res.send("Internal Error.");
+    }
+});
+
+app.get(["/api/wakatime_text", "/api/wakatime/text"], function(req, res) {
    if ("username" in req.query) {
       let count_editors = 4;
       let count_languages = 6;
@@ -281,7 +397,7 @@ app.get("/api/wakatime_text", function(req, res) {
       
       let username = req.query["username"];
       if (/^[a-zA-Z0-9_-]+$/.test(username)) {
-         fetch(`https://wakatime.com/api/v1/users/${username}/stats?is_including_today=true`).then(wakatime_res => wakatime_res.text()).then(wakatime_body => {   
+         fetch(`https://wakatime.com/api/v1/users/${username}/stats`).then(wakatime_res => wakatime_res.text()).then(wakatime_body => {   
             if (JSON.stringify(wakatime_body).includes("!DOCTYPE") || !!wakatime_body["error"] || !(JSON.stringify(wakatime_body).includes('\\"categories\\"') && JSON.stringify(wakatime_body).includes('\\"Coding\\"'))) {
                res.status(500);
                return res.send("WakaTime API Error. Username most likely not recognised.");
@@ -359,11 +475,11 @@ app.get("/api/wakatime_text", function(req, res) {
             return res.send(response_string);
          });
       } else {
-         res.status(200);
+         res.status(500);
          return res.send("Internal error.");
       }
    } else {
-      res.status(200);
+      res.status(500);
       return res.send("Internal error.");
    }
 });
