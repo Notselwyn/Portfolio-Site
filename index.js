@@ -280,35 +280,35 @@ app.get(["/api/wakatime/circle"], function(req, res) {
         let label_line = ["\\", "/"];
         let label_lines = true;
 
-        if ("edge_width" in req.query && /^[0-9]{1}$/.test(req.query["edge_width"])) {
+        if ("edge_width" in req.query && /^[0-9]{1,2}$/.test(req.query["edge_width"])) {
             edge_width = parseInt(req.query["edge_width"]);
         }
 
-        if ("diameter" in req.query && /^[0-9]{2}$/.test(req.query["diameter"])) {
+        if ("diameter" in req.query && /^[0-9]{1,2}$/.test(req.query["diameter"])) {
             if (5 < parseInt(req.query["diameter"]) && parseInt(req.query["diameter"]) < 35) {
                 diameter = parseInt(req.query["diameter"]);
             }
         }
 
-        if ("min_share" in req.query && /^[0-9]{2}$/.test(req.query["min_share"])) {
+        if ("min_share" in req.query && /^[0-9]{1,2}$/.test(req.query["min_share"])) {
             if (4 < parseInt(req.query["min_share"]) && parseInt(req.query["min_share"]) < 100) {
                 min_percent = parseInt(req.query["min_share"]) / 100;
             }
         }
 
-        if ("label_offset" in req.query && /^[0-9]{2}$/.test(req.query["label_offset"])) {
+        if ("label_offset" in req.query && /^[0-9]{1,2}$/.test(req.query["label_offset"])) {
             label_offset = parseInt(req.query["label_offset"]) / 100;
         }
 
-        if ("label_width" in req.query && /^[0-9]{2}$/.test(req.query["label_width"])) {
+        if ("label_width" in req.query && /^[0-9]{1,2}$/.test(req.query["label_width"])) {
             label_width = parseInt(req.query["label_width"]);
         }
 
-        if ("min_labels_y" in req.query && /^[0-9]{2}$/.test(req.query["min_labels_y"])) {
+        if ("min_labels_y" in req.query && /^[0-9]{1,2}$/.test(req.query["min_labels_y"])) {
             min_labels_y = parseInt(req.query["min_labels_y"]);
         }
 
-        if ("start_angle" in req.query && /^[0-9]{3}$/.test(req.query["start_angle"])) {
+        if ("start_angle" in req.query && /^[0-9]{1-3}$/.test(req.query["start_angle"])) {
             start_angle = parseInt(req.query["start_angle"]) % 360 ;
         }
 
