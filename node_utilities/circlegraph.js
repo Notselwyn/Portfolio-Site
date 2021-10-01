@@ -101,15 +101,15 @@ function circleGraph(language_info, edge_width, diameter, x_stretch, min_percent
             while ((circle_array.length - min_labels_y) <= Math.floor(label_coords[1]) || Math.floor(label_coords[1]) <= min_labels_y) {
                 if (coords[1] < origin[1]) {
                     if (coords[0] < origin[0]) {
-                        nangle -= 0.01;
+                        nangle -= 0.1;
                     } else {
-                        nangle += 0.01;
+                        nangle += 0.1;
                     }
                 } else {
                     if (coords[0] < origin[0]) {
-                        nangle += 0.01;
+                        nangle += 0.1;
                     } else {
-                        nangle -= 0.01;
+                        nangle -= 0.1;
                     };
                 };
 
@@ -145,7 +145,6 @@ function circleGraph(language_info, edge_width, diameter, x_stretch, min_percent
 
             let coords = lang_info["label_point"];
             let nangle = lang_info["label_angle"] / 50;
-            circle_array[Math.floor(coords[1])][Math.floor(coords[0])] = label_marker;
 
             let c = [Math.cos(nangle) * rad_p_laboff, Math.sin(nangle) * rad_p_laboff];
             let label_coords = [c[0] * x_stretch + origin[0], c[1] + origin[1]];
@@ -164,15 +163,15 @@ function circleGraph(language_info, edge_width, diameter, x_stretch, min_percent
                 isNotValid = false;
                 if (coords[1] < origin[1]) {
                     if (coords[0] < origin[0]) {
-                        nangle -= 0.01;
+                        nangle -= 0.1;
                     } else {
-                        nangle += 0.01;
+                        nangle += 0.1;
                     }
                 } else {
                     if (coords[0] < origin[0]) {
-                        nangle += 0.01;
+                        nangle += 0.1;
                     } else {
-                        nangle -= 0.01;
+                        nangle -= 0.1;
                     };
                 };
 
@@ -199,9 +198,7 @@ function circleGraph(language_info, edge_width, diameter, x_stretch, min_percent
                         for (let i=0; i < point_offset; i+=0.2) {
                             c = [Math.cos(nangle) * i, Math.sin(nangle) * i];
                             nc = [Math.floor(c[0] + origin[0] + (coords[0]-origin[0])), Math.floor(c[1] + origin[1] + (coords[1]-origin[1]))];
-                            if (nc != [Math.floor(coords[0]), Math.floor(coords[1])]) {
-                                circle_array[nc[1]][nc[0]] = label_line[0];
-                            };
+                            circle_array[nc[1]][nc[0]] = label_line[0];
                         };
                     };
                     let upper_label = (lang_info["name"] + bg.repeat(Math.max(Math.floor((lang_info["text"].length-lang_info["name"].length) / 2), 0))).reverse();
@@ -219,9 +216,7 @@ function circleGraph(language_info, edge_width, diameter, x_stretch, min_percent
                         for (let i=0; i < point_offset; i+=0.2) {
                             c = [Math.cos(nangle) * i, Math.sin(nangle) * i];
                             nc = [Math.floor(c[0] + origin[0] + (coords[0]-origin[0])), Math.floor(c[1] + origin[1] + (coords[1]-origin[1]))];
-                            if (nc != [Math.floor(coords[0]), Math.floor(coords[1])]) {
-                                circle_array[nc[1]][nc[0]] = label_line[1];
-                            };
+                            circle_array[nc[1]][nc[0]] = label_line[1];
                         };
                     };
                     let upper_label = bg.repeat(Math.max(Math.floor((lang_info["text"].length-lang_info["name"].length) / 2), 0)) + lang_info["name"];
@@ -241,9 +236,7 @@ function circleGraph(language_info, edge_width, diameter, x_stretch, min_percent
                         for (let i=0; i < point_offset; i+=0.2) {
                             c = [Math.cos(nangle) * i, Math.sin(nangle) * i];
                             nc = [Math.floor(c[0] + origin[0] - (origin[0]-coords[0])), Math.floor(c[1] + origin[1] + (coords[1]-origin[1]))];
-                            if (nc != [Math.floor(coords[0]), Math.floor(coords[1])]) {
-                                circle_array[nc[1]][nc[0]] = label_line[1];
-                            };
+                            circle_array[nc[1]][nc[0]] = label_line[1];
                         };
                     };
                     let upper_label = (lang_info["name"] + bg.repeat(Math.max(Math.floor((lang_info["text"].length-lang_info["name"].length) / 2), 0))).reverse();
@@ -261,9 +254,7 @@ function circleGraph(language_info, edge_width, diameter, x_stretch, min_percent
                         for (let i=0; i < point_offset; i+=0.2) {
                             c = [Math.cos(nangle) * i, Math.sin(nangle) * i];
                             nc = [Math.floor(c[0] + origin[0] - (origin[0]-coords[0])), Math.floor(c[1] + origin[1] + (coords[1]-origin[1]))];
-                            if (nc != [Math.floor(coords[0]), Math.floor(coords[1])]) {
-                                circle_array[nc[1]][nc[0]] = label_line[0];
-                            };
+                            circle_array[nc[1]][nc[0]] = label_line[0];
                         };
                     };
                     let upper_label = bg.repeat(Math.max(Math.floor((lang_info["text"].length-lang_info["name"].length) / 2), 0)) + lang_info["name"];
@@ -276,8 +267,9 @@ function circleGraph(language_info, edge_width, diameter, x_stretch, min_percent
                         circle_array[Math.floor(label_coords[1])+1][Math.floor(label_coords[0])+pos] = lower_label[pos];
                         circle_array[Math.floor(label_coords[1])][Math.floor(label_coords[0])+pos] = label_seperator;
                     };
-                }
-            }
+                };
+            };
+            circle_array[Math.floor(coords[1])][Math.floor(coords[0])] = label_marker;
         };
     };
 
