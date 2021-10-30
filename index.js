@@ -1,7 +1,5 @@
 // EXPRESS SETTINGS
 const express = require('express');
-const CryptoJS = require("crypto-js");
-const request = require('request');
 const fetch = require('node-fetch');
 const directory = require('serve-index');
 const circleGraph = require('./node_utilities/circlegraph');
@@ -24,46 +22,53 @@ app.set('views',  __dirname + '/views/pages');
 // CONSTANTS
 const projects = {
    "Finished": {
-      "sudoku_solver": {
-         "title": "Sudoku Solver",
-         "description": "I made this sudoku solver project in the spring of 2021 to practise my skills in other languages than Python. It uses a backtracking algorithm to solve a sudoku puzzle. It solves the puzzle by checking if the value is valid. If there is a value in the same 3x3 grid or in any of the straight lines it is not valid. If it is valid it will go to the next value, if it it is not valid it will go back to the previous value and increment it. By continueing this process until the puzzle is solved you can solve any valid sudoku puzzle. I find this an incredibly good example of what simple algorithms can accomplish in the real world. The exact reason that I decided to code this in multiple languages is that I wanted to test speeds and coding difficulty across languages. This concluded that JavaScript (Node.js) is indeed faster than Python and that Go is faster than C++. The knowledge I acquired from this project will definitly have an impact on my future projects as I know what language is most likely better for which tasks.",
-         "github": "https://github.com/Notselwyn/SudokuSolver",
-         "demo": "overlay-sudoku",
-         "banner": "/static/img/sudoku_solver.gif",
-         "tags": ["CPP", "Go", "JavaScript", "Python", "Ruby"]
-      },
-      "car_racing": {
-         "title": "N.E.A.T. Car Racing",
-         "description": "This is not some regular car racing game, it's.. well not a game. This is an simulation of reinforced neural networks driving on tracks based on several sensors. This project is definitly one of the more complex ones I've made, primarily because it involves machine learning and a whole bunch of PyGame and configuration. For the machine learning part I used the famous NEAT framework which is basically a wrapper for reinforced machine learning. I've learned quite a lot from this project, which is why I like it so much (aside from the fact that it's cool to watch). One of the things I have learned is how to set up a local listener for statistics and how to display those statistics with a live updating graph. Another thing I have learned is more complex concepts with general machine learning",
-         "github": "https://github.com/Notselwyn/NEAT-Car-Racing",
-         "banner": "/static/img/carracing.gif",
-         "tags": ["AI", "Graphics", "Python"]
-      },
-      "asciify": {
-         "title": "ASCII Filter",
-         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus quam id leo in vitae turpis massa sed elementum. Tincidunt augue interdum velit euismod in. Pulvinar sapien et ligula ullamcorper. In iaculis nunc sed augue lacus viverra vitae congue eu. Ipsum suspendisse ultrices gravida dictum fusce ut. Vel pharetra vel turpis nunc eget lorem dolor sed viverra. Venenatis urna cursus eget nunc. Velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla.",
-         "github": "https://github.com/Notselwyn/ASCII-Footage",
-         "banner": "/static/img/badapple.gif",
-         "tags": ["CPP", "Graphics", "Python"]
-      }
+       "sudoku_solver": {
+          "title": "Sudoku Solver",
+          "description": "I made this sudoku solver project in the spring of 2021 to practise my skills in other languages than Python. It uses a backtracking algorithm to solve a sudoku puzzle. It solves the puzzle by checking if the value is valid. If there is a value in the same 3x3 grid or in any of the straight lines it is not valid. If it is valid it will go to the next value, if it it is not valid it will go back to the previous value and increment it. By continueing this process until the puzzle is solved you can solve any valid sudoku puzzle. I find this an incredibly good example of what simple algorithms can accomplish in the real world. The exact reason that I decided to code this in multiple languages is that I wanted to test speeds and coding difficulty across languages. This concluded that JavaScript (Node.js) is indeed faster than Python and that Go is faster than C++. The knowledge I acquired from this project will definitly have an impact on my future projects as I know what language is most likely better for which tasks.",
+          "github": "https://github.com/Notselwyn/SudokuSolver",
+          "demo": "overlay-sudoku",
+          "banner": "/static/img/sudoku_solver.gif",
+          "tags": ["CPP", "Go", "JavaScript", "Python", "Ruby"]
+       },
+       "car_racing": {
+           "title": "N.E.A.T. Car Racing",
+           "description": "This is not some regular car racing game, it's.. well not a game. This is an simulation of reinforced neural networks driving on tracks based on several sensors. This project is definitly one of the more complex ones I've made, primarily because it involves machine learning and a whole bunch of PyGame and configuration. For the machine learning part I used the famous NEAT framework which is basically a wrapper for reinforced machine learning. I've learned quite a lot from this project, which is why I like it so much (aside from the fact that it's cool to watch). One of the things I have learned is how to set up a local listener for statistics and how to display those statistics with a live updating graph. Another thing I have learned is more complex concepts with general machine learning",
+           "github": "https://github.com/Notselwyn/NEAT-Car-Racing",
+           "banner": "/static/img/carracing.gif",
+           "tags": ["AI", "Graphics", "Python"]
+       },
+       "readme": {
+           "title": "Github Readme",
+           "description": "There are two groups of people in this world: those that do not have a Github profile readme and those that do. I'm a part of the latter. I've been trying to make my Github profile readme as aesthetically pleasing and advanced as possible both for showing off and to learn more. For the current version I wrote BASH scripts, a JavaScript API and a lot of math to generate fully dynamic ASCII circle graphs with a ginormous configuration. It's more complicated than it sounds, but the best part is that it's free to use and customize! I wrote many prototypes for the circle graph in Python because it's easier to debug, although coming up and Googling math formulas took the most time. I'm stilling writing a documentation for the API including a deprecated endpoint I used when I first started this project back in july of 2021. I really enjoyed making this project and I'm now capable of creating BASH scripts and Github workflows - although one may be more difficult than the other - because I learned a lot about Math, Github and BASH while making this project.",
+           "github": "https://github.com/Notselwyn/Notselwyn",
+           "banner": "/static/img/readme.png",
+           "tags": ["API", "BASH", "JavaScript", "Math"]
+       },
+       "asciify": {
+          "title": "ASCII Filter",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus quam id leo in vitae turpis massa sed elementum. Tincidunt augue interdum velit euismod in. Pulvinar sapien et ligula ullamcorper. In iaculis nunc sed augue lacus viverra vitae congue eu. Ipsum suspendisse ultrices gravida dictum fusce ut. Vel pharetra vel turpis nunc eget lorem dolor sed viverra. Venenatis urna cursus eget nunc. Velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla.",
+          "github": "https://github.com/Notselwyn/ASCII-Footage",
+          "banner": "/static/img/badapple.gif",
+          "tags": ["CPP", "Graphics", "Python"]
+       }
    },
    "In Development": {
-      "portfolio_website": {
-         "title": "Portfolio Website",
-         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus quam id leo in vitae turpis massa sed elementum. Tincidunt augue interdum velit euismod in. Pulvinar sapien et ligula ullamcorper. In iaculis nunc sed augue lacus viverra vitae congue eu. Ipsum suspendisse ultrices gravida dictum fusce ut. Vel pharetra vel turpis nunc eget lorem dolor sed viverra. Venenatis urna cursus eget nunc. Velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla.",
-         "github": "https://github.com/Notselwyn/Portfolio-Site",
-         "banner": "",
-         "tags": ["CSS", "HTML", "JavaScript"]
-      }
+       "portfolio_website": {
+           "title": "Portfolio Website",
+           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus quam id leo in vitae turpis massa sed elementum. Tincidunt augue interdum velit euismod in. Pulvinar sapien et ligula ullamcorper. In iaculis nunc sed augue lacus viverra vitae congue eu. Ipsum suspendisse ultrices gravida dictum fusce ut. Vel pharetra vel turpis nunc eget lorem dolor sed viverra. Venenatis urna cursus eget nunc. Velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla. Aliquet eget sit amet tellus cras adipiscing enim. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Amet mauris commodo quis imperdiet. Sit amet mattis vulputate enim nulla.",
+           "github": "https://github.com/Notselwyn/Portfolio-Site",
+           "banner": "",
+           "tags": ["CSS", "HTML", "JavaScript"]
+       }
    },
    "Coming Soon": {
-      "assaultcube": {
-         "title": "AssaultCube Trainer",
-         "description": "coolio",
-         "github": "https://github.com/Notselwyn/AssaultCubeInternal",
-         "banner": "",
-         "tags": ["CPP", "RE", "Trainer"]
-      }
+       "assaultcube": {
+           "title": "AssaultCube Trainer",
+           "description": "coolio",
+           "github": "https://github.com/Notselwyn/AssaultCubeInternal",
+           "banner": "",
+           "tags": ["CPP", "RE", "Trainer"]
+       }
    },
 };
 
@@ -104,7 +109,7 @@ const aboutmes = {
       }, 
       "ethical hacking": {
          "title": "Ethical Hacking",
-         "description": "Back when I was in middle school I always looked up to the h4xors, real or fake. Nowadays I've picked it up and I'm still practising and learning interesting ways to exploit computers to this day. As of writing I'm in the top 0.1% leaderboard of TryHackMe, the largest platform for Capture-The-Flags and other Ethical Hacking events. Capture-The-Flags are usually machines set up by members with the sole purpose of being hacked. This is legal ofcourse and I spend a lot of time doing these CTFs to practise and up my hacking game to outperform the best.",
+         "description": "Back when I was in middle school I always looked up to the h4xors, real or fake. Nowadays I've picked it up and I'm still practising and learning interesting ways to exploit computers to this day. As of writing I'm in the top 0.01% leaderboard of TryHackMe, the largest platform for Capture-The-Flags and other Ethical Hacking events. Capture-The-Flags are usually machines set up by members with the sole purpose of being hacked. This is legal ofcourse and I spend a lot of time doing these CTFs to practise and up my hacking game to outperform the best.",
          "banner": "/static/img/haxor.jpg"
       }
    },
