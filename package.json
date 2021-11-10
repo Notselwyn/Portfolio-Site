@@ -19,6 +19,7 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "keystone": "^4.2.1",
     "node-fetch": "^2.6.1",
     "pug": "^3.0.2",
     "serve-index": "^1.9.1"
