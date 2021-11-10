@@ -1,4 +1,4 @@
-const projects = {
+export const projects = {
     "Finished": {
         "sudoku_solver": {
            "title": "Sudoku Solver",
@@ -51,7 +51,7 @@ const projects = {
 };
 
 
-const pagenames = {
+export const pagenames = {
    "/": "Home",
    "/index": "Home",
    "/about": "About Me",
@@ -62,7 +62,7 @@ const pagenames = {
 };
 
 
-const aboutmes = {
+export const aboutmes = {
    "About Me": {
       "summary": {
          "title": "A Short Summary",
@@ -115,7 +115,7 @@ const aboutmes = {
    }
 };
 
-const posts = {
+export const posts = {
     "Writeups": {
         "picklerick": {
             "title": "[THM] Pickle Rick",
@@ -132,27 +132,16 @@ const posts = {
     }
 };
 
-const subtitles = {
+export const subtitles = {
    "projects": ["Finished", "In Development", "Coming Soon"],
    "index": ["Software Developer", "CTF Player", "OSINT Enthusiast"],
    "about": ["About Me", "My Skills", "My Interests"],
    "blogs": ["Writeups", "Experiences", "Stories"]
 };
 
-const titles = {
+export const titles = {
    "index": ["I'm ", "!Lau", " and I'm a.."],
    "projects": ["My ", "!Projects"],
    "about": ["About ", "!Me"],
    "blogs": ["My ", "!Blogs"]
-};
-
-
-// export the variables
-module.exports = {
-    "projects": projects,
-    "posts": posts,
-    "subtitles": subtitles,
-    "titles": titles,
-    "aboutmes": aboutmes,
-    "pagenames": pagenames
 };

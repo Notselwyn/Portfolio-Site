@@ -17,12 +17,16 @@
   },
   "homepage": "https://github.com/Notselwyn/Shitdev.nl#readme",
   "dependencies": {
+    "@types/lodash": "^4.14.176",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "keystone": "^4.2.1",
     "node-fetch": "^2.6.1",
     "pug": "^3.0.2",
-    "serve-index": "^1.9.1"
+    "serve-index": "^1.9.1",
+    "source-map-loader": "^3.0.0",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.4.0"
   },
   "devDependencies": {
     "crypto-js": "^4.1.1",

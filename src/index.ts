@@ -1,9 +1,9 @@
-const express = require('express');
-const fetch = require('node-fetch');
-const directory = require('serve-index');
-const circleGraph = require('./node_utilities/circlegraph');
-const fs = require('fs');
-const { projects, pagenames, aboutmes, posts, subtitles, titles } = require('./node_utilities/constants.js');
+import express = require("express");
+import fetch = require("node-fetch");
+import directory = require("serve-index");
+import circleGraph = require("./utility_modules/circlegraph");
+import fs = require("fs");
+import { projects, pagenames, aboutmes, posts, subtitles, titles } from "./utility_modules/constants";
 
 const ip = "0.0.0.0";
 const port = 80;
@@ -232,11 +232,6 @@ app.get(["/api/wakatime/circle"], function(req, res) {
             }
             wakatime_body = wakatime_body.replace("Visual Studio", "VS 2019");
             let data = JSON.parse(wakatime_body)["data"];
-
-            if (!data["languages"]) {
-               res.status(500);
-               return res.send("Internal Error.");
-            }
 
             if (!data["languages"]) {
                res.status(500);
