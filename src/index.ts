@@ -4,6 +4,7 @@ import directory = require("serve-index");
 import circleGraph = require("./utility_modules/circlegraph");
 import fs = require("fs");
 import { projects, pagenames, aboutmes, posts, subtitles, titles } from "./utility_modules/constants";
+console.log("Imported all requirements...")
 
 const ip = "0.0.0.0";
 const port = 80;
@@ -15,8 +16,8 @@ app.use('/files', directory(__dirname + '/static/files'));
 app.use('/', express.static(__dirname + '/static/public'));
 app.set('view engine', 'pug');
 app.set('views',  __dirname + '/views/pages');
-
 require('dotenv').config();
+console.log("Configured app constants...")
 
 
 function wakatime_to_text(property, bar_length, bool_time) {
