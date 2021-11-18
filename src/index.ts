@@ -4,6 +4,7 @@ import directory = require("serve-index");
 import circleGraph = require("./utility_modules/circlegraph");
 import fs = require("fs");
 import { projects, pagenames, aboutmes, posts, subtitles, titles } from "./utility_modules/constants";
+import * as dotenv from "dotenv";
 console.log("Imported all requirements...")
 
 const ip = "0.0.0.0";
@@ -16,7 +17,7 @@ app.use('/files', directory(__dirname + '/static/files'));
 app.use('/', express.static(__dirname + '/static/public'));
 app.set('view engine', 'pug');
 app.set('views',  __dirname + '/views/pages');
-require('dotenv').config();
+dotenv.config({ path: __dirname+'/../.env' });
 console.log("Configured app constants...")
 
 
@@ -40,7 +41,7 @@ function get_date() {
 // LOG
 app.use(function(req, res, next) {
    require('dotenv').config();
-   if (!process.env.BLOCKED_IPS.includes(req.ip)) {
+   if (!process.env.BLOCKED_IPS.includes(req.ip) && !req.get('User-Agent').includes("curl/")) {	
       console.log(`${req.method} ${req.url} from ${req.ip}`);
       next();
    } else {
