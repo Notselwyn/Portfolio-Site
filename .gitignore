@@ -4,4 +4,4 @@ httpRequests/*
 /.vscode/*
 /.idea/*
 /node_modules/*
-.env
+/src/.env
