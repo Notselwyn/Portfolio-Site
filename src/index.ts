@@ -3,6 +3,7 @@ import fetch = require("node-fetch");
 import directory = require("serve-index");
 import circleGraph = require("./utility_modules/circlegraph");
 import fs = require("fs");
+import keystone = require("keystonejs");
 import { projects, pagenames, aboutmes, posts, subtitles, titles } from "./utility_modules/constants";
 import * as dotenv from "dotenv";
 console.log("Imported all requirements...")
@@ -19,6 +20,19 @@ app.set('view engine', 'pug');
 app.set('views',  __dirname + '/views/pages');
 dotenv.config({ path: __dirname+'/../.env' });
 console.log("Configured app constants...")
+
+keystone.init({
+    name: 'Website Name',
+    brand: 'Website Brand',
+    session: false,
+    updates: 'updates',
+    auth: true,
+    'user model': 'User',
+    'auto update': true,
+    port: ip,
+    'cookie secret': process.env.COOKIE_SECRET
+});
+console.log("Configured KeystoneJS")
 
 
 function wakatime_to_text(property, bar_length, bool_time) {
@@ -40,7 +54,7 @@ function get_date() {
 
 // LOG
 app.use(function(req, res, next) {
-   require('dotenv').config();
+   require('dotenv').config(__dirname+'/../.env');
    if (!process.env.BLOCKED_IPS.includes(req.ip) && !req.get('User-Agent').includes("curl/")) {	
       console.log(`${req.method} ${req.url} from ${req.ip}`);
       next();
@@ -374,4 +388,6 @@ app.get("*", function(req, res) {
 
 // START WEBSERVER
 app.listen(port, ip);
+keystone.app = app;
+keystone.init();
 console.log(`Started webserver on http://${ip}:${port}`);
