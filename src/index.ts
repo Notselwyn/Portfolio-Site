@@ -6,12 +6,16 @@ import fs = require("fs");
 import keystone = require("@keystone-next/keystone");
 import { projects, pagenames, aboutmes, posts, subtitles, titles } from "./utility_modules/constants";
 import * as dotenv from "dotenv";
+import { PrismaClient } from "@prisma/client";
+import schedule = require("node-schedule");
 console.log("Imported all requirements...")
 
 const ip = "0.0.0.0";
 const port = 80;
+const env_path = '/../.env';
 
 const app = express();
+const prisma = new PrismaClient();
 app.use("/static", express.static(__dirname + '/static'));
 app.use('/files', express.static(__dirname + '/static/files'));
 app.use('/files', directory(__dirname + '/static/files'));
@@ -32,12 +36,23 @@ console.log("Configured app constants...")
 //    'port': ip,
 //    'cookie secret': process.env.COOKIE_SECRET
 //});
-console.log("Configured KeystoneJS")
+console.log("Configured KeystoneJS...")
 
+
+const refresh_env = schedule.scheduleJob('*/5 * * * *', async () => {
+   require('dotenv').config(__dirname+env_path);
+});
+refresh_env.start();	
+console.log("Configured cron jobs...")
 
 function wakatime_to_text(property: any, bar_length: any, bool_time: any) {
    let activity_ratio = Math.round(property["percent"] / 100 * bar_length);
    return property["name"] + " ".repeat(13 - property["name"].length) + "[" + "#".repeat(activity_ratio) + "-".repeat(bar_length - activity_ratio) + "]" + " (" + property["percent"] + "%) " + " ".repeat(5 - property["percent"].toString().length) + (bool_time ? property["text"] : "");
+}
+
+async function get_posts() {
+   const all_posts = await prisma.post.findMany();
+   console.log(all_posts);
 }
 
 // Get the current time and date
@@ -54,7 +69,6 @@ function get_date() {
 
 // LOG
 app.use(function(req: any, res: any, next) {
-   require('dotenv').config(__dirname+'/../.env');
    if (!process.env.BLOCKED_IPS.includes(req.ip) && !req.get('User-Agent').includes("curl/")) {	
       console.log(`${req.method} ${req.url} from ${req.ip}`);
       next();
