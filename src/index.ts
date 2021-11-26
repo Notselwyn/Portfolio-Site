@@ -1,5 +1,5 @@
 import express = require("express");
-import fetch = require("@types/node-fetch");
+import fetch from "node-fetch";
 import directory = require("serve-index");
 import circleGraph = require("./utility_modules/circlegraph");
 import fs = require("fs");
@@ -21,21 +21,21 @@ app.set('views',  __dirname + '/views/pages');
 dotenv.config({ path: __dirname+'/../.env' });
 console.log("Configured app constants...")
 
-keystone.init({
-    'name': 'Website Name',
-    'brand': 'Website Brand',
-    'session': false,
-    'updates': 'updates',
-    'auth': true,
-    'user model': 'User',
-    'auto update': true,
-    'port': ip,
-    'cookie secret': process.env.COOKIE_SECRET
-});
+//keystone.init({
+//    'name': 'Website Name',
+//    'brand': 'Website Brand',
+//    'session': false,
+//    'updates': 'updates',
+//    'auth': true,
+//    'user model': 'User',
+//    'auto update': true,
+//    'port': ip,
+//    'cookie secret': process.env.COOKIE_SECRET
+//});
 console.log("Configured KeystoneJS")
 
 
-function wakatime_to_text(property, bar_length, bool_time) {
+function wakatime_to_text(property: any, bar_length: any, bool_time: any) {
    let activity_ratio = Math.round(property["percent"] / 100 * bar_length);
    return property["name"] + " ".repeat(13 - property["name"].length) + "[" + "#".repeat(activity_ratio) + "-".repeat(bar_length - activity_ratio) + "]" + " (" + property["percent"] + "%) " + " ".repeat(5 - property["percent"].toString().length) + (bool_time ? property["text"] : "");
 }
@@ -53,7 +53,7 @@ function get_date() {
 }
 
 // LOG
-app.use(function(req, res, next) {
+app.use(function(req: any, res: any, next) {
    require('dotenv').config(__dirname+'/../.env');
    if (!process.env.BLOCKED_IPS.includes(req.ip) && !req.get('User-Agent').includes("curl/")) {	
       console.log(`${req.method} ${req.url} from ${req.ip}`);
@@ -67,18 +67,18 @@ app.use(function(req, res, next) {
 });
 
 // PAGE REGISTRATION
-app.get(['/', '/index'], function(req, res){
+app.get(['/', '/index'], function(req: any, res: any){
    let args = {"url": req.url, "browser_title": "Home", "title": titles["index"], "subtitles": subtitles["index"], "pagename": pagenames["/"]};
    res.render('index', args);
 });
 
-app.get('/sudoku', function(req, res){
+app.get('/sudoku', function(req: any, res: any){
    let args = {"url": req.url, "browser_title": "Sudoku Solver", "pagename": pagenames["/sudoku"]};
    console.log(req.url);
    res.render('sudoku', args);
 });
 
-app.get('/projects', function(req, res){
+app.get('/projects', function(req: any, res: any){
    let tags = null;
    if ("filter" in req.query) {
       tags = req.query["filter"].split(" ");
@@ -92,24 +92,24 @@ app.get('/projects', function(req, res){
    res.render('projects', args);
 });
 
-app.get('/about', function(req, res){
+app.get('/about', function(req: any, res: any){
    let args = {"url": req.url, "browser_title": "About Me", "title": titles["about"], "subtitles": subtitles["about"], "aboutmes": aboutmes, "pagename": pagenames["/about"]};
    res.render('about', args)
 });
 
 
-app.get('/blogs', function(req, res){
+app.get('/blogs', function(req: any, res: any){
    let args = {"url": req.url, "browser_title": "Blogs", "title": titles["blogs"], "subtitles": subtitles["blogs"], "posts": posts, "pagename": pagenames["/blogs"]};
    res.render('blogs', args);
 });
 
 
-app.get(['/admin', '/dashboard', '/secret', '/config', '/hidden', '/code_exec'], function(req, res) {
+app.get(['/admin', '/dashboard', '/secret', '/config', '/hidden', '/code_exec'], function(req: any, res: any) {
    res.render('rickroll')
 });
 
 // API
-app.get("/api", function(req, res) {
+app.get("/api", function(req: any, res: any) {
    res.status(200);
    return res.send({"/api/calc": {
                         "description": "solve a math problem", 
@@ -127,7 +127,7 @@ app.get("/api", function(req, res) {
                   })
 });
 
-app.get("/api/calc", function(req, res) {
+app.get("/api/calc", function(req: any, res: any) {
    if ("p" in req.query) {
       let p = req.query["p"].replace(" ", "+")
       if (/^[0-9()+\-*\/]+$/.test(p)) {
@@ -144,7 +144,7 @@ app.get("/api/calc", function(req, res) {
 });
 
 
-app.get(["/api/wakatime/circle"], function(req, res) {
+app.get(["/api/wakatime/circle"], function(req: any, res: any) {
     try {
         if (!("username" in req.query) || !(/^[a-zA-Z0-9_-]+$/.test(req.query["username"]))) {
             res.status(500);
@@ -263,7 +263,7 @@ app.get(["/api/wakatime/circle"], function(req, res) {
     }
 });
 
-app.get(["/api/wakatime_text", "/api/wakatime/text"], function(req, res) {
+app.get(["/api/wakatime_text", "/api/wakatime/text"], function(req: any, res: any) {
    if ("username" in req.query) {
       let count_editors = 4;
       let count_languages = 6;
@@ -380,7 +380,7 @@ app.get(["/api/wakatime_text", "/api/wakatime/text"], function(req, res) {
    }
 });
 
-app.get("*", function(req, res) {
+app.get("*", function(req: any, res: any) {
    let args = {"url": "/404", "browser_title": "404", "title": ["!Page", " not found"]};
    res.status(404);
    return res.render('errors/404', args)
@@ -388,6 +388,6 @@ app.get("*", function(req, res) {
 
 // START WEBSERVER
 app.listen(port, ip);
-keystone.app = app;
-keystone.init();
+//keystone.app = app;
+//keystone.init();
 console.log(`Started webserver on http://${ip}:${port}`);
