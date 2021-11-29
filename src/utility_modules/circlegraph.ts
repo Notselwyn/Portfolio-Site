@@ -42,7 +42,7 @@ export function circleGraph(language_info: any[], edge_width: number, diameter: 
         let hours_string = "// Total hours: " + (Math.floor(total_coding_s / 3600 * 10)/10).toString();
         if (diameter * x_stretch > hours_string.length ) {
             for (let i=0; i<hours_string.length; i++) {
-                circle_array[1][i+label_offset] = hours_string[i];
+                circle_array[1][i] = hours_string[i];
             }
         }
         //for (int i=0; i<)
