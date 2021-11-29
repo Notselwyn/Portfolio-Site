@@ -42,8 +42,7 @@ console.log("Configured KeystoneJS...")
 const refresh_env = schedule.scheduleJob('*/5 * * * *', async () => {
    require('dotenv').config(__dirname+env_path);
 });
-refresh_env.start();	
-console.log("Configured cron jobs...")
+console.log("Configured cronjobs...")
 
 function wakatime_to_text(property: any, bar_length: any, bool_time: any) {
    let activity_ratio = Math.round(property["percent"] / 100 * bar_length);
@@ -69,7 +68,7 @@ function get_date() {
 
 // LOG
 app.use(function(req: any, res: any, next) {
-   if (!process.env.BLOCKED_IPS.includes(req.ip) && !req.get('User-Agent').includes("curl/")) {	
+   if (!process.env.BLOCKED_IPS.includes(req.ip) || req.get('User-Agent').includes("curl/")) {	
       console.log(`${req.method} ${req.url} from ${req.ip}`);
       next();
    } else {
@@ -186,6 +185,7 @@ app.get(["/api/wakatime/circle"], function(req: any, res: any) {
         let label_seperator = "-";
         let label_line = ["\\", "/"];
         let label_lines = true;
+        let total_time = false;
 
         if ("edge_width" in req.query && /^[0-9]{1,2}$/.test(req.query["edge_width"])) {
             edge_width = parseInt(req.query["edge_width"]);
@@ -254,6 +254,10 @@ app.get(["/api/wakatime/circle"], function(req: any, res: any) {
         if ("double_backslashes" in req.query && req.query["double_backslashes"] === "true") {
             label_line[0] = "\\\\"
         }
+        
+        if ("total_time" in req.query && req.query["total_time"] === "true") {
+            total_time = true;
+        }
 
         fetch(`https://wakatime.com/api/v1/users/${username}/stats`).then(wakatime_res => wakatime_res.text()).then(wakatime_body => {   
             if (JSON.stringify(wakatime_body).includes("!DOCTYPE") || !!wakatime_body["error"] || !(JSON.stringify(wakatime_body).includes('\\"languages\\"') && JSON.stringify(wakatime_body).includes('\\"Coding\\"'))) {
@@ -269,7 +273,7 @@ app.get(["/api/wakatime/circle"], function(req: any, res: any) {
             }
 
             res.status(200);
-            return res.send(circleGraph.circleGraph(data["languages"], edge_width, diameter, x_stretch, min_percent, edge, border, bg, graph_chars, labels, label_offset, label_width, start_angle, min_labels_x_dist, min_labels_y_dist, min_labels_x, min_labels_y, label_marker, label_seperator, label_line, label_lines));
+            return res.send(circleGraph.circleGraph(data["languages"], edge_width, diameter, x_stretch, min_percent, edge, border, bg, graph_chars, labels, label_offset, label_width, start_angle, min_labels_x_dist, min_labels_y_dist, min_labels_x, min_labels_y, label_marker, label_seperator, label_line, label_lines, total_time));
         });
     } catch (e) {
         res.status(500);

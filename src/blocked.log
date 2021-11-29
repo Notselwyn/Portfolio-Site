@@ -1,0 +1,15 @@
+[BLOCKED] GET /api/wakatime/circle?username=notselwyn&start_angle=160&label_width=7&edge_width=2&diameter=20&min_labels_y=5&double_backslashes=true from 127.0.0.1
+| User-Agent: curl/7.55.1
+| Date: 8:32:48 29/11/2021
+| Timestamp: 1638171168574
+
+[BLOCKED] GET /api/wakatime/circle?username=notselwyn&start_angle=160&label_width=7&edge_width=2&diameter=20&min_labels_y=5&double_backslashes=true from 127.0.0.1
+| User-Agent: curl/7.55.1
+| Date: 8:32:58 29/11/2021
+| Timestamp: 1638171178999
+
+[BLOCKED] GET /api/wakatime/circle?username=notselwyn&start_angle=160&label_width=7&edge_width=2&diameter=20&min_labels_y=5&double_backslashes=true from 127.0.0.1
+| User-Agent: curl/7.55.1
+| Date: 8:33:54 29/11/2021
+| Timestamp: 1638171234174
+

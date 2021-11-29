@@ -6,7 +6,7 @@ function reverseString(str) {
 export function circleGraph(language_info: any[], edge_width: number, diameter: number, x_stretch: number, min_percent: number, 
     edge: string, border: string, bg: string, graph_chars: string, labels: boolean, label_offset: number, label_width: number, 
     start_angle: number, min_labels_x_dist: number, min_labels_y_dist: number, min_labels_x: number, min_labels_y: number, 
-    label_marker: string, label_seperator: string, label_line: string[], label_lines: boolean) {
+    label_marker: string, label_seperator: string, label_line: string[], label_lines: boolean, total_time: boolean) {
 
     let radius = diameter / 2;
     let label_tot = (label_offset + label_width);
@@ -33,8 +33,21 @@ export function circleGraph(language_info: any[], edge_width: number, diameter: 
     for (let i=0; i<language_info.length; i++) {
         total_coding_s += language_info[i]["total_seconds"];
     };
+
     let nlanguage_info = [...language_info];
-    
+
+    // Total hours: x
+
+    if (total_time) {
+        let hours_string = "// Total hours: " + (Math.floor(total_coding_s / 3600 * 10)/10).toString();
+        if (diameter * x_stretch > hours_string.length ) {
+            for (let i=0; i<hours_string.length; i++) {
+                circle_array[1][i+label_offset] = hours_string[i];
+            }
+        }
+        //for (int i=0; i<)
+    }
+
     // if the share is less than min_percent put it with the others against pollution
     let tmp_others = {"name": "Others", "total_seconds": 0.0, "label_point": [0, 0]};
     for (let pos=0; pos<language_info.length; pos++) {
