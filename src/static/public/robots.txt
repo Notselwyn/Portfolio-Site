@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-Allow: /index
-Allow: /projects
-Allow: /about
-
-Disallow: /api
-Disallow: /api/*
-Disallow: /projects?*
