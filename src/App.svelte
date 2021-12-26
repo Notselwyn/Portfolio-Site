@@ -1,65 +1,40 @@
 <script lang="ts">
-  import logo from './assets/svelte.png'
-  import Counter from './lib/Counter.svelte'
+    import { Router, Link, Route } from "svelte-navigator";
+    import Home from "./routes/Home.svelte";
+    import Projects from "./routes/Projects.svelte";
+    import About from "./routes/About.svelte";
+    import WrapperHead from "./lib/WrapperHead.svelte";
 </script>
 
-<main>
-  <img src={logo} alt="Svelte Logo" />
-  <h1>Hello Typescript!</h1>
+<Router>
+    <Route path="/">
+        <WrapperHead url="/" pagename="Home" />
+        <Home />
+    </Route>
 
-  <Counter />
+    <Route path="/projects">
+        <WrapperHead url="/projects" pagename="Projects" />
+        <Projects />
+    </Route>
 
-  <p>
-    Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte
-    apps.
-  </p>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme">SvelteKit</a> for
-    the officially supported framework, also powered by Vite!
-  </p>
-</main>
+    <Route path="/about">
+        <WrapperHead url="/about" pagename="About" />
+        <About />
+    </Route>
+</Router>
 
 <style>
-  :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-
-  main {
-    text-align: center;
-    padding: 1em;
-    margin: 0 auto;
-  }
-
-  img {
-    height: 16rem;
-    width: 16rem;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4rem;
-    font-weight: 100;
-    line-height: 1.1;
-    margin: 2rem auto;
-    max-width: 14rem;
-  }
-
-  p {
-    max-width: 14rem;
-    margin: 1rem auto;
-    line-height: 1.35;
-  }
-
-  @media (min-width: 480px) {
-    h1 {
-      max-width: none;
+    :global(body) {
+        background-color: #1c1c1c;
+        padding: 0;
+        margin: 0;
+        min-height: 100%;
+        height: 100%;
     }
 
-    p {
-      max-width: none;
+    :global(a, p) {
+        font-family: sans-serif;
+        color: #f0f0f0;
+        text-decoration: none;
     }
-  }
 </style>

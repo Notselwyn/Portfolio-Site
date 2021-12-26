@@ -1,4 +1,5 @@
 <script lang="ts">
+  export let text = "clicks"
   let count: number = 0
   const increment = () => {
     count += 1
@@ -6,7 +7,7 @@
 </script>
 
 <button on:click={increment}>
-  Clicks: {count}
+  {text}: {count}
 </button>
 
 <style>
