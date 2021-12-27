@@ -11,7 +11,8 @@
 
     dotenv.config();
 
-    let url = process.env.PUB_URL;
+    //let url = process.env.PUB_URL;
+    let url = "http://localhost:3000";
     console.log(url);
 </script>
 
