@@ -4,6 +4,11 @@
     import Projects from "./routes/Projects.svelte";
     import About from "./routes/About.svelte";
     import WrapperHead from "./lib/WrapperHead.svelte";
+
+    import NotFound_404 from "./routes/errors/NotFound_404.svelte";
+
+    let url = "http://localhost:3000"
+
 </script>
 
 <Router>
@@ -14,13 +19,18 @@
 
     <Route path="/projects">
         <WrapperHead url="/projects" pagename="Projects" />
-        <Projects />
+        <Projects url={url} />
     </Route>
 
     <Route path="/about">
-        <WrapperHead url="/about" pagename="About" />
-        <About />
+        <WrapperHead url="/about" pagename="About Me" />
+        <About url={url}/>
     </Route>
+
+    <Route path="*">
+        <WrapperHead url="404" pagename="404 - Not Found" />
+        <NotFound_404 />
+    </Route> 
 </Router>
 
 <style>

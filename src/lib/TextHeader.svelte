@@ -12,7 +12,7 @@
     <div class="tab fr">
         <Link to="/">Home</Link>
         <Link to="/projects">Projects</Link>
-        <Link to="/about">About</Link>
+        <Link to="/about">About Me</Link>
     </div>
 </div>
 
@@ -20,6 +20,8 @@
     .topnav {
         background-color: #0f0f0f;
         overflow: hidden;
+        margin-left: 1%;
+        margin-right: 1%;
         margin: 0;
         padding-top: 0.7vh;
         padding-bottom: 0.7vh;
@@ -42,5 +44,19 @@
 
     .fr {
         float: right;
+    }
+
+    .tab :global(a) {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 1vh calc(10px + 0.4vw);
+        text-decoration: none;
+        font-size: calc(10px + 1.2vw);
+        margin: 0;
+        border: 0;
+        outline: 0;
+        vertical-align: baseline;
+        background: transparent;
     }
 </style>

@@ -1,6 +1,10 @@
 <script>
     import TextHeader from '../lib/TextHeader.svelte';
     import TextTitle from '../lib/TextTitle.svelte';
+
+    export let url = "https://shitdev.nl";
+
+    let projects = fetch(url + "/api/v1/projects");
 </script>
 
 <main>
