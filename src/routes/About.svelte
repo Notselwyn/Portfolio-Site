@@ -4,7 +4,7 @@
     
     export let url = "https://shitdev.nl";
 
-    let aboutmes = fetch(url + "/api/v1/aboutmes");
+    let aboutmes = fetch(url + "/api/v1/graphql");
 </script>
 
 <main>
