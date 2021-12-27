@@ -1,13 +1,17 @@
 <script lang="ts">
-    import { Router, Link, Route } from "svelte-navigator";
+    import { Router, Route } from "svelte-navigator";
+    import * as dotenv from "dotenv";
+
     import Home from "./routes/Home.svelte";
     import Projects from "./routes/Projects.svelte";
     import About from "./routes/About.svelte";
-    import WrapperHead from "./lib/WrapperHead.svelte";
-
     import NotFound_404 from "./routes/errors/NotFound_404.svelte";
 
-    let url = "http://localhost:80"
+    import WrapperHead from "./lib/WrapperHead.svelte";
+
+    dotenv.config();
+
+    let url = process.env.PUB_URL;
 
 </script>
 
