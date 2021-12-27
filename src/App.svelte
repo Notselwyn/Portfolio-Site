@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Router, Route } from "svelte-navigator";
-    import * as dotenv from "dotenv";
+    //import * as dotenv from "dotenv";
 
     import Home from "./routes/Home.svelte";
     import Projects from "./routes/Projects.svelte";
@@ -9,7 +9,7 @@
 
     import WrapperHead from "./lib/WrapperHead.svelte";
 
-    dotenv.config();
+    //dotenv.config();
 
     //let url = process.env.PUB_URL;
     let url = "http://localhost:3000";
