@@ -7,7 +7,7 @@
 
     import NotFound_404 from "./routes/errors/NotFound_404.svelte";
 
-    let url = "http://localhost:3000"
+    let url = "http://localhost:80"
 
 </script>
 
