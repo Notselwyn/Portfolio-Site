@@ -12,7 +12,7 @@
     dotenv.config();
 
     let url = process.env.PUB_URL;
-
+    console.log(url);
 </script>
 
 <Router>
