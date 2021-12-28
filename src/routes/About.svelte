@@ -25,7 +25,6 @@
             }
         }       
     `
-    
 
     const data_promise = GetData(url + "/api/v1/graphql", query);
 
@@ -38,8 +37,6 @@
     <TextTitle pagename={"About Me"} title={["About ", "!Me"]} subtitle={["About Me", "My Skills", "My Interests"]} />
 
     {#await data_promise then data}
-        {#each data.posts as post}
-            <p>{post.title}</p>
-        {/each}
+    
     {/await}
 </main>
