@@ -29,8 +29,6 @@
 
     const data_promise = GetData(url + "/api/v1/graphql", query);
 
-    console.log(">>> ", data_promise)
-
 </script>
 
 <main>

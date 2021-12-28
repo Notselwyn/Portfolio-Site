@@ -11,8 +11,6 @@
 
         return classes.join(" ");
     }
-
-    console.log(">>>>", document);
 </script>
 
 {#each document as element}
