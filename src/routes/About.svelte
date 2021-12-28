@@ -9,7 +9,20 @@
     const query = gql`
         {
 
-            
+            post(where: {title: $title}) {
+                id
+                title
+                content {
+                    document
+                }
+                author {
+                    name
+                }
+                tags {
+                    name
+                }
+            }
+        }       
     `
     
     let data_obj = {}
