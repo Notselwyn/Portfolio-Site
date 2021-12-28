@@ -27,9 +27,9 @@
     `
     
 
-    const data = GetData(url + "/api/v1/graphql", query);
+    const data_promise = GetData(url + "/api/v1/graphql", query);
 
-    console.log(">>> ", data)
+    console.log(">>> ", data_promise)
 
 </script>
 
@@ -37,5 +37,9 @@
     <TextHeader />
     <TextTitle pagename={"About Me"} title={["About ", "!Me"]} subtitle={["About Me", "My Skills", "My Interests"]} />
 
-    
+    {#await data_promise then data}
+        {#each data.posts as post}
+            <p>{post.title}</p>
+        {/each}
+    {/await}
 </main>
