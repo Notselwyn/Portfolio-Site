@@ -1,6 +1,7 @@
 <script>
     import TextHeader from '../lib/TextHeader.svelte';
     import TextTitle from '../lib/TextTitle.svelte';
+    import SlateToSvelte from '../lib/SlateToSvelte.svelte';
     import { GetData }  from '../util/api'
 
     import { gql } from 'graphql-request';
@@ -37,6 +38,6 @@
     <TextTitle pagename={"About Me"} title={["About ", "!Me"]} subtitle={["About Me", "My Skills", "My Interests"]} />
 
     {#await data_promise then data}
-    
+
     {/await}
 </main>
