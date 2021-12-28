@@ -1,10 +1,13 @@
 <script>
     import TextHeader from '../lib/TextHeader.svelte';
     import TextTitle from '../lib/TextTitle.svelte';
-
-    import { request, gql } from 'graphql-request'
+    import GetData from '../util/api.ts'
     
     export let url = "https://shitdev.nl";
+
+    function getData() {
+        return request(url, query)
+    }
 
     const query = gql`
         {
@@ -25,14 +28,10 @@
         }       
     `
     
-    let data_obj = {}
 
-    request(url + "/api/v1/graphql", query).then(data => {
-        console.log(data)
-        data_obj = data
-    })
+    const data = await (async () => request(url + "/api/v1/graphql", query))
 
-    console.log(">>> ", data_obj)
+    console.log(">>> ", data)
 
 </script>
 
