@@ -1,6 +1,4 @@
 <script>
-import { element } from "svelte/internal";
-
     export let document = [];
 
     function GetClasses(child) {
