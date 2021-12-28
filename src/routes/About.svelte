@@ -38,6 +38,6 @@
     <TextTitle pagename={"About Me"} title={["About ", "!Me"]} subtitle={["About Me", "My Skills", "My Interests"]} />
 
     {#await data_promise then data}
-
+        <SlateToSvelte document={data} />
     {/await}
 </main>
