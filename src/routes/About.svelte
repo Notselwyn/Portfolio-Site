@@ -9,7 +9,7 @@
     const query = gql`
         {
 
-            post(where: {title: $title}) {
+            posts {
                 id
                 title
                 content {
