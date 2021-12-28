@@ -39,8 +39,7 @@
 
     {#await data_promise then data}
         <p> {data} </p>
-        {#each data as {index, post}} 
-            <SlateToSvelte document={post} />
-        {/each}
+        <!--{#each data as {index, post}} -->
+            <SlateToSvelte document={data} />
     {/await}
 </main>
