@@ -14,11 +14,11 @@
 </script>
 
 {#each document as element}
-    {#if element.type == "paragraph"}
+    <!--{#if element.type == "paragraph"}
         {#each element.children as child}
             <p class={GetClasses(child)}>{child.text}</p>
         {/each}
-    {/if}
+    {/if}-->
 {/each}
 
 <style>
