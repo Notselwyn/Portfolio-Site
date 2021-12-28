@@ -28,6 +28,7 @@
     let data_obj = {}
 
     request(url + "/api/v1/graphql", query).then(data => {
+        console.log(data)
         data_obj = data
     })
 
