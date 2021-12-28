@@ -39,7 +39,6 @@
 
     {#await data_promise then data}
         {#each data.posts as post}
-            <p> {post.title} </p>
             <SlateToSvelte document={post.content.document} />
         {/each}
     {/await}

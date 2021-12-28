@@ -16,11 +16,13 @@
 </script>
 
 {#each document as element}
+    <div>
     {#if element.type == "paragraph"}
         {#each element.children as child}
-            <p class={GetClasses(child)}>{child.text}</p>
+            <a class={GetClasses(child)}>{child.text}</a>
         {/each}
     {/if}
+    </div>
 {/each}
 
 <style>
