@@ -1,10 +1,25 @@
 <script>
     import TextHeader from '../lib/TextHeader.svelte';
     import TextTitle from '../lib/TextTitle.svelte';
+
+    import { request, gql } from 'graphql-request'
     
     export let url = "https://shitdev.nl";
 
-    let aboutmes = fetch(url + "/api/v1/graphql");
+    const query = gql`
+        {
+
+            
+    `
+    
+    let data_obj = {}
+
+    request(url + "/api/v1/graphql", query).then(data => {
+        data_obj = data
+    })
+
+    console.log(">>> ", data_obj)
+
 </script>
 
 <main>
