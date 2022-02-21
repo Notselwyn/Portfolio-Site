@@ -20,8 +20,10 @@
   },
   "dependencies": {
     "dotenv": "^10.0.0",
-    "graphql-request": "^3.7.0",
+    "graphql": "^16.3.0",
+    "graphql-request": "^4.0.0",
     "slate": "^0.72.3",
-    "svelte-navigator": "^3.1.5"
+    "svelte-navigator": "^3.1.5",
+    "ts-node": "^10.5.0"
   }
 }

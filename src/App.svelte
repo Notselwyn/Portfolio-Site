@@ -8,7 +8,7 @@
 
     import WrapperHead from "./lib/WrapperHead.svelte";
 
-    let url = "http://localhost:3000"
+    let url = "http://localhost:80"
 
 </script>
 

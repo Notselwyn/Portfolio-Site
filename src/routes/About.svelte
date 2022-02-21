@@ -17,9 +17,6 @@
                 content {
                     document
                 }
-                author {
-                    name
-                }
                 tags {
                     name
                 }
