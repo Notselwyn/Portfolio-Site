@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /projects
+Allow: /about
+
+Disallow: /api
+Disallow: /api/*
+Disallow: /projects?*

@@ -29,7 +29,7 @@
     </Route>
 
     <Route path="*">
-        <WrapperHead url="404" pagename="404 - Not Found" />
+        <WrapperHead url="/404" pagename="404 - Not Found" />
         <NotFound_404 />
     </Route> 
 </Router>
