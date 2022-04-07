@@ -1,50 +1,32 @@
-<script>
+<script lang="ts">
     export let pagename = "";
     export let subtitle = [];
     export let title = [];
     export let url = "";
 
     let rainbow_count = 0;
-
-    function RGB_to_hex(list_rgb_color) {
-        let hex_color = "#";
-        for (let i = 0; i < list_rgb_color.length; i++) {
-            let hex = list_rgb_color[i].toString(16);
-            if (hex.length == 1) {
-                hex = "0" + hex;
-            }
-            hex_color += hex;
-        }
-        return hex_color;
-    }
-
-    function rainbow_loop() {
-        let active_rgb = [255, 0, 0];
-        let active_rgb_index = 0;
-        let increments = 10;
-
-        // 255,0,0 -> 255,255,0 -> 0,255,0 -> 0,255,255 -> 0,0,255 -> 255,0,255 -> 255,0,0
-        let timer = setInterval(function(){ 
-            if (active_rgb[active_rgb_index] == 255) {
-                if (active_rgb[active_rgb_index-1] > 0) {
-                    active_rgb[active_rgb_index] -= increments;
-                } else {
-                    active_rgb_index = (active_rgb_index + 1) % 3;
-                }
-            } else {
-                active_rgb[active_rgb_index] += increments;
-            }
-
-            console.log(active_rgb)
-        }, 50);
-    }
-
-    function rainbow_c() {
-        if (rainbow_count < 3) {
+    function rainbow() {
+        if (rainbow_count < 2) {
             rainbow_count += 1;
-            console.log(rainbow_count);
-            if (rainbow_count == 3) {
-                rainbow_loop();
+            if (rainbow_count == 2) {
+                let rgb = [240, 50, 50];
+                let i = 0;
+
+                setInterval(() => { 
+                    if (rgb[i] == 240) {
+                        let index = i > 0 ? i-1 : 2; 
+                        if (rgb[index] > 50) {
+                            rgb[index] = Math.max(rgb[index] - 10, 50);
+                        } else {
+                            i = (i + 1) % 3;
+                        }
+                    } else {
+                        rgb[i] = Math.min(rgb[i] + 10, 240);
+                    }
+                    for (let e of document.getElementsByClassName("red")) {
+                        (<HTMLElement>e).style.color = "rgb(" + rgb.join(",") + ")";
+                    }
+                }, 50);
             }
         }
     }
@@ -55,7 +37,7 @@
         {#each title as elem}
             {#if elem.startsWith("!")}
                 <!-- svelte-ignore a11y-missing-attribute -->
-                <a class="red pointer" on:click={() => rainbow_c()}>
+                <a class="red pointer" on:click={() => rainbow()}>
                     {elem.slice(1)}
                 </a>
             {:else} 
