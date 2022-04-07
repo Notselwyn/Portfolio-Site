@@ -10,6 +10,7 @@
 
     // Components
     import WrapperHead from "./lib/WrapperHead.svelte";
+    import Navbar from "./lib/Navbar.svelte";
 
     // JS & CSS
     import "./assets/css/global.css";
@@ -18,28 +19,32 @@
 
     let url = ""
     if (dev_server === true) {
-        url = "localhost:80"; // used for overwriting the url in the dev server, so it gets passed to nginx
+        url = `${window.location.hostname}:80`; // used for overwriting the url in the dev server, so it gets passed to nginx
     } 
 </script>
 
 <Router>
     <Route path="/">
         <WrapperHead page_url="/" page_name="Home" />
+        <Navbar />
         <Home />
     </Route>
 
     <Route path="/projects">
         <WrapperHead page_url="/projects" page_name="Projects" />
+        <Navbar />
         <Projects url={url} />
     </Route>
 
     <Route path="/about">
         <WrapperHead page_url="/about" page_name="About Me" />
+        <Navbar />
         <About url={url} />
     </Route>
 
     <Route>
         <WrapperHead page_url="/404" page_name="404 - Not Found" />
+        <Navbar />
         <NotFound_404 />
     </Route> 
 </Router>

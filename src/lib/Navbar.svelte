@@ -5,7 +5,7 @@
 <div class="topnav">
     <div class="tab">
         <b>
-            <Link to="/">Shitdev.nl</Link>
+            <Link to="/">{window.location.hostname}</Link>
         </b>
     </div>
 
@@ -20,26 +20,14 @@
     .topnav {
         background-color: #0f0f0f;
         overflow: hidden;
-        margin-left: 1%;
-        margin-right: 1%;
-        margin: 0;
         padding-top: 0.7vh;
         padding-bottom: 0.7vh;
-        user-select: none;
      }
      
     .tab {
         float: left;
-        color: #f2f2f2;
         padding: 1vh calc(10px + 0.4vw);
-        text-decoration: none;
         font-size: calc(10px + 1.2vw);
-        margin: 0;
-        border: 0;
-        outline: 0;
-        vertical-align: baseline;
-        background: transparent;
-        user-select: none;
     }
 
     .fr {
@@ -48,15 +36,9 @@
 
     .tab :global(a) {
         float: left;
-        color: #f2f2f2;
         text-align: center;
         padding: 1vh calc(10px + 0.4vw);
-        text-decoration: none;
         font-size: calc(10px + 1.2vw);
-        margin: 0;
-        border: 0;
-        outline: 0;
         vertical-align: baseline;
-        background: transparent;
     }
 </style>

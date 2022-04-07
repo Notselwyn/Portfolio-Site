@@ -1,5 +1,4 @@
-<script>
-    import TextHeader from '../lib/TextHeader.svelte';
+<script lang="ts">
     import TextTitle from '../lib/TextTitle.svelte';
     import SlateToSvelte from '../lib/SlateToSvelte.svelte';
     import { GetData }  from '../util/api'
@@ -22,14 +21,13 @@
                 }
             }
         }       
-    `
+    `;
 
     const data_promise = GetData(url + "/api/v1/graphql", query);
     console.log(data_promise);
 </script>
 
 <main>
-    <TextHeader />
     <TextTitle pagename={"About Me"} title={["About ", "!Me"]} subtitle={["About Me", "My Skills", "My Interests"]} />
 
     {#await data_promise then data}

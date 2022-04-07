@@ -1,12 +1,10 @@
 <script>
-    import TextHeader from '../lib/TextHeader.svelte';
     import TextTitle from '../lib/TextTitle.svelte';
     import ButtonSocial from '../lib/ButtonSocial.svelte';
 </script>
 
 <main>
     <header>
-        <TextHeader />
         <TextTitle pagename={"Home"} title={["I'm ", "!Lau", " and I'm a.."]} subtitle={["Software Developer", "CTF Player", "OSINT Enthusiast"]} />
         <div class="socials">
             <p> Where you can find me: </p>
@@ -21,7 +19,6 @@
     .socials {
         text-align: center;
         font-size: calc(1.7vw + 8px);
-        user-select: none;
         margin-top: calc(30vh - 20px);
     }
 </style>
