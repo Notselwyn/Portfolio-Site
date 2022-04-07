@@ -1,11 +1,12 @@
 <script>
     import { Link } from "svelte-navigator"
+    import { titleCase } from '../util/misc'
 </script>
 
 <div class="topnav">
     <div class="tab">
         <b>
-            <Link to="/">{window.location.hostname}</Link>
+            <Link to="/">{titleCase(window.location.hostname)}</Link>
         </b>
     </div>
 

@@ -10,7 +10,7 @@
 
     // Components
     import WrapperHead from "./lib/WrapperHead.svelte";
-    import Navbar from "./lib/Navbar.svelte";
+    import WrapperBody from "./lib/WrapperBody.svelte";
 
     // JS & CSS
     import "./assets/css/global.css";
@@ -25,26 +25,18 @@
 
 <Router>
     <Route path="/">
-        <WrapperHead page_url="/" page_name="Home" />
-        <Navbar />
         <Home />
     </Route>
 
     <Route path="/projects">
-        <WrapperHead page_url="/projects" page_name="Projects" />
-        <Navbar />
         <Projects url={url} />
     </Route>
 
     <Route path="/about">
-        <WrapperHead page_url="/about" page_name="About Me" />
-        <Navbar />
         <About url={url} />
     </Route>
 
-    <Route>
-        <WrapperHead page_url="/404" page_name="404 - Not Found" />
-        <Navbar />
+    <Route path="*">
         <NotFound_404 />
     </Route> 
 </Router>

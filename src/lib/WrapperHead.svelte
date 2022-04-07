@@ -1,54 +1,44 @@
 <script>
-    import SvelteSeo from "svelte-seo"
+    import { titleCase } from '../util/misc'
 
-    export let page_url = "";
-    export let page_name = "";
+    export let pagename = "";
     export let seo_keywords = ""; // Optional SEO keywords
-    export let hostname = "shitdev.nl"
-    export let site_name = "Shitdev"
 
     export let embed_description = "Portfolio website for Lau, including personal info and writeups.";
-    export let seo_description = `The ${page_name} page of Lau's portfolio website. Website about coding, hacking (writeups), and reverse engineering.`;
+    export let seo_description = `The ${pagename} page of Lau's portfolio website. Website about coding, hacking (writeups), and reverse engineering.`;
 </script>
 
 <svelte:head>
-    <!-- Embed information -->
-    <!--<meta charset="UTF-8">
-    <meta property="og:title" content="Shitdev.nl">
-    <meta property="og:description" content={embed_description}>
-    <meta property="og:url" content="https://www.shitdev.nl{url}">
-    <meta property="og:image" content="https://www.shitdev.nl/favicon.ico">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-
-    <!-- SEO 
-    <meta name="url" content="https://www.shitdev.nl{url}">
-    <meta name="title" content="Shitdev | {pagename}">
-    <meta name="description" content={seo_description}>
-    <meta name="theme-color" content="#1c1c1c">
-    <meta name="type" content="website">
-    <meta name="keywords" content="shitdev, shitdev.nl, shitdev.nl/{pagename}, {pagename}, lau{seo_keywords}">
-    -->
-
+    <!--
     <SvelteSeo 
-        title="{site_name} | {page_name}"
+        title="{window.location.hostname} | {pagename}"
         description={seo_description}
-        keywords="shitdev, shit dev, coding, programming, writeups, web development, shitdev.nl, shitdev.nl/{page_name}, {page_name}, shitdev.nl{page_url} lau{seo_keywords}"
+        keywords="shitdev, shit dev, coding, programming, writeups, web development, {window.location.hostname}, {window.location.hostname}/{pagename}, {pagename}, lau{seo_keywords}"
         openGraph={{
-            title: `${site_name} | ${page_name}`,
+            title: `${pagename} | ${window.location.hostname}`,
             description: embed_description,
-            url: `https://${hostname}${page_url}`,
+            url: `https://${window.location.hostname}${window.location.pathname}`,
             images: [
                 {
-                    url: `https://${hostname}/favicon.ico`,
-                    alt: site_name
+                    url: `https://${window.location.hostname}/favicon.ico`,
+                    alt: window.location.hostname
                 }
             ]
         }}
     />
+    -->
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="description" content={seo_description}>
+    <meta name="keywords" content="shitdev, shit dev, coding, programming, writeups, web development, localhost, localhost/My Projects, My Projects, lau{seo_keywords}">
+    <meta property="og:title" content="{pagename} | {titleCase(window.location.hostname)}">
+    <meta property="og:description" content="Portfolio website for Lau, including personal info and writeups.">
+    <meta property="og:url" content={window.location.toString()}>
+    <meta property="og:image" content="{window.location.protocol}//{window.location.hostname}/favicon.ico">
+    <meta property="og:image:alt" content={window.location.pathname}>
 
     <!-- General -->
     <title> 
-        {page_name}
+        {pagename} | {titleCase(window.location.hostname)}
     </title>
 </svelte:head>

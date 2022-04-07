@@ -1,12 +1,14 @@
 <script lang="ts">
     import TextTitle from '../lib/TextTitle.svelte';
     import SlateToSvelte from '../lib/SlateToSvelte.svelte';
+    import WrapperBody from '../lib/WrapperBody.svelte';
+    import WrapperHead from '../lib/WrapperHead.svelte';
     import { GetData }  from '../util/api'
 
     import { gql } from 'graphql-request';
 
     export let url = "";
-
+    const pagename = "About Me";
     const query = gql`
         {
 
@@ -28,7 +30,9 @@
 </script>
 
 <main>
-    <TextTitle pagename={"About Me"} title={["About ", "!Me"]} subtitle={["About Me", "My Skills", "My Interests"]} />
+    <WrapperHead pagename={pagename} />
+    <WrapperBody />
+    <TextTitle pagename={pagename} title={["About ", "!Me"]} subtitle={["About Me", "My Skills", "My Interests"]} />
 
     {#await data_promise then data}
         {#each data.posts as post}
