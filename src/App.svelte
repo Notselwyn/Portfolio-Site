@@ -8,11 +8,7 @@
     import About from "./routes/About.svelte";
     import NotFound_404 from "./routes/errors/NotFound_404.svelte";
 
-    // Components
-    import WrapperHead from "./lib/WrapperHead.svelte";
-    import WrapperBody from "./lib/WrapperBody.svelte";
-
-    // JS & CSS
+    // global JS & CSS
     import "./assets/css/global.css";
 
     const dev_server = true;

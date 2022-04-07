@@ -3,30 +3,10 @@
 
     export let pagename = "";
     export let seo_keywords = ""; // Optional SEO keywords
-
-    export let embed_description = "Portfolio website for Lau, including personal info and writeups.";
     export let seo_description = `The ${pagename} page of Lau's portfolio website. Website about coding, hacking (writeups), and reverse engineering.`;
 </script>
 
 <svelte:head>
-    <!--
-    <SvelteSeo 
-        title="{window.location.hostname} | {pagename}"
-        description={seo_description}
-        keywords="shitdev, shit dev, coding, programming, writeups, web development, {window.location.hostname}, {window.location.hostname}/{pagename}, {pagename}, lau{seo_keywords}"
-        openGraph={{
-            title: `${pagename} | ${window.location.hostname}`,
-            description: embed_description,
-            url: `https://${window.location.hostname}${window.location.pathname}`,
-            images: [
-                {
-                    url: `https://${window.location.hostname}/favicon.ico`,
-                    alt: window.location.hostname
-                }
-            ]
-        }}
-    />
-    -->
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="description" content={seo_description}>
@@ -37,7 +17,6 @@
     <meta property="og:image" content="{window.location.protocol}//{window.location.hostname}/favicon.ico">
     <meta property="og:image:alt" content={window.location.pathname}>
 
-    <!-- General -->
     <title> 
         {pagename} | {titleCase(window.location.hostname)}
     </title>
