@@ -2,5 +2,5 @@
 /dist/
 /.vscode/
 .DS_Store
-src/.scannerwork/.sonar_lock
-.scannerwork/.sonar_lock
+/src/.scannerwork/
+/.scannerwork/

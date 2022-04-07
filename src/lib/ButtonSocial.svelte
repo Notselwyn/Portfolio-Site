@@ -6,41 +6,51 @@
     export let hover_color = "";
 </script>
 
-<button on:click={() => redirect(url)} style="--hover-color: {hover_color}">
+<!--<button on:click={() => redirect(url)} style="--hover-color: {hover_color}">
     {text}
-</button>
+</button>-->
+
+<div style="--hover-color: {hover_color}">
+    <a href="{url}">
+        {text}
+    </a>
+</div>
 
 <style>
-    button {
-        background-color: transparent;
-        border: 2px solid #ffffff;
-        color: #ffffff;
+
+    div {
+        text-align: center;
+        display: inline-block;
         width: calc(60px + 5.8vw);
         height: calc(30px + 2vw);
+
+        transition: width 0.4s, height 0.4s, border 0.4s, background-color 0.2s;
+        
+        border: 2px solid #f0f0f0;
         border-radius: 1337px;
-        outline: none;
-        cursor: pointer;
-        margin-left: calc(1px + 0.2vw);
-        margin-right: calc(1px + 0.2vw);
-        font-size: calc(1vw + 7px);
-        transition: color 0.2s,width 0.4s,height 0.4s,border 0.4s,background-color 0.2s;
     }
     
-    button:hover {
+    div:hover {
         width: calc(50px + 5.8vw);
         height: calc(25px + 2vw);
+        
         background-color: var(--hover-color);
-        border: 0px solid var(--hover-color);
+        border: 5px solid var(--hover-color);
+    }
+
+    a {
+        cursor: pointer;
+        font-size: calc(1vw + 7px);
     }
 
     
     @media only screen and (max-width: 1079px) {
-        button {
+        a {
             margin-left: calc(1px + 0.5vw);
             margin-right: calc(1px + 0.5vw);
         }
 
-        button:hover {
+        a:hover {
             margin-left: calc(1px + 0.5vw);
             margin-right: calc(1px + 0.5vw);
         }

@@ -1,51 +1,45 @@
 <script lang="ts">
+    // External packages
     import { Router, Route } from "svelte-navigator";
 
+    // Pages
     import Home from "./routes/Home.svelte";
     import Projects from "./routes/Projects.svelte";
     import About from "./routes/About.svelte";
     import NotFound_404 from "./routes/errors/NotFound_404.svelte";
 
+    // Components
     import WrapperHead from "./lib/WrapperHead.svelte";
 
-    let url = "http://localhost:80"
+    // JS & CSS
+    import "./assets/css/global.css";
 
+    const dev_server = true;
+
+    let url = ""
+    if (dev_server === true) {
+        url = "localhost:80"; // used for overwriting the url in the dev server, so it gets passed to nginx
+    } 
 </script>
 
 <Router>
     <Route path="/">
-        <WrapperHead url="/" pagename="Home" />
+        <WrapperHead page_url="/" page_name="Home" />
         <Home />
     </Route>
 
     <Route path="/projects">
-        <WrapperHead url="/projects" pagename="Projects" />
+        <WrapperHead page_url="/projects" page_name="Projects" />
         <Projects url={url} />
     </Route>
 
     <Route path="/about">
-        <WrapperHead url="/about" pagename="About Me" />
-        <About url={url}/>
+        <WrapperHead page_url="/about" page_name="About Me" />
+        <About url={url} />
     </Route>
 
-    <Route path="*">
-        <WrapperHead url="/404" pagename="404 - Not Found" />
+    <Route>
+        <WrapperHead page_url="/404" page_name="404 - Not Found" />
         <NotFound_404 />
     </Route> 
 </Router>
-
-<style>
-    :global(body) {
-        background-color: #1c1c1c;
-        padding: 0;
-        margin: 0;
-        min-height: 100%;
-        height: 100%;
-    }
-
-    :global(a, p, h1, h2, h3, h4, h5, h6, li) {
-        font-family: sans-serif;
-        color: #f0f0f0;
-        text-decoration: none;
-    }
-</style>

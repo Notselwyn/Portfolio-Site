@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "dotenv": "^10.0.0",
+    "esbuild-linux-64": "^0.14.23",
     "graphql": "^16.3.0",
     "graphql-request": "^4.0.0",
     "slate": "^0.72.3",

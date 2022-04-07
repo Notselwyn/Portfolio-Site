@@ -1,12 +1,14 @@
 <script>
-    import SvelteSeo from "svelte-ceo"
+    import SvelteSeo from "svelte-seo"
 
-    export let url = "";
-    export let pagename = "";
+    export let page_url = "";
+    export let page_name = "";
     export let seo_keywords = ""; // Optional SEO keywords
+    export let hostname = "shitdev.nl"
+    export let site_name = "Shitdev"
 
     export let embed_description = "Portfolio website for Lau, including personal info and writeups.";
-    export let seo_description = `The ${pagename} page of Lau's portfolio website. Website about coding, hacking (writeups), and reverse engineering.`;
+    export let seo_description = `The ${page_name} page of Lau's portfolio website. Website about coding, hacking (writeups), and reverse engineering.`;
 </script>
 
 <svelte:head>
@@ -29,17 +31,17 @@
     -->
 
     <SvelteSeo 
-        title="Shitdev | {pagename}"
+        title="{site_name} | {page_name}"
         description={seo_description}
-        keywords="shitdev, shit dev, coding, programming, writeups, web development, shitdev.nl, shitdev.nl/{pagename}, {pagename}, lau{seo_keywords}"
+        keywords="shitdev, shit dev, coding, programming, writeups, web development, shitdev.nl, shitdev.nl/{page_name}, {page_name}, shitdev.nl{page_url} lau{seo_keywords}"
         openGraph={{
-            title: "Shitdev | {pagename}",
+            title: `${site_name} | ${page_name}`,
             description: embed_description,
-            url: "https://www.shitdev.nl{url}",
+            url: `https://${hostname}${page_url}`,
             images: [
                 {
-                    url: "https://www.shitdev.nl/favicon.ico",
-                    alt: "Shitdev"
+                    url: `https://${hostname}/favicon.ico`,
+                    alt: site_name
                 }
             ]
         }}
@@ -47,6 +49,6 @@
 
     <!-- General -->
     <title> 
-        {pagename}
+        {page_name}
     </title>
 </svelte:head>

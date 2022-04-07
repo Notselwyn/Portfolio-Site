@@ -5,8 +5,8 @@
     import { GetData }  from '../util/api'
 
     import { gql } from 'graphql-request';
-    
-    export let url = "https://shitdev.nl";
+
+    export let url = "";
 
     const query = gql`
         {
@@ -25,7 +25,7 @@
     `
 
     const data_promise = GetData(url + "/api/v1/graphql", query);
-
+    console.log(data_promise);
 </script>
 
 <main>

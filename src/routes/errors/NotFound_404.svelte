@@ -6,6 +6,4 @@
 <main>
     <TextHeader />
     <TextTitle pagename={"404 - Not Found"} title={["!Page", " not found"]} subtitle={[]} />
-
-    
 </main>

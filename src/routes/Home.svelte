@@ -10,9 +10,9 @@
         <TextTitle pagename={"Home"} title={["I'm ", "!Lau", " and I'm a.."]} subtitle={["Software Developer", "CTF Player", "OSINT Enthusiast"]} />
         <div class="socials">
             <p> Where you can find me: </p>
-            <ButtonSocial hover_color="#999999" text={"Github"} url={"https://github.com/Notselwyn"} />
-            <ButtonSocial hover_color="#1c2538" text={"CodinGame"} url={"https://www.codingame.com/profile/295bd8e2b5e1c553cc4cbbacc9bde1f50218214"} />
-            <ButtonSocial hover_color="#f2bb13" text={"TryHackMe"} url={"https://tryhackme.com/p/notselwyn"} />
+            <ButtonSocial hover_color="#797979" text={"Github"} url={"https://github.com/Notselwyn"} />
+            <ButtonSocial hover_color="#1c2538" text={"TryHackMe"} url={"https://tryhackme.com/p/notselwyn"} />
+            <ButtonSocial hover_color="#e2ae12" text={"CodinGame"} url={"https://www.codingame.com/profile/295bd8e2b5e1c553cc4cbbacc9bde1f50218214"} />
         </div>
     </header>
 </main>
