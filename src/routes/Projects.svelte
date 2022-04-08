@@ -6,7 +6,7 @@
 
     import { gql } from 'graphql-request';
 
-    export let url = "";
+    export let api_host = "";
     const pagename = "My Projects"
     const query = gql`
         {
@@ -24,8 +24,7 @@
         }       
     `;
 
-    const projects = getData(url + "/api/v1/graphql", query);
-    console.log(projects);
+    const projects = getData(api_host + "/api/v1/graphql", query);
 </script>
 
 <div>

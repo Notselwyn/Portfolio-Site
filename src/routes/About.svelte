@@ -7,7 +7,7 @@
 
     import { gql } from 'graphql-request';
 
-    export let url = "";
+    export let api_host = "";
     const pagename = "About Me";
     const query = gql`
 {
@@ -24,8 +24,7 @@
 }       
     `;
 
-    const data_promise = getData(url + "/api/v1/graphql", query);
-    console.log(url, data_promise, query);
+    const data_promise = getData(api_host + "/api/v1/graphql", query);
 </script>
 
 <div>
@@ -34,8 +33,15 @@
     <TextTitle pagename={pagename} title={["About ", "!Me"]} subtitle={["About Me", "My Skills", "My Interests"]} />
 
     {#await data_promise then data}
-        {#each data.posts as post}
-            <SlateToSvelte document={post.content.document} />
+        {#each data.posts as post, i }
+            <b>
+                <p class="title">
+                    {post.title}
+                </p>
+            </b>
+            {#if i % 2 == 0}
+                <SlateToSvelte document={post.content.document} />
+            {/if}
         {/each}
     {/await}
 </div>
