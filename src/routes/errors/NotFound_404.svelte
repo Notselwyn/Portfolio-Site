@@ -6,8 +6,8 @@
     const pagename = "404 - Not Found";
 </script>
 
-<main>
+<div>
     <WrapperHead pagename={pagename} />
     <WrapperBody />
     <TextTitle pagename={pagename} title={["!Page", " not found"]} subtitle={[]} />
-</main>
+</div>

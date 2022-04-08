@@ -1,5 +1,5 @@
 import { request } from 'graphql-request';
 
-export async function GetData(url, query: any) {
+export async function getData(url, query: any) {
     return await request(url, query)
 }

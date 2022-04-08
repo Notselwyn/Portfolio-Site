@@ -8,7 +8,7 @@
     const pagename = "Home";
 </script>
 
-<main>
+<div>
     <WrapperHead pagename={pagename} />
     <WrapperBody />
     <TextTitle pagename={pagename} title={["I'm ", "!Lau", " and I'm a.."]} subtitle={["Software Developer", "CTF Player", "OSINT Enthusiast"]} />
@@ -18,7 +18,7 @@
         <ButtonSocial hover_color="#1c2538" text={"TryHackMe"} url={"https://tryhackme.com/p/notselwyn"} />
         <ButtonSocial hover_color="#e2ae12" text={"CodinGame"} url={"https://www.codingame.com/profile/295bd8e2b5e1c553cc4cbbacc9bde1f50218214"} />
     </div>
-</main>
+</div>
 
 <style>
     .socials {

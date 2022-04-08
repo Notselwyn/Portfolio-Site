@@ -1,6 +1,6 @@
 <script lang="ts">
     // External packages
-    import { Router, Route } from "svelte-navigator";
+    import { Router, Route, Link } from "svelte-navigator";
 
     // Pages
     import Home from "./routes/Home.svelte";
@@ -15,24 +15,22 @@
 
     let url = ""
     if (dev_server === true) {
-        url = `${window.location.hostname}:80`; // used for overwriting the url in the dev server, so it gets passed to nginx
+        url = `//${window.location.hostname}:80`; // used for overwriting the url in the dev server, so it gets passed to nginx
     } 
 </script>
 
 <Router>
-    <Route path="/">
-        <Home />
-    </Route>
+    <main>
+        <Route>
+            <Home />
+        </Route>
 
-    <Route path="/projects">
-        <Projects url={url} />
-    </Route>
+        <Route path="projects">
+            <Projects url={url} />
+        </Route>
 
-    <Route path="/about">
-        <About url={url} />
-    </Route>
-
-    <Route path="*">
-        <NotFound_404 />
-    </Route> 
+        <Route path="about">
+            <About url={url} />
+        </Route>
+    </main>
 </Router>

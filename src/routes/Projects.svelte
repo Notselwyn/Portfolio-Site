@@ -2,7 +2,7 @@
     import TextTitle from '../lib/TextTitle.svelte';
     import WrapperBody from '../lib/WrapperBody.svelte';
     import WrapperHead from '../lib/WrapperHead.svelte';
-    import { GetData }  from '../util/api'
+    import { getData }  from '../util/api'
 
     import { gql } from 'graphql-request';
 
@@ -24,12 +24,12 @@
         }       
     `;
 
-    const projects = GetData(url + "/api/v1/graphql", query);
+    const projects = getData(url + "/api/v1/graphql", query);
     console.log(projects);
 </script>
 
-<main>
+<div>
     <WrapperHead pagename={pagename} />
     <WrapperBody />
     <TextTitle pagename={pagename} title={["My ", "!Projects"]} subtitle={["Finished", "In Development", "Coming Soon"]} />    
-</main>
+</div>
