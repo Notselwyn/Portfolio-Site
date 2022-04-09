@@ -12,18 +12,30 @@
     <WrapperHead pagename={pagename} />
     <WrapperBody />
     <TextTitle pagename={pagename} title={["I'm ", "!Lau", " and I'm a.."]} subtitle={["Software Developer", "CTF Player", "OSINT Enthusiast"]} />
-    <div class="socials">
+    <div class="socials-container">
         <p> Where you can find me: </p>
-        <ButtonSocial hover_color="#797979" text={"Github"} url={"https://github.com/Notselwyn"} />
-        <ButtonSocial hover_color="#1c2538" text={"TryHackMe"} url={"https://tryhackme.com/p/notselwyn"} />
-        <ButtonSocial hover_color="#e2ae12" text={"CodinGame"} url={"https://www.codingame.com/profile/295bd8e2b5e1c553cc4cbbacc9bde1f50218214"} />
+        <div class="socials-buttons">
+            <ButtonSocial hover_color="#797979" text={"Github"} url={"https://github.com/Notselwyn"} />
+            <ButtonSocial hover_color="#1c2538" text={"TryHackMe"} url={"https://tryhackme.com/p/notselwyn"} />
+            <ButtonSocial hover_color="#e2ae12" text={"CodinGame"} url={"https://www.codingame.com/profile/295bd8e2b5e1c553cc4cbbacc9bde1f50218214"} />
+        </div>
     </div>
 </div>
 
 <style>
-    .socials {
+    .socials-container {
         text-align: center;
         font-size: calc(1.7vw + 8px);
         margin-top: calc(30vh - 20px);
+    }
+
+    .socials-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    @media only screen and (max-width: 779px) {
+        
     }
 </style>

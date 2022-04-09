@@ -6,10 +6,6 @@
     export let hover_color = "";
 </script>
 
-<!--<button on:click={() => redirect(url)} style="--hover-color: {hover_color}">
-    {text}
-</button>-->
-
 <!--
 <div style="--hover-color: {hover_color}" on:click={() => redirect(url)}>
     <a href="{url}">
@@ -18,46 +14,58 @@
 </div>
 -->
 
-<div class="table" style="--hover-color: {hover_color}" on:click={() => redirect(url)}>
-    <p>
-        {text}
-    </p>
+<div class="parent" style="--hover-color: {hover_color}" on:click={() => redirect(url)}>
+    <div class="child">
+        <p>
+            {text}
+        </p>
+    </div>  
 </div>
 
 <style>
+    .parent {
+        padding: 10px;
+    }
 
-    div.table  {
-        display: inline-table;
-        width: calc(60px + 5.8vw);
-        height: calc(30px + 2vw);
+    .child  {
+        display: table;
+        width: calc(140px + 3vw);
+
         cursor: pointer;
 
-        transition: width 0.4s, height 0.4s, border 0.4s, background-color 0.2s;
-        
         border: 2px solid #f0f0f0;
         border-radius: 1337px;
+        transition: width 0.4s, height 0.4s, border 0.4s, background-color 0.2s ease;
     }
     
-    div:hover.table  {
-        width: calc(50px + 5.8vw);
-        height: calc(25px + 2vw);
+    .parent:hover > .child  {
+        width: calc(130px + 3vw);
         
         background-color: var(--hover-color);
-        border: 5px solid var(--hover-color);
+        border: 2px solid var(--hover-color);
     }
 
-    div.table p {
-        font-size: calc(1vw + 7px);
+    p {
+        font-size: calc(15px + 0.6vw);
         vertical-align: middle;
-        display: table-cell;
         text-align: center;
     }
 
-    
-    @media only screen and (max-width: 1079px) {
-        div p {
-            margin-left: calc(1px + 0.5vw);
-            margin-right: calc(1px + 0.5vw);
+    /*
+        desk: 20px + 1.2vw
+        mobile: 15px + 1.4vw
+    */
+    @media only screen and (max-width: 779px) {
+        .child {
+            width: calc(10px + 1.5vw);
+        }
+
+        .parent {
+            display: flex;
+        }
+        
+        .parent:hover > .child  {
+            width: calc(50px + 5.8vw);
         }
     }
 </style>

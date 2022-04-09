@@ -41,7 +41,7 @@
 
     @media only screen and (max-width: 779px) {
         .nav-options :global(a) {
-            font-size: calc(15px + 1.4vw);
+            font-size: calc(18px + 1.2vw + 1vh);
         }
 
         .nav-options {
