@@ -57,7 +57,7 @@
     */
     @media only screen and (max-width: 779px) {
         .child {
-            width: calc(10px + 1.5vw);
+            width: calc(150px + 3vw);
         }
 
         .parent {
@@ -66,6 +66,10 @@
         
         .parent:hover > .child  {
             width: calc(50px + 5.8vw);
+        }
+        
+        p {
+            font-size: calc(15px + 0.6vw);
         }
     }
 </style>

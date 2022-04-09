@@ -4,6 +4,16 @@
     export let pagename = "";
     export let seo_keywords = ""; // Optional SEO keywords
     export let seo_description = `The ${pagename} page of Lau's portfolio website. Website about coding, hacking (writeups), and reverse engineering.`;
+
+    // stop animations on resize for 400ms. .resize-animation-stopper is defined in /src/assets/css/general.css
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+        document.body.classList.add("resize-animation-stopper");
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            document.body.classList.remove("resize-animation-stopper");
+        }, 400);
+    });
 </script>
 
 <svelte:head>
