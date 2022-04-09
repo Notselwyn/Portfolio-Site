@@ -23,9 +23,11 @@
 </div>
 
 <style>
+
+    /*16px + 0.6vw*/
     .socials-container {
         text-align: center;
-        font-size: calc(1.7vw + 8px);
+        font-size: calc(18px + 0.7vw);
         margin-top: calc(30vh - 20px);
     }
 
@@ -36,6 +38,8 @@
     }
 
     @media only screen and (max-width: 779px) {
-        
+        .socials-buttons {
+            flex-direction: column;
+        }
     }
 </style>

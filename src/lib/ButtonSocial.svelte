@@ -28,7 +28,6 @@
     }
 
     .child  {
-        display: table;
         width: calc(140px + 3vw);
 
         cursor: pointer;
@@ -47,8 +46,6 @@
 
     p {
         font-size: calc(15px + 0.6vw);
-        vertical-align: middle;
-        text-align: center;
     }
 
     /*
@@ -57,19 +54,20 @@
     */
     @media only screen and (max-width: 779px) {
         .child {
-            width: calc(150px + 3vw);
+            width: calc(200px + 3.5vw);
         }
 
         .parent {
-            display: flex;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .parent:hover > .child  {
-            width: calc(50px + 5.8vw);
+            width: calc(180px + 3vw);
         }
         
         p {
-            font-size: calc(15px + 0.6vw);
+            font-size: calc(16px + 0.6vw);
         }
     }
 </style>
