@@ -41,18 +41,16 @@
 
     @media only screen and (max-width: 779px) {
         .nav-options :global(a) {
-            padding: 0 calc(8px + 0.3vw);
             font-size: calc(15px + 1.4vw);
         }
 
         .nav-options {
             float: none;
-            display: block;
             text-align: center;   
         }
-
-        .link-pages {
-            margin-top: calc(3px + 1.2vh);
+        
+        .link-root {
+            display: none;
         }
     }
 </style>
