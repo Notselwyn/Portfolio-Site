@@ -5,10 +5,14 @@
     import WrapperBody from '../lib/WrapperBody.svelte';
     import WrapperHead from '../lib/WrapperHead.svelte';
 
+    import { useFocus } from 'svelte-navigator';
+
+    const registerFocus = useFocus();
+
     const pagename = "Home";
 </script>
 
-<div>
+<div use:registerFocus>
     <WrapperHead pagename={pagename} />
     <WrapperBody />
     <TextTitle pagename={pagename} title={["I'm ", "!Lau", " and I'm a.."]} subtitle={["Software Developer", "CTF Player", "OSINT Enthusiast"]} />
