@@ -4,9 +4,9 @@
 </script>
 
 <div class="nav-container">
-    <div class="nav-options link-root">
+    <nav class="nav-options link-root">
         <Link to="/">{titleCase(window.location.hostname)}</Link>
-    </div>
+    </nav>
 
     <nav class="nav-options link-pages">
         <Link to="/">Home</Link>
