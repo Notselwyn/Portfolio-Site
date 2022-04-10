@@ -1,20 +1,24 @@
 <script>
     import { Link } from "svelte-navigator"
     import { titleCase } from '../util/misc'
+
+    import { useFocus } from 'svelte-navigator';
+
+    const registerFocus = useFocus();
 </script>
 
 <div class="nav-container">
-    <div class="nav-options link-root">
+    <nav class="nav-options link-root" use:registerFocus>
         <b>
             <Link to="/">{titleCase(window.location.hostname)}</Link>
         </b>
-    </div>
+    </nav>
 
-    <div class="nav-options link-pages">
+    <nav class="nav-options link-pages" use:registerFocus>
         <Link to="/">Home</Link>
         <Link to="/projects">Projects</Link>
         <Link to="/about">About Me</Link>
-    </div>
+    </nav>
 </div>
 
 <style>
@@ -25,10 +29,8 @@
      }
 
     .nav-options :global(a) {
-        text-align: center;
         padding: 1.2vh calc(20px + 0.4vw);
         font-size: calc(20px + 1.2vw);
-        vertical-align: baseline;
     }
 
     .link-pages {
@@ -46,7 +48,7 @@
 
         .nav-options {
             float: none;
-            text-align: center;   
+            text-align: center;
         }
         
         .link-root {

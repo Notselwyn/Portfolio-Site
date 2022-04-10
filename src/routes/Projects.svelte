@@ -5,9 +5,6 @@
     import { getData }  from '../util/api'
 
     import { gql } from 'graphql-request';
-    import { useFocus } from 'svelte-navigator';
-
-    const registerFocus = useFocus();
 
     export let api_host = "";
     const pagename = "My Projects"
@@ -30,7 +27,7 @@
     const projects = getData(api_host + "/api/v1/graphql", query);
 </script>
 
-<div use:registerFocus>
+<div>
     <WrapperHead pagename={pagename} />
     <WrapperBody />
     <TextTitle pagename={pagename} title={["My ", "!Projects"]} subtitle={["Finished", "In Development", "Coming Soon"]} />    
