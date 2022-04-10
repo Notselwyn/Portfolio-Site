@@ -1,5 +1,4 @@
 <script>
-    import TextTitle from '../lib/TextTitle.svelte';
     import ButtonSocial from '../lib/ButtonSocial.svelte';
 
     import WrapperBody from '../lib/WrapperBody.svelte';
@@ -10,8 +9,7 @@
 
 <div>
     <WrapperHead pagename={pagename} />
-    <WrapperBody />
-    <TextTitle pagename={pagename} title={["I'm ", "!Lau", " and I'm a.."]} subtitle={["Software Developer", "CTF Player", "OSINT Enthusiast"]} />
+    <WrapperBody pagename={pagename} title={["I'm ", "!Lau", " and I'm a.."]} subtitle={["Software Developer", "CTF Player", "OSINT Enthusiast"]} />
     <div class="socials-container">
         <p> Where you can find me: </p>
         <div class="socials-buttons">
@@ -23,7 +21,6 @@
 </div>
 
 <style>
-
     /*16px + 0.6vw*/
     .socials-container {
         text-align: center;

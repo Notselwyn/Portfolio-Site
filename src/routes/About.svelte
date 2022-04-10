@@ -1,5 +1,4 @@
 <script lang="ts">
-    import TextTitle from '../lib/TextTitle.svelte';
     import SlateToSvelte from '../lib/SlateToSvelte.svelte';
     import WrapperBody from '../lib/WrapperBody.svelte';
     import WrapperHead from '../lib/WrapperHead.svelte';
@@ -29,8 +28,7 @@
 
 <div>
     <WrapperHead pagename={pagename} />
-    <WrapperBody />
-    <TextTitle pagename={pagename} title={["About ", "!Me"]} subtitle={["About Me", "My Skills", "My Interests"]} />
+    <WrapperBody pagename={pagename} title={["About ", "!Me"]} subtitle={["About Me", "My Skills", "My Interests"]} />
 
     {#await data_promise then data}
         {#each data.posts as post, i }

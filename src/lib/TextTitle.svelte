@@ -2,7 +2,6 @@
     export let pagename = "";
     export let subtitle = [];
     export let title = [];
-    export let url = "";
 
     let rainbow_count = 0;
     function rainbow() {
@@ -33,11 +32,11 @@
 </script>
 
 <div class="title">
-    <b class="p-container">
+    <b>
         {#each title as elem}
-            {#if elem.startsWith("!")}
+            {#if elem[0] == "!"}
                 <!-- svelte-ignore a11y-missing-attribute -->
-                <a class="red pointer" on:click={() => rainbow()}>
+                <a class="red" on:click={() => rainbow()}>
                     {elem.slice(1)}
                 </a>
             {:else} 
@@ -51,41 +50,27 @@
 </div>
 
 <div class="subtitle">
-    {#if pagename === "Home"}
-        {#each subtitle as topic, index} 
-            <b class="hover-shrink">
-                <!-- svelte-ignore a11y-missing-attribute -->
-                <a>
-                    {topic}
-                </a>
-            </b>
-            {#if index < subtitle.length - 1}
-                <!-- svelte-ignore a11y-missing-attribute -->
-                <a> | </a>
+    {#each subtitle as subt, i} 
+        <b class="hover-shrink">
+            {#if pagename != "Home"}
+            <a href="#{subt.toLowerCase().replace(" ", "_")}">
+                {subt}
+            </a>
+            {:else}
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <a>
+                {subt}
+            </a>
             {/if}
-        {/each}
-    {:else}
-        {#if url != "/404"}
-            {#each subtitle as topic, index} 
-                <b class="hover-shrink">
-                    <a class="pointer no-decoration" href="#{topic.toLowerCase().replace(" ", "_")}">
-                        {topic}
-                    </a>
-                </b>
-                {#if index < subtitle.length - 1}
-                    <!-- svelte-ignore a11y-missing-attribute -->
-                    <a> | </a>
-                {/if}
-            {/each}
+        </b>
+        {#if i < subtitle.length - 1}
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <a> | </a>
         {/if}
-    {/if}
+    {/each}
 </div>
 
 <style>
-    .pointer {
-        cursor: pointer;
-    }
-
     .title {
         font-size: calc(10px + 5vw);
         text-align: center;
@@ -101,6 +86,7 @@
     
     .red {
         color: #f03333;
+        cursor: pointer;
     }
 
     .hover-shrink a {

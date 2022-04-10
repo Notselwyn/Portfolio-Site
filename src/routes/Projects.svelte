@@ -1,5 +1,4 @@
 <script lang="ts">
-    import TextTitle from '../lib/TextTitle.svelte';
     import WrapperBody from '../lib/WrapperBody.svelte';
     import WrapperHead from '../lib/WrapperHead.svelte';
     import { getData }  from '../util/api'
@@ -29,6 +28,5 @@
 
 <div>
     <WrapperHead pagename={pagename} />
-    <WrapperBody />
-    <TextTitle pagename={pagename} title={["My ", "!Projects"]} subtitle={["Finished", "In Development", "Coming Soon"]} />    
+    <WrapperBody pagename={pagename} title={["My ", "!Projects"]} subtitle={["Finished", "In Development", "Coming Soon"]} />
 </div>
