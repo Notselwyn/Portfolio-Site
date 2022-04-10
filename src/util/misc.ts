@@ -1,5 +1,5 @@
 export function redirect(url: string) {
-    window.location.href = url;
+    window.open(url, '_blank').focus();
 }
 
 export function titleCase(string) {

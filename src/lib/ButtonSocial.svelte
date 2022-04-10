@@ -6,14 +6,6 @@
     export let hover_color = "";
 </script>
 
-<!--
-<div style="--hover-color: {hover_color}" on:click={() => redirect(url)}>
-    <a href="{url}">
-        {text}
-    </a>
-</div>
--->
-
 <div class="parent" style="--hover-color: {hover_color}" on:click={() => redirect(url)}>
     <div class="child">
         <p>
