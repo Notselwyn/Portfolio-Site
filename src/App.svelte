@@ -18,7 +18,7 @@
     } 
 </script>
 
-<Router>
+<Router primary={false}>
     <main>
         <Route>
             <Home />
