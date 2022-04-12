@@ -20,21 +20,19 @@
 </script>
 
 <div class="title">
-    <b>
-        {#each title as elem}
+    {#each title as elem}
+        <!-- svelte-ignore a11y-missing-attribute -->
+        <a>
             {#if elem[0] == "!"}
                 <!-- svelte-ignore a11y-missing-attribute -->
-                <a class="red" on:click={rainbow}>
+                <div class="red" on:click={rainbow}>
                     {elem.slice(1)}
-                </a>
+                </div>
             {:else} 
-                <!-- svelte-ignore a11y-missing-attribute -->
-                <a>
-                    {elem}
-                </a>
+                {elem}
             {/if}
-        {/each}
-    </b>
+        </a>
+    {/each}
 </div>
 
 <div class="subtitle">
@@ -64,13 +62,19 @@
         margin-top: calc(20px + 8vh);
     }
 
+    .title :global(a) {
+        font-weight: bold;
+    }
+
     .subtitle {
         font-size: calc(5px + 2vw);
     }
     
     .red {
-        color: #f03333;
+        display: inline-block;
         cursor: pointer;
+
+        color: #f03333;
     }
 
     .hover-shrink a {
