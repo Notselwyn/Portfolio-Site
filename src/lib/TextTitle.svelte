@@ -1,31 +1,19 @@
 <script lang="ts">
+    import "../assets/css/global.css";
+
     export let pagename = "";
     export let subtitle = [];
     export let title = [];
 
     let rainbow_count = 0;
+
     function rainbow() {
         if (rainbow_count < 2) {
             rainbow_count += 1;
             if (rainbow_count == 2) {
-                let rgb = [240, 50, 50];
-                let ci = 0;
-
-                setInterval(() => { 
-                    if (rgb[ci] == 240) {
-                        let i = ci > 0 ? ci-1 : 2; 
-                        if (rgb[i] > 50) {
-                            rgb[i] = Math.max(rgb[i] - 10, 50);
-                        } else {
-                            ci = (ci + 1) % 3;
-                        }
-                    } else {
-                        rgb[ci] = Math.min(rgb[ci] + 10, 240);
-                    }
-                    for (let e of document.getElementsByClassName("red")) {
-                        (<HTMLElement>e).style.color = "rgb(" + rgb.join(",") + ")";
-                    }
-                }, 50);
+                for (let e of document.getElementsByClassName("red")) {
+                    e.classList.add("rainbow-animation")
+                }
             }
         }
     }

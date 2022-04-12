@@ -36,6 +36,12 @@
         justify-content: center;
     }
 
+    @media only screen and (min-width: 2559px) {
+        .socials-container {
+            font-size: calc(20px + 1vw);
+        }
+    }
+
     @media only screen and (max-width: 779px) {
         .socials-buttons {
             flex-direction: column;

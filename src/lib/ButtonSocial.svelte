@@ -44,14 +44,25 @@
         desk: 20px + 1.2vw
         mobile: 15px + 1.4vw
     */
-    @media only screen and (max-width: 779px) {
+
+    @media only screen and (min-width: 2559px) {
         .child {
-            width: calc(200px + 3vw);
+            width: calc(200px + 4.5vw);
         }
 
+        .parent:hover > .child  {
+            width: calc(180px + 4.5vw);
+        }
+    }
+
+    @media only screen and (max-width: 779px) {
         .parent {
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .child {
+            width: calc(200px + 3vw);
         }
         
         .parent:hover > .child  {
