@@ -37,7 +37,7 @@
     }
 
     p {
-        font-size: calc(15px + 0.6vw);
+        font-size: 80%;
     }
 
     /*
@@ -46,7 +46,7 @@
     */
     @media only screen and (max-width: 779px) {
         .child {
-            width: calc(200px + 3.5vw);
+            width: calc(200px + 3vw);
         }
 
         .parent {
@@ -59,7 +59,7 @@
         }
         
         p {
-            font-size: calc(16px + 0.6vw);
+            font-size: 90%;
         }
     }
 </style>
