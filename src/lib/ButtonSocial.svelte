@@ -24,7 +24,7 @@
 
         cursor: pointer;
 
-        border: 2px solid #f0f0f0;
+        border: calc(2px + 0.06vw) solid #f0f0f0;
         border-radius: 1337px;
         transition: width 0.4s, height 0.4s, border 0.4s, background-color 0.2s ease;
     }
@@ -33,7 +33,7 @@
         width: calc(130px + 3vw);
         
         background-color: var(--hover-color);
-        border: 2px solid var(--hover-color);
+        border: calc(2px + 0.06vw) solid var(--hover-color);
     }
 
     p {
