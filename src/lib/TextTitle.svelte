@@ -8,7 +8,7 @@
     let rainbow_count = 0;
 
     function rainbow() {
-        if (rainbow_count < 2) {
+        if (rainbow_count != 2) {
             rainbow_count += 1;
             if (rainbow_count == 2) {
                 for (let e of document.getElementsByClassName("red")) {
@@ -24,7 +24,7 @@
         {#each title as elem}
             {#if elem[0] == "!"}
                 <!-- svelte-ignore a11y-missing-attribute -->
-                <a class="red" on:click={() => rainbow()}>
+                <a class="red" on:click={rainbow}>
                     {elem.slice(1)}
                 </a>
             {:else} 
