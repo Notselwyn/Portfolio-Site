@@ -17,18 +17,25 @@
 
 <style>
     .nav-container {
-        background-color: #0f0f0f;
-        overflow: hidden;
         padding: calc(10px + 1vh) calc(10px + 0.4vw);
+        overflow: hidden;
+
+        background-color: #0f0f0f;
      }
 
     .nav-options :global(a) {
         padding: 1.2vh calc(20px + 0.4vw);
         font-size: calc(20px + 1.2vw);
+
+        transition: color 0.3s ease;
     }
 
     .link-pages {
         float: right;
+    }
+
+    .link-pages :global(a):hover {
+        color: #f03333;
     }
     
     .link-root {
