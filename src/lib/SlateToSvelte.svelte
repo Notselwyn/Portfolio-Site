@@ -1,5 +1,5 @@
 <script>
-    export let document = [];
+    export let element;
 
     function GetClasses(child) {
         let classes = [];
@@ -13,8 +13,7 @@
     }
 </script>
 
-{#each document as element}
-    <div>
+<div>
     {#if element.type == "paragraph"}
         {#each element.children as child}
             <!-- svelte-ignore a11y-missing-attribute -->
@@ -71,8 +70,7 @@
             <p>Haven't added blockquotes yet :> #TODO (just imagine there's one here)</p>
         {/each}
     {/if}
-    </div>
-{/each}
+</div>
 
 <style>
     .italic {
