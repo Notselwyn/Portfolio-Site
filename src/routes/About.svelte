@@ -10,17 +10,16 @@
     const pagename = "About Me";
     const query = gql`
 {
-    posts {
-        id
+    aboutMes {
         title
         content {
             document
         }
-        tags {
-            name
+      	imageurl{
+          url
         }
     }
-}       
+}   
     `;
 
     const data_promise = getData(api_host + "/api/v1/graphql", query);
